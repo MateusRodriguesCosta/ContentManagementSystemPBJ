@@ -1,0 +1,170 @@
+/* Copyright (C) OSAA, Pousada do Bom Jesus - Todos os Direitos Reservados
+* A cópia não autorizada deste arquivo, por meio de qualquer meio, é estritamente proibida
+* Confidencial e proprietário
+* Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017
+*/
+
+body{
+  min-height: 850px !important;
+}
+.icon-clickable-pbj{color: orange !important;}
+.icon-clickable-pbj:hover{color: #EE7600 !important;}
+.gui-input:hover, focus, focus:hover, select:hover, select:focus{border-color: orange !important;outline: none !important;}
+.gui-input:focus{border-color: orange !important;}
+.gui-input{outline: none !important;}
+.text-arq {color:#494E9D;}
+a.text-arq:hover {color:#33355F;}
+.text-arq-light {color:#5D62A6;}
+.text-arq-lighter {color:#7074AF;}
+.text-arq-dark {color:#434894;}
+.text-arq-darker {color:#353B96;}
+.br-arq {border-color:#494E9D !important;}
+.br-arq-light {border-color:#5D62A6 !important;}
+.text-arq2 {color:#EDBB5A;}
+a.text-arq2:hover {color:#E09B16;}
+.text-arq2-light {color:#F1C571;}
+.text-arq2-lighter {color:#F8CC77;}
+.text-arq2-dark {color:#E8B146;}
+.text-arq2-darker {color:#E2A52F;}
+.br-arq2 {border-color:#EDBB5A !important;}
+.br-arq2-light {border-color:#F1C571 !important;}
+.text-pbj {color:#DA6539;}
+a.text-pbj:hover {color:#90533C;}
+.text-pbj-light {color:#E27C4F;}
+.text-pbj-lighter {color:#FBBB8D;}
+.text-pbj-dark {color:#C95621;}
+.text-pbj-darker {color:#A75030;}
+.br-pbj {border-color:#DA6539 !important;}
+.br-pbj-light {border-color:#E27C4F !important;}
+.text-pbj2 {color:#0B6E45;}
+a.text-pbj2:hover {color:#17372A;}
+.text-pbj2-light {color:#188E5D;}
+.text-pbj2-lighter {color:#1FA970;}
+.text-pbj2-dark {color:#2C7744;}
+.text-pbj2-darker {color:#295939;}
+.br-pbj2 {border-color:#0B6E45 !important;}
+.br-pbj2-light {border-color:#188E5D !important;}
+.invisivel {display:none;}
+input[readonly=true]{cursor: default;}
+.operacoes a {font-size:18px!important;margin:1px!important;padding:5px!important;}
+.imprimir {text-align:center;padding:10px;}
+
+#preloader {
+    position: fixed;
+    background-color: #FFFFFF;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    z-index: 999999;
+    -webkit-transition: all .4s linear;
+       -moz-transition: all .4s linear;
+        -ms-transition: all .4s linear;
+         -o-transition: all .4s linear;
+            transition: all .4s linear;
+}
+#preloader.zoomOut {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: scale(0.5);
+       -moz-transform: scale(0.5);
+        -ms-transform: scale(0.5);
+         -o-transform: scale(0.5);
+            transform: scale(0.5);
+}
+#preloader .loader {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+     -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+#preloader .loader {
+  display: block;
+  font-family: 'mongolian_baitiregular';
+  font-size: 30px;
+  font-weight: 400;
+  overflow: hidden;
+  padding-bottom: 5px;
+  line-height: 1em;
+}
+#preloader .loader:before {
+    content: attr(data-loading-text);
+    text-transform: uppercase;
+    color: #67D3E0;
+}
+
+#preloader .loader:after {
+    content: attr(data-loading-text);
+    position: absolute;
+    top: 0;
+    color: #293042;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1em;
+    opacity: 1;
+    overflow: hidden;
+    width: 0;
+    -webkit-animation: anim 5s infinite;
+    -moz-animation: anim 5s infinite;
+    -ms-animation: anim 5s infinite;
+    animation: anim 5s infinite;
+}
+
+@-webkit-keyframes anim {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    height: 100%;
+    width: 100%;
+  }
+  100% {
+    height: 0;
+    width: 100%;
+  }
+}
+@-moz-keyframes anim {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    height: 100%;
+    width: 100%;
+  }
+  100% {
+    height: 0;
+    width: 100%;
+  }
+}
+@-ms-keyframes anim {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    height: 100%;
+    width: 100%;
+  }
+  100% {
+    height: 0;
+    width: 100%;
+  }
+}
+@keyframes anim {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    height: 100%;
+    width: 100%;
+  }
+  100% {
+    height: 0;
+    width: 100%;
+  }
+}
