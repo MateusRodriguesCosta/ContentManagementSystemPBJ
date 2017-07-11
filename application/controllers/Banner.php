@@ -229,6 +229,19 @@ class Banner extends CI_Controller {
 			$this->midia_m->atualizar();
 			$this->banner_m->atualizar();
 
+			$this->log_m->setTabela('pousada_banner');
+			$this->log_m->setLinha($this->input->post('id'));
+			$this->log_m->setOperacao('u');
+			$this->log_m->setDescricao(						'Titulo: '.
+				$this->midia_m->getTitulo()					.'!break!Link: '.
+				$this->midia_m->getLink()  					.'!break!Data de Alteração: '.
+				$this->midia_m->getDataAlteracao()  .'!break!Data de Expiração: '.
+				$this->banner_m->getDataExpiracao() .'!break!Id do item: '.
+				$this->input->post('id')						.'!break!!break!'.
+				$verificacao
+			);
+			$this->log_m->inserir();
+
 			$this->session->set_userdata('status', 'SUCESSO');
 
 			redirect('Banner/Listar');

@@ -8,7 +8,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 		<div class="topbar-left">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-icon"><?php echo anchor('', '<span class="fa fa-home"></span>', 'title="Clique para ir"'); ?></li>
-				<li class="breadcrumb-active"><?php echo anchor('', 'Dashboard', 'title="Clique para ir"'); ?></li>
+				<li class="breadcrumb-active"><?php echo anchor('', 'MENU PRINCIPAL', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('', 'Configura&ccedil;&otilde;es', 'title="Clique para ir"'); ?></li>
                 <li class="breadcrumb-current-item">Log (Histórico)</li>
 			</ol>
@@ -36,8 +36,7 @@ foreach($result as $row){
 		</div>
 
 		<div class="panel-body">
-			<?php echo $this->texto_m->limpeza_sql($row->log_descricao); ?>
-			<textarea name="decricao" style="width:100%;"><?php echo $row->log_descricao.';'; ?></textarea>
+			<textarea name="decricao" style="width:100%;min-width:100%;max-width:100%;min-height:190px;cursor:default;" readonly><?php echo $this->texto_m->tratarQueryLog($row->log_descricao,'pousada_banner'); ?></textarea>
 		</div>
 
 		<div class="panel-footer">

@@ -66,8 +66,7 @@ class Imagem_m extends CI_Model {
 		$this->db->query('SET lc_time_names = "pt_BR"');
 		$this->db->select('img_id, img_ativo, date_format(img_dataInclusao, "%W %d de %M de %Y") as img_dataInclusao, date_format(img_dataAlteracao, "%W %d de %M de %Y") as img_dataAlteracao, img_caminho, mid_titulo, mid_local');
 		$this->db->join('pousada_midia', 'pousada_midia.mid_id = pousada_imagem.img_mid_id');
-		//$this->db->order_by('img_show', 'DESC');
-		//$this->db->order_by('img_titulo', 'ASC');
+		$this->db->order_by('img_id', 'DESC');
 		$query = $this->db->get('pousada_imagem');
 		return $query->result();
 	}
@@ -94,11 +93,11 @@ class Imagem_m extends CI_Model {
 
 		$this->setId($this->db->insert_id());
 
-		/*$this->log_m->setTabela('pousada_imagem');
+		$this->log_m->setTabela('pousada_imagem');
 		$this->log_m->setLinha($this->getId());
 		$this->log_m->setOperacao('i');
 		$this->log_m->setDescricao($this->db->last_query());
-		$this->log_m->inserir();*/
+		$this->log_m->inserir();
 	}
 
 	public function editar($id){
@@ -127,11 +126,11 @@ class Imagem_m extends CI_Model {
 		$this->db->where('img_id', $this->getId());
 		$this->db->update('pousada_imagem', $data);
 
-		/*$this->log_m->setTabela('pousada_imagem');
+		$this->log_m->setTabela('pousada_imagem');
 		$this->log_m->setLinha($this->getId());
 		$this->log_m->setOperacao('u');
 		$this->log_m->setDescricao($this->db->last_query());
-		$this->log_m->inserir();*/
+		$this->log_m->inserir();
 	}
 
 }

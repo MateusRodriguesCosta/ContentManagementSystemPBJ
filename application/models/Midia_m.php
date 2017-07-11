@@ -135,7 +135,7 @@ class Midia_m extends CI_Model {
 
 	public function listar(){
 		$this->db->query('SET lc_time_names = "pt_BR"');
-		$query = $this->db->query("SELECT mid_id, mid_tipo, mid_titulo, mid_ativo, date_format(mid_dataInclusao, '%W %d de %M de %Y') as mid_dataInclusao, date_format(mid_dataAlteracao, '%W %d de %M de %Y') as mid_dataAlteracao, mid_local FROM `pousada_midia` as `M` WHERE `mid_tipo` LIKE 'midia';");
+		$query = $this->db->query("SELECT mid_id, mid_tipo, mid_titulo, mid_ativo, date_format(mid_dataInclusao, '%W %d de %M de %Y') as mid_dataInclusao, date_format(mid_dataAlteracao, '%W %d de %M de %Y') as mid_dataAlteracao, mid_local FROM `pousada_midia` as `M` WHERE `mid_tipo` LIKE 'midia' ORDER BY `mid_id` DESC;");
 			/**
 			 * Query reutilizável
 			 * SELECT `mid_id`, `mid_tipo`, `mid_titulo`, `mid_ativo`, `mid_dataInclusao`, `ban_caminho` FROM `pousada_midia` as `M` INNER JOIN `pousada_banner`as `B` ON `B`.`ban_mid_id` = `M`.`mid_id`
@@ -243,14 +243,13 @@ class Midia_m extends CI_Model {
 		}
 
 		$this->db->insert('pousada_midia', $data);
-
 		$this->setId($this->db->insert_id());
 
-		/*$this->log_m->setTabela('pousada_midia');
+		$this->log_m->setTabela('pousada_midia');
 		$this->log_m->setLinha($this->getId());
 		$this->log_m->setOperacao('i');
 		$this->log_m->setDescricao($this->db->last_query());
-		$this->log_m->inserir();*/
+		$this->log_m->inserir();
 		return $this->getId();
 	}
 
@@ -366,11 +365,11 @@ class Midia_m extends CI_Model {
 		$this->db->where('mid_id', $this->getId());
 		$this->db->update('pousada_midia', $data);
 
-		/*$this->log_m->setTabela('pousada_midia');
+		$this->log_m->setTabela('pousada_midia');
 		$this->log_m->setLinha($this->getId());
 		$this->log_m->setOperacao('u');
 		$this->log_m->setDescricao($this->db->last_query());
-		$this->log_m->inserir();*/
+		$this->log_m->inserir();
 
 		return $this->getId();
 	}

@@ -75,8 +75,7 @@ class Banner_m extends CI_Model {
 		$this->db->query('SET lc_time_names = "pt_BR"');
 		$this->db->select('ban_id, ban_ativo, mid_titulo, date_format(ban_dataInclusao, "%W %d de %M de %Y") as ban_dataInclusao, date_format(ban_dataAlteracao, "%W %d de %M de %Y") as ban_dataAlteracao, ban_caminho, date_format(ban_dataExpiracao, "%W %d de %M de %Y") as ban_dataExpiracao');
 		$this->db->join('pousada_midia', 'pousada_midia.mid_id = pousada_banner.ban_mid_id');
-		//$this->db->order_by('ban_show', 'DESC');
-		//$this->db->order_by('ban_titulo', 'ASC');
+		$this->db->order_by('ban_id', 'DESC');
 		$query = $this->db->get('pousada_banner');
 		return $query->result();
 	}
@@ -105,11 +104,11 @@ class Banner_m extends CI_Model {
 
 		$this->setId($this->db->insert_id());
 
-		/*$this->log_m->setTabela('pousada_banner');
+		$this->log_m->setTabela('pousada_banner');
 		$this->log_m->setLinha($this->getId());
 		$this->log_m->setOperacao('i');
 		$this->log_m->setDescricao($this->db->last_query());
-		$this->log_m->inserir();*/
+		$this->log_m->inserir();
 	}
 
 	public function editar($id){
@@ -139,12 +138,6 @@ class Banner_m extends CI_Model {
 		);
 
 		$this->db->where('ban_id', $this->getId());
-		$this->db->update('pousada_banner', $data);
-
-		/*$this->log_m->setTabela('pousada_banner');
-		$this->log_m->setLinha($this->getId());
-		$this->log_m->setOperacao('u');
-		$this->log_m->setDescricao($this->db->last_query());
-		$this->log_m->inserir();*/
+		$this->db->update('pousada_banner', $data);		
 	}
 }

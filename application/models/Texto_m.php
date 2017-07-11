@@ -96,6 +96,15 @@ class Texto_m extends CI_Model {
 		return $data;
 	}
 
+	public function tratarQueryLog($query, $tabela){
+		$query = str_replace('!break!', '
+', $query);
+		$query = str_replace('false', 'NÃO FORAM REALIZADAS EDIÇÕES NA IMAGEM', $query);
+		$query = str_replace('true', 'FORAM REALIZADAS EDIÇÕES NA IMAGEM', $query);		
+
+		return $query;
+	}
+
 	public function ativo_texto($ativo) {
 		switch($ativo){
 			case '1':
