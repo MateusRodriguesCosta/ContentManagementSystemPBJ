@@ -134,6 +134,23 @@ class Midia extends CI_Controller {
 			}
 			# Inclusão da midia.
 			$midiaID = $this->midia_m->inserir();
+
+			$this->log_m->setTabela('pousada_midia');
+			$this->log_m->setLinha($midiaID);
+			$this->log_m->setOperacao('i');
+			$this->log_m->setDescricao(																								'Titulo: '.
+				$this->midia_m->getTitulo()																							.'!break!Link: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getLink())  					.'!break!Local: '.
+				$this->midia_m->getLocal()																							.'!break!Data de Inclusão: '.
+				$this->midia_m->getDataInclusao()   																		.'!break!Id do item: '.
+				$midiaID               						  																		.'!break!Equipamentos: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
+				$verificacao
+			);
+			$this->log_m->inserir();
 			$this->session->set_userdata('status', 'SUCESSO');
 			redirect('Midia/Listar');
 
@@ -234,6 +251,23 @@ class Midia extends CI_Controller {
 			}
 
 			$this->midia_m->atualizar();
+
+			$this->log_m->setTabela('pousada_midia');
+			$this->log_m->setLinha($this->input->post('id'));
+			$this->log_m->setOperacao('u');
+			$this->log_m->setDescricao(																								'Titulo: '.
+				$this->midia_m->getTitulo()																							.'!break!Link: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getLink())  					.'!break!Local: '.
+				$this->midia_m->getLocal()																							.'!break!Data de Alteração: '.
+				$this->midia_m->getDataAlteracao()																			.'!break!Id do item: '.
+				$this->input->post('id')               						  										.'!break!Equipamentos: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
+				$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
+				$verificacao
+			);
+			$this->log_m->inserir();
 
 			$this->session->set_userdata('status', 'SUCESSO');
 

@@ -100,9 +100,16 @@ class Texto_m extends CI_Model {
 		$query = str_replace('!break!', '
 ', $query);
 		$query = str_replace('false', 'NÃO FORAM REALIZADAS EDIÇÕES NA IMAGEM', $query);
-		$query = str_replace('true', 'FORAM REALIZADAS EDIÇÕES NA IMAGEM', $query);		
+		$query = str_replace('true', 'FORAM REALIZADAS EDIÇÕES NA IMAGEM', $query);
 
 		return $query;
+	}
+	public function verificarConteudo($conteudo){
+		if ($conteudo!=null && $conteudo!='') {
+			return $conteudo;
+		}else {
+			return ' - ';
+		}
 	}
 
 	public function ativo_texto($ativo) {

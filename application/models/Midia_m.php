@@ -244,12 +244,6 @@ class Midia_m extends CI_Model {
 
 		$this->db->insert('pousada_midia', $data);
 		$this->setId($this->db->insert_id());
-
-		$this->log_m->setTabela('pousada_midia');
-		$this->log_m->setLinha($this->getId());
-		$this->log_m->setOperacao('i');
-		$this->log_m->setDescricao($this->db->last_query());
-		$this->log_m->inserir();
 		return $this->getId();
 	}
 
@@ -364,13 +358,6 @@ class Midia_m extends CI_Model {
 
 		$this->db->where('mid_id', $this->getId());
 		$this->db->update('pousada_midia', $data);
-
-		$this->log_m->setTabela('pousada_midia');
-		$this->log_m->setLinha($this->getId());
-		$this->log_m->setOperacao('u');
-		$this->log_m->setDescricao($this->db->last_query());
-		$this->log_m->inserir();
-
 		return $this->getId();
 	}
 

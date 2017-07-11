@@ -108,7 +108,21 @@ class Imagem extends CI_Controller {
 			}
 
 			# Inclusão da imagem, mensagem de sucesso e retorno a lista de imagens.
-			$this->imagem_m->inserir($midiaID);
+			$imagemID = $this->imagem_m->inserir($midiaID);
+
+			$this->log_m->setTabela('pousada_imagem');
+			$this->log_m->setLinha($imagemID);
+			$this->log_m->setOperacao('i');
+			$this->log_m->setDescricao(						'Titulo: '.
+				$this->midia_m->getTitulo()					.'!break!Link: '.
+				$this->midia_m->getLink()  					.'!break!Data de Inclusão: '.
+				$this->midia_m->getDataInclusao()   .'!break!Local: '.
+				$this->midia_m->getLocal() 					.'!break!Id do item: '.
+				$imagemID               						.'!break!!break!'.
+				$verificacao
+			);
+			$this->log_m->inserir();
+
 			$this->session->set_userdata('status', 'SUCESSO');
 			redirect('Imagem/Listar');
 		}
@@ -209,6 +223,19 @@ class Imagem extends CI_Controller {
 
 			$this->midia_m->atualizar();
 			$this->imagem_m->atualizar();
+
+			$this->log_m->setTabela('pousada_imagem');
+			$this->log_m->setLinha($this->input->post('id'));
+			$this->log_m->setOperacao('u');
+			$this->log_m->setDescricao(						'Titulo: '.
+				$this->midia_m->getTitulo()					.'!break!Link: '.
+				$this->midia_m->getLink()  					.'!break!Data de Alteração: '.
+				$this->midia_m->getDataAlteracao()  .'!break!Local: '.
+				$this->midia_m->getLocal() 					.'!break!Id do item: '.
+				$this->input->post('id') 						.'!break!!break!'.
+				$verificacao
+			);
+			$this->log_m->inserir();
 
 			$this->session->set_userdata('status', 'SUCESSO');
 

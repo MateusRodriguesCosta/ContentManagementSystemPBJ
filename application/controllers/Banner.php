@@ -124,7 +124,21 @@ class Banner extends CI_Controller {
 			}
 
 			# Inclusão do banner, mensagem de sucesso e retorno a lista de banners.
-			$this->banner_m->inserir($midiaID);
+			$bannerID = $this->banner_m->inserir($midiaID);
+
+			$this->log_m->setTabela('pousada_banner');
+			$this->log_m->setLinha($bannerID);
+			$this->log_m->setOperacao('i');
+			$this->log_m->setDescricao(						'Titulo: '.
+				$this->midia_m->getTitulo()					.'!break!Link: '.
+				$this->midia_m->getLink()  					.'!break!Data de Inclusão: '.
+				$this->midia_m->getDataInclusao()   .'!break!Data de Expiração: '.
+				$this->banner_m->getDataExpiracao() .'!break!Id do item: '.
+				$bannerID               						.'!break!!break!'.
+				$verificacao
+			);
+			$this->log_m->inserir();
+
 			$this->session->set_userdata('status', 'SUCESSO');
 			redirect('Banner/Listar');
 		}

@@ -130,7 +130,7 @@ class Log_m extends CI_Model {
 		$this->db->from('pousada_log');
 		$this->db->like('log_tabela',$tabela);
 		$this->db->where('log_linha',$linha);
-		$this->db->order_by('log_datahora', 'ASC');
+		$this->db->order_by('log_datahora', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
