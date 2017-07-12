@@ -98,9 +98,12 @@ class Midia extends CI_Controller {
 			$temporarioOriginal = 'assets/tmp/edicao_tmp_'.$user.'.jpg';
 			$temporarioRecorte = 'assets/tmp/edicao_tmp_recorte_'.$user.'.jpg';
 
+			$ID = '1';
 			# Caminho que será utilizado para upload dos banners.
 			foreach($this->midia_m->retornarId() as $row){
-				$ID = $row->mid_id + 1;
+				if ($row->mid_id!='' && $row->mid_id!=null && $row->mid_id!=0) {
+					$ID = $row->mid_id + 1;
+				}
 			}
 
 			# Caminho que será utilizado para upload das midias.
@@ -110,7 +113,7 @@ class Midia extends CI_Controller {
 			# Sleep utilizado para espera das transferências assíncronas
 			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
 			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.4);
+			sleep(1.2);
 
 			# Verifica se o arquivo de imagem foi enviado através do ajax
 			# e se foi realizado algum recorte na imagem da midia.
@@ -152,7 +155,7 @@ class Midia extends CI_Controller {
 			);
 			$this->log_m->inserir();
 			$this->session->set_userdata('status', 'SUCESSO');
-			redirect('Midia/Listar');
+			//redirect('Midia/Listar');
 
 		}
 	}
@@ -190,6 +193,11 @@ class Midia extends CI_Controller {
 			$this->load->view('midia/editar');
 			$this->load->view('template/footer');
 		}else{
+			# Sleep utilizado para espera das transferências assíncronas
+			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
+			# os arquivos de edição e a solicitação dos mesmos para copy().
+			sleep(1.2);
+
 			# Conversão de datas
 			$data_inclusao = $this->texto_m->conversaoData($this->input->post('dataInclusao'));
 			$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
