@@ -155,7 +155,7 @@ class Midia extends CI_Controller {
 			);
 			$this->log_m->inserir();
 			$this->session->set_userdata('status', 'SUCESSO');
-			//redirect('Midia/Listar');
+			redirect('Midia/Listar');
 
 		}
 	}

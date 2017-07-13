@@ -11,7 +11,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 	<meta name="keywords" content="Painel Pousada, Pousada do Bom Jesus, pousadadobomjesus.com"/>
 	<meta name="application-name" content="Painel Pousada">
 	<meta name="description" content="Painel Pousada - Sistema administração do site pousadadobomjesus.com.">
-	<meta name="author" content="Mateus Costa ft. Victor Ontiveros (ontiveros.com.br)">
+	<meta name="author" content="Mateus Costa <mateusespindola25@hotmail.com>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic">
@@ -25,7 +25,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/allcp/forms/css/forms.css'); ?>">
 <?php } ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/fonts/icomoon/icomoon.css'); ?>">
-	<link rel="shortcut icon" href="<?php echo base_url('assets/img/pousada.ico'); ?>">
+	<link rel="shortcut icon" href="<?php echo base_url('assets/img/patterns/logo/pousada.ico'); ?>">
 <!--[if lt IE 9]>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>

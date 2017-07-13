@@ -101,7 +101,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 								<div class="col-xs-12 col-sm-10 col-md-10 center-block" id="divImagem">
 									<span title="Obrigatório" class="help-block">Edição da Imagem</span>
 									<div class="img-container pv10" style="background: #ffffff;">
-										<img src="<?php echo base_url('assets/img/pousada_banner/1.png'); ?>">
+										<img src="<?php echo base_url('assets/img/patterns/canvas/placeholder.png'); ?>">
 									</div>
 
 								</div>
@@ -130,20 +130,21 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 												<p><span class="fa fa-refresh"></span></p>
 											</button>
 											<label class="btn btn-warning btn-sm btn-upload" for="inputImage" title="Upload de imagem">
-												<input class="sr-only js-fileinput img-upload" onchange=<?php echo "'readURL(this".$this->session->user_nome.");'"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
-		                    <label id="usuario" style="display:none;"><?php echo $this->session->user_nome; ?></label>
+												<input class="sr-only js-fileinput img-upload" onchange=<?php echo "'readURL(this,".$this->session->user_nome.");'"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
 												<p><span class="fa fa-upload"></span></p>
 											</label>
 										</div>
 									</div>
 								</div>
 							</div>
-							<input type="hidden" id="limparImagem" value="false"></input>
 							<div class="row">
 								<div class="col-md-offset-10 col-md-2">
 									<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right"><span class="fa fa-plus"></span> Inserir Novo</button>
+									<!-- Informações para diversas classes-->
 	                <input type="hidden" class="gui-input" name="verificacao" id="verificacao" value=""></input>
 	                <input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_id.'"';?>></input>
+									<input type="hidden" id="limparImagem" value="false"></input>
+									<label id="usuario" style="display:none;"><?php echo $this->session->user_nome; ?></label>
 								</div>
 							</div>
 							<?php echo form_close(); ?>

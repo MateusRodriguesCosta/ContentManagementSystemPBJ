@@ -106,20 +106,30 @@ class Banner extends CI_Controller {
 			# e se foi realizado algum recorte no banner.
 			# Caminho Default em caso de não ocorrerem recortes.
 			$this->banner_m->setCaminho(explode('/',$moverRecorte)[3]);
-			if (file_exists($temporarioRecorte) && $verificacao == 'true') {
+			if ($verificacao == 'true') {
 				copy($temporarioRecorte,$moverRecorte);
 				$this->banner_m->setCaminho(explode('/',$moverRecorte)[3]);
 				chmod($moverRecorte, 0777);
-			} else if (file_exists($temporarioRecorte) && $verificacao == 'false') {
-				copy($temporarioOriginal,$moverRecorte);
-				$this->banner_m->setCaminho(explode('/',$moverRecorte)[3]);
-				chmod($moverRecorte, 0777);
+			} else if ($verificacao == 'false') {
+				if (file_exists($temporarioOriginal)) {
+					copy($temporarioOriginal,$moverRecorte);
+					$this->banner_m->setCaminho(explode('/',$moverRecorte)[3]);
+					chmod($moverRecorte, 0777);
+				} else {
+					copy(base_url('assets/img/patterns/canvas/placeholder.png'),$moverRecorte);
+					$this->banner_m->setCaminho(explode('/',$moverRecorte)[3]);
+					chmod($moverRecorte, 0777);
+				}
 			}
+			unlink($temporarioOriginal);
 
 			# Envia arquivo original de qualquer forma para resguardar o sistema
 			# de possíveis falhas.
 			if (file_exists($temporarioOriginal)) {
 				copy($temporarioOriginal,$moverOriginal);
+				chmod($moverOriginal, 0777);
+			} else {
+				copy(base_url('assets/img/patterns/canvas/placeholder.png'),$moverOriginal);
 				chmod($moverOriginal, 0777);
 			}
 

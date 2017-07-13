@@ -9,7 +9,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 
 		<section id="content">
 			<div class="allcp-form theme-primary mw320" id="login">
-				<div class="text-center mb20"><img src="<?php echo base_url('assets/img/NovoArqCentral.png'); ?>" class="img-responsive" alt="Logo"/></div>
+				<div class="text-center mb20"><img src="<?php echo base_url('assets/img/patterns/login/placa.png'); ?>" class="img-responsive" alt="Logo"/></div>
 
 				<div class="allcp-form">
 					<div class="panel mw320">

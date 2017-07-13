@@ -27,7 +27,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							<div class="row">
 								<div class="col-md-12">
 									<div class="section">
-										<span title="Campo obrigatório" class="help-block">Título<span class="text-danger">*</span></span>
+										<span title="Campo obrigatório" class="help-block">Título <span class="text-danger">*</span></span>
 										<label class="field prepend-icon">
 											<input name="titulo" value="<?php echo $this->midia_m->getTitulo(); ?>" placeholder="Título da Imagem" maxlength="42" required id="titulo" class="gui-input">
 											<label for="titulo" class="field-icon"><i class="fa fa-font"></i></label>
@@ -38,15 +38,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							<div class="row">
 								<div class="col-md-4">
 									<div class="section">
-										<span class="help-block">Link</span>
-										<label class="field prepend-icon">
-											<input name="link" value="<?php echo $this->midia_m->getLink(); ?>" placeholder="Link" maxlength="42" id="link" class="gui-input">
-											<label for="link" class="field-icon"><i class="fa fa-link"></i></label>
-										</label>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="section">
 										<span class="help-block">Data de Inclusão</span>
 										<label class="field prepend-icon">
 											<input name="dataInclusao" value=" <?php echo $this->imagem_m->getDataInclusao(); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" maxlength="42" required id="dataInclusao" class="gui-input">
@@ -54,7 +45,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 										</label>
 									</div>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<div class="section">
 										<span class="help-block">Data de Alteração</span>
 										<label class="field prepend-icon">
@@ -63,9 +54,9 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 										</label>
 									</div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-4">
 									<div class="section">
-										<span title="Campo obrigatório" class="help-block">Habilitar<span class="text-danger">*</span></span>
+										<span title="Campo obrigatório" class="help-block">Habilitar <span class="text-danger">*</span></span>
 										<label class="field select">
 											<select name="ativo" required id="ativo">
 												<?php echo $this->texto_m->ativo_selecionar($this->imagem_m->getAtivo()); ?>
@@ -83,7 +74,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 										if($this->imagem_m->getCaminho() != "" || $this->imagem_m->getCaminho() != null){
 											echo base_url('assets/img/pousada_imagem/'.$this->imagem_m->getCaminho().'?dummy='.date("d/m/YH:m:s"));
 										}else{
-											echo base_url('assets/img/pousada_banner/1.png');
+											echo base_url('assets/img/patterns/canvas/placeholder.png');
 										}
 										?>">
 									</div>
@@ -114,19 +105,20 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 											<p><span class="fa fa-refresh"></span></p>
 										</button>
 										<label class="btn btn-warning btn-sm btn-upload" for="inputImage" title="Upload de imagem">
-											<input class="sr-only js-fileinput img-upload" onchange=<?php echo "'readURL(this".$this->session->user_nome.");'"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
-											<label id="usuario" style="display:none;"><?php echo $this->session->user_nome; ?></label>
+											<input class="sr-only js-fileinput img-upload" onchange=<?php echo "'readURL(this,".$this->session->user_nome.");'"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
 											<p><span class="fa fa-upload"></span></p>
 										</label>
 									</div>
 								</div>
 							</div>
-							<input type="hidden" id="limparImagem" value="false"></input>
 							<div class="row">
 								<div class="col-md-offset-10 col-md-2">
 									<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right"><span class="fa fa-check"></span> Salvar Edição</button>
+									<!-- Informações para diversas classes-->
 									<input type="hidden" class="gui-input" name="verificacao" id="verificacao" value=""></input>
 									<input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_id.'"';?>></input>
+									<input type="hidden" id="limparImagem" value="false"></input>
+									<label id="usuario" style="display:none;"><?php echo $this->session->user_nome; ?></label>
 								</div>
 							</div>
 							<?php echo form_close(); ?>

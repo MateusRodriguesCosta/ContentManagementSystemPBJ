@@ -18,14 +18,14 @@ class Imagem extends CI_Controller {
 				$this->load->model('midia_m');
     }
 
-	public function index(){
+	public function index() {
 		redirect('Imagem/Listar');
 	}
 
 	/*Função na qual irá redirecionar para
 	* a inclusão de um novo imagem.
 	*/
-	public function adicionar(){
+	public function adicionar() {
 		$this->session->set_userdata('css_js', 'formulario');
 
 		$this->load->view('template/header');
@@ -42,18 +42,18 @@ class Imagem extends CI_Controller {
 	* ao arquivo do imagem por meio da função 'chmod'
 	* e permitir o acesso das imagens para as views.
 	*/
-	public function inserir(){
+	public function inserir() {
 		$this->texto_m->validacao();
 
 		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[42]');
 
-		if($this->form_validation->run() == FALSE){
+		if($this->form_validation->run() == FALSE) {
 			$this->session->set_userdata('css_js', 'formulario');
 
 			$this->load->view('template/header');
 			$this->load->view('imagem/cadastrar');
 			$this->load->view('template/footer');
-		}else{
+		} else {
 			# Conversão de datas
 			$data_inclusao = str_replace('/', '-', $this->input->post('dataInclusao'));
 			$data_inclusao = date_create_from_format('d-m-Y', $data_inclusao);
@@ -90,20 +90,30 @@ class Imagem extends CI_Controller {
 			# e se foi realizado algum recorte no imagem.
 			# Caminho Default em caso de não ocorrerem recortes.
 			$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
-			if (file_exists($temporarioRecorte) && $verificacao == 'true') {
+			if ($verificacao == 'true') {
 				copy($temporarioRecorte,$moverRecorte);
 				$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
 				chmod($moverRecorte, 0777);
-			} else if (file_exists($temporarioRecorte) && $verificacao == 'false') {
-				copy($temporarioOriginal,$moverRecorte);
-				$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
-				chmod($moverRecorte, 0777);
+			} else if ($verificacao == 'false') {
+				if (file_exists($temporarioOriginal)) {
+					copy($temporarioOriginal,$moverRecorte);
+					$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
+					chmod($moverRecorte, 0777);
+				} else {
+					copy(base_url('assets/img/patterns/canvas/placeholder.png'),$moverRecorte);
+					$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
+					chmod($moverRecorte, 0777);
+				}
 			}
+			unlink($temporarioOriginal);
 
 			# Envia arquivo original de qualquer forma para resguardar o sistema
 			# de possíveis falhas.
 			if (file_exists($temporarioOriginal)) {
 				copy($temporarioOriginal,$moverOriginal);
+				chmod($moverOriginal, 0777);
+			}else {
+				copy(base_url('assets/img/patterns/canvas/placeholder.png'),$moverOriginal);
 				chmod($moverOriginal, 0777);
 			}
 
