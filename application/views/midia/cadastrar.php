@@ -47,42 +47,42 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 								<div class="col-xs-12 col-sm-12 col-md-4" style="margin-top: 5px;" id="divTitulo">
 									<span title="Obrigatório" class="help-block">Título <span class="text-danger">*</span></span>
 									<label class="field prepend-icon">
-										<input name="titulo" value="" placeholder="Título da mídia" required id="titulo" class="gui-input">
+										<input name="titulo" value="" placeholder="Título da mídia" required id="titulo" class="gui-input" autocomplete="off">
 										<label for="titulo" class="field-icon"><i class="fa fa-font"></i></label>
 									</label>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-4" style="margin-top: 5px;" id="divInclusao">
 									<span class="help-block">Data de Inclusão</span>
 									<label class="field prepend-icon">
-										<input type="text" name="dataInclusao" value="<?php echo date('d/m/Y'); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" maxlength="42" required id="dataInclusao" class="gui-input">
+										<input type="text" name="dataInclusao" value="<?php echo date('d/m/Y'); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" maxlength="42" required id="dataInclusao" class="gui-input" autocomplete="off">
 										<label for="dataInclusao" class="field-icon"><i class="fa fa-calendar"></i></label>
 									</label>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-4" style="margin-top: 5px;" id="divLink">
 									<span class="help-block">Link</span>
 									<label class="field prepend-icon">
-										<input name="link" value="" placeholder="Link" maxlength="42" id="link" class="gui-input">
+										<input name="link" value="" placeholder="Link" maxlength="42" id="link" class="gui-input" autocomplete="off">
 										<label for="link" class="field-icon"><i class="fa fa-link"></i></label>
 									</label>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-4" style="margin-top: 5px;" id="divPeriodo">
 									<span class="help-block">Período <span class="text-danger">*</span></span>
 									<label class="field prepend-icon">
-										<input name="periodo" value="" placeholder="Período da visita" id="periodo" class="gui-input">
+										<input name="periodo" value="" placeholder="Período da visita" id="periodo" class="gui-input" autocomplete="off">
 										<label for="periodo" class="field-icon"><i class="fa fa-calendar"></i></label>
 									</label>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-6" id="divCapacidade">
 									<span class="help-block">Capacidade <span class="text-danger">*</span></span>
 									<label class="field prepend-icon">
-										<input name="capacidade" value="" placeholder="Capacidade do ambiente" id="capacidade" class="gui-input">
+										<input name="capacidade" value="" placeholder="Capacidade do ambiente" id="capacidade" class="gui-input" autocomplete="off">
 										<label for="capacidade" class="field-icon"><i class="fa fa-group"></i></label>
 									</label>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-6" id="divEquipamentos">
 									<span class="help-block">Equipamentos <span class="text-danger">*</span></span>
 									<label class="field prepend-icon">
-										<input name="equipamentos" value="" placeholder="Equipamentos disponíveis" id="equipamentos" class="gui-input">
+										<input name="equipamentos" value="" placeholder="Equipamentos disponíveis" id="equipamentos" class="gui-input" autocomplete="off">
 										<label for="equipamentos" class="field-icon"><i class="fa fa-gears"></i></label>
 									</label>
 								</div>

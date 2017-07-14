@@ -124,17 +124,28 @@ class Midia extends CI_Controller {
 				$this->midia_m->setCaminho(explode('/',$moverRecorte)[3]);
 				chmod($moverRecorte, 0777);
 			} else if ($verificacao == 'false') {
-				copy($temporarioOriginal,$moverRecorte);
-				$this->midia_m->setCaminho(explode('/',$moverRecorte)[3]);
-				chmod($moverRecorte, 0777);
+				if (file_exists($temporarioOriginal)) {
+					copy($temporarioOriginal,$moverRecorte);
+					$this->midia_m->setCaminho(explode('/',$moverRecorte)[3]);
+					chmod($moverRecorte, 0777);
+				} else {
+					copy(base_url('assets/img/patterns/canvas/placeholder.png'),$moverRecorte);
+					$this->midia_m->setCaminho(explode('/',$moverRecorte)[3]);
+					chmod($moverRecorte, 0777);
+				}
 			}
+			unlink($temporarioOriginal);
 
 			# Envia arquivo original de qualquer forma para resguardar o sistema
 			# de possíveis falhas.
 			if (file_exists($temporarioOriginal)) {
 				copy($temporarioOriginal,$moverOriginal);
 				chmod($moverRecorte, 0777);
+			} else {
+				copy(base_url('assets/img/patterns/canvas/placeholder.png'),$moverOriginal);
+				chmod($moverOriginal, 0777);
 			}
+			
 			# Inclusão da midia.
 			$midiaID = $this->midia_m->inserir();
 

@@ -23,8 +23,8 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 
 			<div class="panel">
 				<div class="panel-heading"><span class="panel-title">Lista de mídias: <?php echo $this->midia_m->totalizar(); ?></span></div>
-				<div class="panel-menu">
-					<input type="text" placeholder="Digite aqui para filtrar..." id="fooFilter" class="form-control">
+				<div class="panel-menu" style="margin-top: 25px;">
+					<input type="text" placeholder="Digite aqui para filtrar resultados..." id="fooFilter" class="form-control gui-input">
 				</div>
 				<div class="panel-body pn">
 					<div class="table-responsive">

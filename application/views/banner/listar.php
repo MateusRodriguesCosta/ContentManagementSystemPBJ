@@ -10,7 +10,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 				<li class="breadcrumb-icon"><?php echo anchor('', '<span class="fa fa-home"></span>', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-active"><?php echo anchor('', 'Dashboard', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('Banner', 'Banner', 'title="Clique para ir"'); ?></li>
-                <li class="breadcrumb-current-item">Listar</li>
+        <li class="breadcrumb-current-item">Listar</li>
 			</ol>
 		</div>
 		<div class="topbar-right"></div>
@@ -18,13 +18,11 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 
 	<section id="content" class="table-layout animated fadeIn">
 		<div class="chute chute-center">
-
 			<?php echo $this->texto_m->alerta($this->session->status); ?>
-
 			<div class="panel">
 				<div class="panel-heading"><span class="panel-title">Lista de banners: <?php echo $this->banner_m->totalizar(); ?></span></div>
 				<div class="panel-menu">
-					<input type="text" placeholder="Digite aqui para filtrar..." id="fooFilter" class="form-control">
+					<input type="text" placeholder="Digite aqui para filtrar resultados..." id="fooFilter" class="form-control gui-input">
 				</div>
 				<div class="panel-body pn">
 					<div class="table-responsive">
