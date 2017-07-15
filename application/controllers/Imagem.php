@@ -73,49 +73,13 @@ class Imagem extends CI_Controller {
 			$user = $this->input->post('user');
 			$verificacao = $this->input->post('verificacao');
 
-			# Caminho até os arquivos temporários das imagens.
-			$temporarioOriginal = 'assets/tmp/edicao_tmp_'.$user.'.jpg';
-			$temporarioRecorte = 'assets/tmp/edicao_tmp_recorte_'.$user.'.jpg';
-
-			# Caminho que será utilizado para upload das imagens.
-			$moverRecorte = 'assets/img/pousada_imagem/imagem_'.$midiaID.'.jpg';
-			$moverOriginal = 'assets/img/pousada_originais/imagem_'.$midiaID.'.jpg';
-
 			# Sleep utilizado para espera das transferências assíncronas
 			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
 			# os arquivos de edição e a solicitação dos mesmos para copy().
 			sleep(1.4);
 
-			# Verifica se o arquivo de imagem foi enviado através do ajax
-			# e se foi realizado algum recorte no imagem.
-			# Caminho Default em caso de não ocorrerem recortes.
-			$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
-			if ($verificacao == 'true') {
-				copy($temporarioRecorte,$moverRecorte);
-				$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
-				chmod($moverRecorte, 0777);
-			} else if ($verificacao == 'false') {
-				if (file_exists($temporarioOriginal)) {
-					copy($temporarioOriginal,$moverRecorte);
-					$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
-					chmod($moverRecorte, 0777);
-				} else {
-					copy(base_url('assets/img/patterns/canvas/placeholder.png'),$moverRecorte);
-					$this->imagem_m->setCaminho(explode('/',$moverRecorte)[3]);
-					chmod($moverRecorte, 0777);
-				}
-			}
-			unlink($temporarioOriginal);
-
-			# Envia arquivo original de qualquer forma para resguardar o sistema
-			# de possíveis falhas.
-			if (file_exists($temporarioOriginal)) {
-				copy($temporarioOriginal,$moverOriginal);
-				chmod($moverOriginal, 0777);
-			}else {
-				copy(base_url('assets/img/patterns/canvas/placeholder.png'),$moverOriginal);
-				chmod($moverOriginal, 0777);
-			}
+			$caminho = $this->edicao_m->salvar($midiaID, $user, 'imagem', 'inserir', $verificacao);
+			$this->imagem_m->setCaminho($caminho);
 
 			# Inclusão da imagem, mensagem de sucesso e retorno a lista de imagens.
 			$imagemID = $this->imagem_m->inserir($midiaID);
@@ -192,44 +156,15 @@ class Imagem extends CI_Controller {
 			# da verificação de recorte da imagem.
 			$user = $this->input->post('user');
 			$verificacao = $this->input->post('verificacao');
-
-			# Caminho até os arquivos temporários das imagens.
-			$temporarioOriginal = 'assets/tmp/edicao_tmp_'.$user.'.jpg';
-			$temporarioRecorte = 'assets/tmp/edicao_tmp_recorte_'.$user.'.jpg';
-
-			# Caminho que será utilizado para upload das imagens.
-			$moverRecorte = 'assets/img/pousada_imagem/imagem_'.$this->midia_m->getId().'.jpg';
-			$moverOriginal = 'assets/img/pousada_originais/imagem_'.$this->midia_m->getId().'.jpg';
+			$midiaID = $this->midia_m->getId();
 
 			# Sleep utilizado para espera das transferências assíncronas
 			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
 			# os arquivos de edição e a solicitação dos mesmos para copy().
 			sleep(1.2);
 
-			# Verifica se o arquivo de imagem foi enviado através do ajax
-			# e se foi realizado algum recorte na imagem.
-			if ($verificacao == 'false'){
-				# # mover original para pousada_imagem e para pousada_originais
-				copy($temporarioOriginal,$moverOriginal);
-				copy($temporarioOriginal,$moverRecorte);
-				chmod($moverOriginal, 0777);
-				chmod($moverRecorte, 0777);
-
-				unlink($temporarioOriginal);
-			}else if (!file_exists($temporarioOriginal) && $verificacao == 'true') {
-				# # mover novo recorte em temporário para pousada_imagem, apenas.
-				copy($temporarioRecorte,$moverRecorte);
-				chmod($moverRecorte, 0777);
-
-			}else if (file_exists($temporarioOriginal) && $verificacao == 'true') {
-				# # mover original para pousada_originais e recorte para pousada_imagem.
-				copy($temporarioOriginal,$moverOriginal);
-				copy($temporarioRecorte,$moverRecorte);
-				chmod($moverOriginal, 0777);
-				chmod($moverRecorte, 0777);
-
-				unlink($temporarioOriginal);
-			}
+			$caminho = $this->edicao_m->salvar($midiaID, $user, 'imagem', 'atualizar', $verificacao);
+			$this->imagem_m->setCaminho($caminho);
 
 			$this->midia_m->atualizar();
 			$this->imagem_m->atualizar();
