@@ -30,7 +30,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                   <div class="section">
                     <span title="Campo obrigatório" class="help-block">Título <span class="text-danger">*</span></span>
                     <label class="field prepend-icon">
-                      <input name="titulo" value="" placeholder="Título do Banner" maxlength="42" required id="titulo" class="gui-input" autocomplete="off">
+                      <input name="titulo" value="" placeholder="Título do Banner" maxlength="65" required id="titulo" class="gui-input" autocomplete="off">
                       <label for="titulo" class="field-icon"><i class="fa fa-font"></i></label>
                     </label>
                   </div>
@@ -42,7 +42,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                   <div class="section">
                     <span class="help-block">Link</span>
                     <label class="field prepend-icon">
-                      <input name="link" value="" placeholder="Link" maxlength="42" id="link" class="gui-input" autocomplete="off">
+                      <input name="link" value="" placeholder="Link" maxlength="90" id="link" class="gui-input" autocomplete="off">
                       <label for="link" class="field-icon"><i class="fa fa-link"></i></label>
                     </label>
                   </div>
@@ -51,7 +51,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                   <div class="section">
                     <span class="help-block">Data de Inclusão</span>
                     <label class="field prepend-icon">
-                      <input type="text" name="dataInclusao" value="<?php echo date('d/m/Y'); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" maxlength="42" id="dataInclusao" class="gui-input" autocomplete="off">
+                      <input type="text" name="dataInclusao" value="<?php echo date('d/m/Y'); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" id="dataInclusao" class="gui-input" autocomplete="off">
                       <label for="dataInclusao" class="field-icon"><i class="fa fa-calendar"></i></label>
                     </label>
                   </div>
@@ -60,7 +60,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                   <div class="section">
                     <span title="Campo obrigatório" class="help-block">Data de Expiração <span class="text-danger">*</span></span>
                     <label class="field prepend-icon">
-                      <input type="text" name="dataExpiracao" value="" placeholder="Data de Expiração do Banner" maxlength="42" required id="dataExpiracao" class="gui-input" autocomplete="off">
+                      <input type="text" name="dataExpiracao" value="" placeholder="Data de Expiração do Banner" required id="dataExpiracao" class="gui-input" autocomplete="off">
                       <label for="dataExpiracao" class="field-icon"><i class="fa fa-calendar"></i></label>
                     </label>
                   </div>

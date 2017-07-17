@@ -14,7 +14,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 			<li>
 				<a class="accordion-toggle" href="javascript:void(0);">
 					<span class="imoon imoon-paint-format"></span>
-					<span class="sidebar-title">Banners</span>
+					<span class="sidebar-title" style="cursor:default;">Banners</span>
 					<span class="caret"></span>
 				</a>
 				<ul class="nav sub-nav">
@@ -25,7 +25,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 			<li>
 				<a class="accordion-toggle" href="javascript:void(0);">
 					<span class="imoon imoon-images"></span>
-					<span class="sidebar-title">Imagens</span>
+					<span class="sidebar-title" style="cursor:default;">Imagens</span>
 					<span class="caret"></span>
 				</a>
 				<ul class="nav sub-nav">
@@ -36,7 +36,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 			<li>
 				<a class="accordion-toggle" href="javascript:void(0);">
 					<span class="imoon imoon-newspaper"></span>
-					<span class="sidebar-title">Mídias</span>
+					<span class="sidebar-title" style="cursor:default;">Mídias</span>
 					<span class="caret"></span>
 				</a>
 				<ul class="nav sub-nav">
@@ -47,7 +47,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 			<li>
 				<a class="accordion-toggle" href="javascript:void(0);">
 					<span class="imoon imoon-user"></span>
-					<span class="sidebar-title">Usuário</span>
+					<span class="sidebar-title" style="cursor:default;">Usuário</span>
 					<span class="caret"></span>
 				</a>
 				<ul class="nav sub-nav">

@@ -31,7 +31,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<div class="section">
 										<span title="Campo obrigatório" class="help-block">Título <span class="text-danger">*</span></span>
 										<label class="field prepend-icon">
-											<input name="titulo" value="<?php echo $this->midia_m->getTitulo(); ?>" placeholder="Título do Banner" maxlength="42" required id="titulo" class="gui-input">
+											<input name="titulo" value="<?php echo $this->midia_m->getTitulo(); ?>" placeholder="Título do Banner" maxlength="65" required id="titulo" class="gui-input">
 											<label for="titulo" class="field-icon"><i class="fa fa-font"></i></label>
 										</label>
 									</div>
@@ -40,7 +40,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<div class="section">
 										<span class="help-block">Link</span>
 										<label class="field prepend-icon">
-											<input name="link" value="<?php echo $this->midia_m->getLink(); ?>" placeholder="Link" maxlength="42" id="link" class="gui-input">
+											<input name="link" value="<?php echo $this->midia_m->getLink(); ?>" placeholder="Link" maxlength="90" id="link" class="gui-input">
 											<label for="link" class="field-icon"><i class="fa fa-link"></i></label>
 										</label>
 									</div>
@@ -52,7 +52,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<div class="section">
 										<span class="help-block">Data de Inclusão</span>
 										<label class="field prepend-icon">
-											<input name="dataInclusao" value=" <?php echo $this->banner_m->getDataInclusao(); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" maxlength="42" required id="dataInclusao" class="gui-input">
+											<input name="dataInclusao" value=" <?php echo $this->banner_m->getDataInclusao(); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" required id="dataInclusao" class="gui-input">
 											<label for="dataInclusao" class="field-icon"><i class="fa fa-calendar"></i></label>
 										</label>
 									</div>
@@ -61,7 +61,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<div class="section">
 										<span class="help-block">Data de Alteração</span>
 										<label class="field prepend-icon">
-											<input name="dataAlteracao" value=" <?php if(explode('/',$this->banner_m->getDataAlteracao())[2] != '0000'){ echo $this->banner_m->getDataAlteracao();}else{echo date('d/m/Y');} ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Alteração do Banner" maxlength="42" required id="dataAlteracao" class="gui-input">
+											<input name="dataAlteracao" value=" <?php if(explode('/',$this->banner_m->getDataAlteracao())[2] != '0000'){ echo $this->banner_m->getDataAlteracao();}else{echo date('d/m/Y');} ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Alteração do Banner" required id="dataAlteracao" class="gui-input">
 											<label for="dataAlteracao" class="field-icon"><i class="fa fa-calendar"></i></label>
 										</label>
 									</div>
@@ -70,7 +70,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<div class="section">
 										<span title="Campo obrigatório" class="help-block">Data de Expiração <span class="text-danger">*</span></span>
 										<label class="field prepend-icon">
-											<input name="dataExpiracao" value=" <?php echo $this->banner_m->getDataExpiracao(); ?>" placeholder="Data de Expiração do Banner" maxlength="42" required id="dataExpiracao" class="gui-input" autocomplete="off">
+											<input name="dataExpiracao" value=" <?php echo $this->banner_m->getDataExpiracao(); ?>" placeholder="Data de Expiração do Banner" required id="dataExpiracao" class="gui-input" autocomplete="off">
 											<label for="dataExpiracao" class="field-icon"><i class="fa fa-calendar"></i></label>
 										</label>
 									</div>

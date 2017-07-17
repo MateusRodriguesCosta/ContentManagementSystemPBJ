@@ -45,7 +45,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                   <div class="section">
                     <span title="Campo obrigatório" class="help-block">Título<span class="text-danger">*</span></span>
                     <label class="field prepend-icon">
-                      <input name="titulo" value="" placeholder="Título da Imagem" maxlength="42" required id="titulo" class="gui-input" autocomplete="off">
+                      <input name="titulo" value="" placeholder="Título da Imagem" maxlength="65" required id="titulo" class="gui-input" autocomplete="off">
                       <label for="titulo" class="field-icon"><i class="fa fa-font"></i></label>
                     </label>
                   </div>
@@ -54,7 +54,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                   <div class="section">
                     <span class="help-block">Data de Inclusão</span>
                     <label class="field prepend-icon">
-                      <input type="text" name="dataInclusao" value="<?php echo date('d/m/Y'); ?>" readonly="true" onmousedown="return false;" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão da Imagem" maxlength="42" id="dataInclusao" class="gui-input" autocomplete="off">
+                      <input type="text" name="dataInclusao" value="<?php echo date('d/m/Y'); ?>" readonly="true" onmousedown="return false;" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão da Imagem" id="dataInclusao" class="gui-input" autocomplete="off">
                       <label for="dataInclusao" class="field-icon"><i class="fa fa-calendar"></i></label>
                     </label>
                   </div>

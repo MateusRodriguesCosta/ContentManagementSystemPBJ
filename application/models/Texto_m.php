@@ -197,7 +197,7 @@ class Texto_m extends CI_Model {
 		$this->form_validation->set_message('is_unique', 'O login digitado no campo "{field}" já existe, tente outro!');
 		$this->form_validation->set_message('regex_match', 'O campo "{field}" está com formato inválido, tente outro!');
 		$this->form_validation->set_message('exact_length', 'O campo "{field}" deve exatamente {param} caracteres!');
-		$this->form_validation->set_message('validacaoAlcance', 'O campo "{field}" está com data inválida, tente outra!');
+		$this->form_validation->set_message('validarAlcance', 'O campo "{field}" está com data inválida, tente novamente!');
 		$this->form_validation->set_message('matches', 'O campo "{field}" deve exatamente igual à "{param}"!');
 		$this->form_validation->set_message('in_list', 'O campo "{field}" deve ser SIM ou NÃO!');
 		$this->form_validation->set_message('valid_email', 'O campo "{field}" deve ser um e-mail válido!');
