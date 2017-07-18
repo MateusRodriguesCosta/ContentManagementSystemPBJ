@@ -33,6 +33,13 @@ class Imagem extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	/*Função na qual realiza a validação das imagens de
+	* apresentação , utilizando como callback do form_validation.
+	*/
+	public function validarImagem(){
+		return $this->edicao_m->validarResolucao($this->input->post('user'));
+	}
+
 	/*Função na qual irá realizar a inclusão de
 	* um novo imagem, validando os dados através
 	* do 'form_validation' e preparando o envio
@@ -45,7 +52,8 @@ class Imagem extends CI_Controller {
 	public function inserir() {
 		$this->texto_m->validacao();
 
-		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[42]');
+		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
+		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem');
 
 		if($this->form_validation->run() == FALSE) {
 			$this->session->set_userdata('css_js', 'formulario');
@@ -123,8 +131,9 @@ class Imagem extends CI_Controller {
 		$this->texto_m->validacao();
 
 		$this->form_validation->set_rules('id', 'ID', 'trim|required');
-		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[42]');
+		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 		$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required');
+		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem');
 
 		if($this->form_validation->run() == FALSE){
 			$this->imagem_m->editar($this->input->post('id'));

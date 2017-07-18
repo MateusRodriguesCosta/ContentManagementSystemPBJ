@@ -50,9 +50,11 @@ class Banner extends CI_Controller {
 		}
 	}
 
+	/*Função na qual realiza a validação das imagens de
+	* apresentação , utilizando como callback do form_validation.
+	*/
 	public function validarImagem(){
-		$flag = $this->edicao_m->validarResolucao($this->input->post('user'));
-		return $flag;
+		return $this->edicao_m->validarResolucao($this->input->post('user'));
 	}
 
 	/*Função na qual irá realizar a inclusão de
@@ -68,7 +70,7 @@ class Banner extends CI_Controller {
 		$this->texto_m->validacao();
 
 		$this->form_validation->set_rules('dataExpiracao', 'Data de Expiração', 'trim|required');
-		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[42]');
+		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 		$this->form_validation->set_rules('dataExpiracao', 'Expiracao', 'trim|required|regex_match[#^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$#]|callback_validarAlcance');
 		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem');
 
@@ -149,8 +151,9 @@ public function atualizar(){
 	$this->texto_m->validacao();
 
 	$this->form_validation->set_rules('dataExpiracao', 'Data de Expiração', 'trim|required');
-	$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[42]');
+	$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 	$this->form_validation->set_rules('dataExpiracao', 'Expiracao', 'trim|required|regex_match[#^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$#]|callback_validarAlcance');
+	$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem');
 
 	if($this->form_validation->run() == FALSE){
 		$this->banner_m->editar($this->input->post('id'));
