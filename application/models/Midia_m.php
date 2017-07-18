@@ -14,6 +14,7 @@ class Midia_m extends CI_Model {
 	private $link;
 	private $local;
 	private $periodo;
+	private $caminho;
 	private $capacidade;
 	private $equipamentos;
 	private $descricao;

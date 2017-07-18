@@ -50,6 +50,11 @@ class Banner extends CI_Controller {
 		}
 	}
 
+	public function validarImagem(){
+		$flag = $this->edicao_m->validarResolucao($this->input->post('user'));
+		return $flag;
+	}
+
 	/*Função na qual irá realizar a inclusão de
 	* um novo banner, validando os dados através
 	* do 'form_validation' e preparando o envio
@@ -65,6 +70,7 @@ class Banner extends CI_Controller {
 		$this->form_validation->set_rules('dataExpiracao', 'Data de Expiração', 'trim|required');
 		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[42]');
 		$this->form_validation->set_rules('dataExpiracao', 'Expiracao', 'trim|required|regex_match[#^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$#]|callback_validarAlcance');
+		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem');
 
 		if($this->form_validation->run() == FALSE){
 			$this->session->set_userdata('css_js', 'formulario');
@@ -96,7 +102,7 @@ class Banner extends CI_Controller {
 			# Sleep utilizado para espera das transferências assíncronas
 			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
 			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.4);
+			sleep(1.5);
 
 			$caminho = $this->edicao_m->salvar($midiaID, $user, 'banner', 'inserir', $verificacao);
 			$this->banner_m->setCaminho($caminho);
@@ -184,7 +190,7 @@ public function atualizar(){
 		# Sleep utilizado para espera das transferências assíncronas
 		# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
 		# os arquivos de edição e a solicitação dos mesmos para copy().
-		sleep(1.2);
+		sleep(1.5);
 
 		$caminho = $this->edicao_m->salvar($midiaID, $user, 'banner', 'atualizar', $verificacao);
 		$this->banner_m->setCaminho($caminho);
