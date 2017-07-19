@@ -49,7 +49,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
     ] });</script>
     <script src="<?php echo base_url('assets/js/plugins/cropper/cropper.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/plugins/imagezoom/jquery.elevatezoom.min.js');?>"></script>
-    <script src="<?php echo base_url('assets/js/pages/user-forms-image-tools.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/user-forms-image-tools.js'); ?>"></script>
     <script src="<?PHP echo base_url('assets/js/edicaoImagens.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery/jquery_ui/jquery-ui.min_date.js'); ?>"></script>
     <script>

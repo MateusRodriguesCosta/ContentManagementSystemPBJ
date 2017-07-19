@@ -101,7 +101,7 @@ class Usuario extends CI_Controller {
 		$this->form_validation->set_rules('nome', 'Nome', 'trim|required|max_length[100]');
 		$this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|max_length[150]');
 		$this->form_validation->set_rules('login', 'Login', 'trim|required|max_length[45]');
-		$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required|in_list[s,n]');
+		$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required|in_list[s,n,1,0]');
 
 		$this->usuario_m->editar($this->input->post('id'));
 

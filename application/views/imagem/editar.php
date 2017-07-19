@@ -40,7 +40,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<div class="section">
 										<span class="help-block">Data de Inclusão</span>
 										<label class="field prepend-icon">
-											<input name="dataInclusao" value=" <?php echo $this->imagem_m->getDataInclusao(); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" required id="dataInclusao" class="gui-input">
+											<input name="dataInclusao" value="<?php echo $this->imagem_m->getDataInclusao();?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Inclusão do Banner" required id="dataInclusao" class="gui-input">
 											<label for="dataInclusao" class="field-icon"><i class="fa fa-calendar"></i></label>
 										</label>
 									</div>
@@ -49,7 +49,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<div class="section">
 										<span class="help-block">Data de Alteração</span>
 										<label class="field prepend-icon">
-											<input name="dataAlteracao" value=" <?php echo date('d/m/Y'); ?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Alteração do Banner" required id="dataAlteracao" class="gui-input">
+											<input name="dataAlteracao" value="<?php echo date('d/m/Y');?>" readonly="true" onmousedown="return false;" onselectstart="return false;" placeholder="Data de Alteração do Banner" required id="dataAlteracao" class="gui-input">
 											<label for="dataAlteracao" class="field-icon"><i class="fa fa-calendar"></i></label>
 										</label>
 									</div>
@@ -105,7 +105,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 											<p><span class="fa fa-refresh"></span></p>
 										</button>
 										<label class="btn btn-warning btn-sm btn-upload" for="inputImage" title="Upload de imagem">
-											<input class="sr-only js-fileinput img-upload" onchange=<?php echo "'readURL(this,".$this->session->user_nome.");'"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
+											<input class="sr-only js-fileinput img-upload" onchange=<?php echo "readURL(this,'".$this->session->user_nome."');"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
 											<p><span class="fa fa-upload"></span></p>
 										</label>
 									</div>
@@ -116,7 +116,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right"><span class="fa fa-check"></span> Salvar Edição</button>
 									<!-- Informações para diversas classes-->
 									<input type="hidden" class="gui-input" name="verificacao" id="verificacao" value=""></input>
-									<input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_id.'"';?>></input>
+									<input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_nome.'"';?>></input>
 									<input type="hidden" id="limparImagem" value="false"></input>
 									<label id="usuario" style="display:none;"><?php echo $this->session->user_nome; ?></label>
 								</div>

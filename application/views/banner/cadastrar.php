@@ -101,7 +101,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                     <p><span class="fa fa-refresh"></span></p>
                   </button>
                   <label class="btn btn-warning btn-sm btn-upload" for="inputImage" title="Upload de imagem">
-                    <input class="sr-only js-fileinput img-upload" onchange=<?php echo "'readURL(this,".$this->session->user_nome.");'"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
+                    <input class="sr-only js-fileinput img-upload" onchange=<?php echo "readURL(this,'".$this->session->user_nome."');"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
                     <p><span class="fa fa-upload"></span></p>
                   </label>
                 </div>
@@ -112,7 +112,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                 <button type="submit" class="btn btn-bordered btn-warning mb5 pull-right" data-method="getCroppedCanvas" id="enviar"><span class="fa fa-plus"></span> Inserir Novo</button>
                 <!-- Informações para diversas classes-->
                 <input type="hidden" class="gui-input" name="verificacao" id="verificacao" value=""></input>
-                <input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_id.'"';?>></input>
+                <input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_nome.'"';?>></input>
                 <input type="hidden" id="limparImagem" value="false"></input>
                 <label id="usuario" style="display:none;"><?php echo $this->session->user_nome; ?></label>
               </div>

@@ -21,7 +21,8 @@ class Edicao_m extends CI_Model {
       $caminhoTemporarioEdicao   = 'assets/tmp/edicao_tmp_recorte_'.$usuario.'.jpg';
       $caminhoDefinitivoOriginal = 'assets/img/pousada_originais/'.$tipo.'_'.$midia.'.jpg';
       $caminhoDefinitivoEdicao   = 'assets/img/pousada_'.$tipo.'/'.$tipo.'_'.$midia.'.jpg';
-      $caminho = explode('/',$caminhoDefinitivoEdicao)[3];
+      $caminho = explode('/',$caminhoDefinitivoEdicao);
+      $caminho = $caminho[3];
 
       if ($flag == 'true' && file_exists($caminhoTemporarioOriginal)) {
 

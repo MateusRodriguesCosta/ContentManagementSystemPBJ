@@ -85,7 +85,7 @@ class Imagem extends CI_Controller {
 			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
 			# os arquivos de edição e a solicitação dos mesmos para copy().
 			sleep(1.4);
-
+			
 			$caminho = $this->edicao_m->salvar($midiaID, $user, 'imagem', 'inserir', $verificacao);
 			$this->imagem_m->setCaminho($caminho);
 

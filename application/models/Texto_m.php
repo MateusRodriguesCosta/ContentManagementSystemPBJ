@@ -11,9 +11,11 @@ class Texto_m extends CI_Model {
 	public function ativo_icone($ativo) {
 		switch($ativo) {
 			case '1':
+			case 's':
 				$ativo_r = '<i title="Sim" class="fa fa-eye text-info"></i>';
 			break;
 			case '0':
+			case 'n':
 				$ativo_r = '<i title="Não" class="fa fa-eye-slash text-danger"></i>';
 			break;
 			default:

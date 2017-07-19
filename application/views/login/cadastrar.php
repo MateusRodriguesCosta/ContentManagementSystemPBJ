@@ -8,12 +8,12 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 		<div class="topbar-left">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-icon"><?php echo anchor('', '<span class="fa fa-home"></span>', 'title="Clique para ir"'); ?></li>
-				<li class="breadcrumb-active"><?php echo anchor('', 'Dashboard', 'title="Clique para ir"'); ?></li>
+				<li class="breadcrumb-active"><?php echo anchor('', 'Menu Principal', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('', 'ArqCentral', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('', 'Configura&ccedil;&otilde;es', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('Login', 'Login', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('Login', 'Cadastrar', 'title="Clique para ir"'); ?></li>
-                <li class="breadcrumb-current-item"><?php echo anchor('Colaborador/Editar/'.$this->colaborador_m->getId(), $this->colaborador_m->getColaborador(), 'title="Clique para ir"'); ?></li>
+        <li class="breadcrumb-current-item"><?php echo anchor('Colaborador/Editar/'.$this->colaborador_m->getId(), $this->colaborador_m->getColaborador(), 'title="Clique para ir"'); ?></li>
 			</ol>
 		</div>
 		<div class="topbar-right"></div>

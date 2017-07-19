@@ -103,9 +103,7 @@ class Login_m extends CI_Model {
 		$this->db->where('usu_id', $id);
 		$result = $this->db->get('pousada_usuario');
 		$result = $result->row();
-		$na['usu_ativo'] = "mateus";
-		//return $result->usu_ativo;
-		return $na;
+		return $result->usu_ativo;
 	}
 
 	public function login_user($id){

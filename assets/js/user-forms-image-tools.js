@@ -112,16 +112,15 @@
                           verificaRecorte = 'false';
                         }
                         $('#verificacao').val(verificaRecorte);
-
                         if(verificaRecorte == 'true'){result.toBlob(function(blob){
                           var reader = new window.FileReader();
                           reader.readAsDataURL(blob);
                           reader.onloadend = function() {
                             // Conversão do resultado para String JSON.
-                            var jsonData = JSON.stringify(reader.result);
                             var getUrl = window.location;
-                            var origin = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+                            var origin = getUrl.protocol + "//" + getUrl.host;
                             var user = $('#usuario').text();
+                            var jsonData = JSON.stringify(reader.result);
                             $.ajax(origin + '/assets/tmp/temporario.php', {
                               method: "POST",
                               data: {'recorte' : jsonData, 'user' : user},

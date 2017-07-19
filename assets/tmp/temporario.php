@@ -9,6 +9,7 @@ if(isset($_POST['original'])){
 
   // Salva arquivo jpg da edição
   $original = json_decode($_POST['original']);
+  $usuario  = $_POST['user'];
   file_put_contents("edicao_tmp_".$usuario.".jpg", file_get_contents($original));
 
 }
@@ -17,6 +18,7 @@ if(isset($_POST['recorte'])){
 
   // Salva arquivo jpg da edição
   $recorte = json_decode($_POST['recorte']);
+  $usuario = $_POST['user'];
   file_put_contents("edicao_tmp_recorte_".$usuario.".jpg", file_get_contents($recorte));
 
 }

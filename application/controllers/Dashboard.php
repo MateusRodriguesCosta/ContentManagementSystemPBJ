@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 
         $this->online_m->lembrar();
-        //$this->login_m->permitir();
+        $this->login_m->permitir();
 
         $this->session->set_userdata('titulo_pagina', 'Dashboard');
         $this->session->unset_userdata('css_js');

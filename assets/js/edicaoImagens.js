@@ -10,7 +10,7 @@ function readURL(input,user) {
     reader.readAsDataURL(input.files[0]);
     reader.onloadend = function() {
     var getUrl = window.location;
-    var origin = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    var origin = getUrl.protocol + "//" + getUrl.host;
     var user = $('#usuario').text();
     jsondata = JSON.stringify(reader.result);
     $.ajax(origin + '/assets/tmp/temporario.php', {
@@ -19,7 +19,6 @@ function readURL(input,user) {
       cache: false,
       success: function(output) {
         console.log('Upload success (default)');
-        $('#display').html(output);
       },
       error: function () {
         console.log('Upload error (default)');
