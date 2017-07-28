@@ -101,12 +101,14 @@ class Banner extends CI_Controller {
 			$user = $this->input->post('user');
 			$verificacao = $this->input->post('verificacao');
 
-			# Sleep utilizado para espera das transferências assíncronas
-			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
-			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.5);
+			# Cria arquivo com as especificações da edição realizada
+			# Arquivo é utilizado por temporario.php para criar arquivo de edição
+			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+				or die("Não foi possível abrir o arquivo!");
+			fwrite($arquivo, $midiaID.",banner,".$verificacao.",inserir");
+			fclose($arquivo);
 
-			$caminho = $this->edicao_m->salvar($midiaID, $user, 'banner', 'inserir', $verificacao);
+			$caminho = 'banner_'.$midiaID.'.jpg';
 			$this->banner_m->setCaminho($caminho);
 
 			# Inclusão do banner, mensagem de sucesso e retorno a lista de banners.

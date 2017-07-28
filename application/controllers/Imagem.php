@@ -81,12 +81,14 @@ class Imagem extends CI_Controller {
 			$user = $this->input->post('user');
 			$verificacao = $this->input->post('verificacao');
 
-			# Sleep utilizado para espera das transferências assíncronas
-			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
-			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.4);
-			
-			$caminho = $this->edicao_m->salvar($midiaID, $user, 'imagem', 'inserir', $verificacao);
+			# Cria arquivo com as especificações da edição realizada
+			# Arquivo é utilizado por temporario.php para criar arquivo de edição
+			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+				or die("Não foi possível abrir o arquivo!");
+			fwrite($arquivo, $midiaID.",imagem,".$verificacao.",inserir");
+			fclose($arquivo);
+
+			$caminho = 'imagem_'.$midiaID.'.jpg';
 			$this->imagem_m->setCaminho($caminho);
 
 			# Inclusão da imagem, mensagem de sucesso e retorno a lista de imagens.
@@ -167,12 +169,14 @@ class Imagem extends CI_Controller {
 			$verificacao = $this->input->post('verificacao');
 			$midiaID = $this->midia_m->getId();
 
-			# Sleep utilizado para espera das transferências assíncronas
-			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
-			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.2);
+			# Cria arquivo com as especificações da edição realizada
+			# Arquivo é utilizado por temporario.php para criar arquivo de edição
+			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+				or die("Não foi possível abrir o arquivo!");
+			fwrite($arquivo, $midiaID.",imagem,".$verificacao.",atualizar");
+			fclose($arquivo);
 
-			$caminho = $this->edicao_m->salvar($midiaID, $user, 'imagem', 'atualizar', $verificacao);
+			$caminho = 'imagem_'.$midiaID.'.jpg';
 			$this->imagem_m->setCaminho($caminho);
 
 			$this->midia_m->atualizar();

@@ -62,10 +62,6 @@ class Midia extends CI_Controller {
 			$this->load->view('midia/cadastrar');
 			$this->load->view('template/footer');
 		}else{
-			# Sleep utilizado para espera das transferências assíncronas
-			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
-			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.2);
 
 			$this->midia_m->setTitulo($this->input->post('titulo'));
 			$this->midia_m->setTipo('midia');
@@ -103,19 +99,21 @@ class Midia extends CI_Controller {
 			$verificacao = $this->input->post('verificacao');
 
 			$ID = '1';
-			# Caminho que será utilizado para upload das edições.
+			# Verifica o ID da nova midia que será inserida.
 			foreach($this->midia_m->retornarId() as $row){
 				if ($row->mid_id!='' && $row->mid_id!=null && $row->mid_id!=0) {
 					$ID = $row->mid_id + 1;
 				}
 			}
 
-			# Sleep utilizado para espera das transferências assíncronas
-			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
-			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.2);
+			# Cria arquivo com as especificações da edição realizada
+			# Arquivo é utilizado por temporario.php para criar arquivo de edição
+			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+				or die("Não foi possível abrir o arquivo!");
+			fwrite($arquivo, $ID.",midia,".$verificacao.",inserir");
+			fclose($arquivo);
 
-			$caminho = $this->edicao_m->salvar($ID, $user, 'midia', 'inserir', $verificacao);
+			$caminho = 'midia_'.$ID.'.jpg';
 			$this->midia_m->setCaminho($caminho);
 
 			# Inclusão da midia.
@@ -177,11 +175,6 @@ class Midia extends CI_Controller {
 			$this->load->view('midia/editar');
 			$this->load->view('template/footer');
 		}else{
-			# Sleep utilizado para espera das transferências assíncronas
-			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
-			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.2);
-
 			# Conversão de datas
 			$data_inclusao = $this->texto_m->conversaoData($this->input->post('dataInclusao'));
 			$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
@@ -205,12 +198,14 @@ class Midia extends CI_Controller {
 			$verificacao = $this->input->post('verificacao');
 			$midiaID = $this->midia_m->getId();
 
-			# Sleep utilizado para espera das transferências assíncronas
-			# pelo XMLHttpRequest. Sem o sleep podem ocorrer falhas entre
-			# os arquivos de edição e a solicitação dos mesmos para copy().
-			sleep(1.2);
+			# Cria arquivo com as especificações da edição realizada
+			# Arquivo é utilizado por temporario.php para criar arquivo de edição
+			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+				or die("Não foi possível abrir o arquivo!");
+			fwrite($arquivo, $midiaID.",midia,".$verificacao.",atualizar");
+			fclose($arquivo);
 
-			$caminho = $this->edicao_m->salvar($midiaID, $user, 'midia', 'atualizar', $verificacao);
+			$caminho = 'midia_'.$midiaID.'.jpg';
 			$this->midia_m->setCaminho($caminho);
 
 			$this->midia_m->atualizar();
