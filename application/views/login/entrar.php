@@ -23,7 +23,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<label for="login" class="field-icon"><i class="fa fa-user"></i></label>
 								</label>
 							</div>
-
 							<div class="section">
 								<label for="senha" class="field prepend-icon">
 									<input type="password" name="senha" value="" placeholder="Senha" id="senha" class="gui-input">

@@ -3578,7 +3578,7 @@
 }
 .allcp-form.theme-primary .gui-input:focus ~ .field-icon i,
 .allcp-form.theme-primary .gui-textarea:focus ~ .field-icon i {
-  color: #67d3e0;
+  color: #999;
 }
 .allcp-form.theme-primary .select-multiple select:focus,
 .allcp-form.theme-primary .gui-input:focus ~ .input-footer,

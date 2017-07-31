@@ -20,7 +20,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 <?php } ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/fonts/iconsweets/iconsweets.css'); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/skin/default_skin/css/theme.css'); ?>">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/arqcentral.css'); ?>">
 <?php if($this->session->css_js == 'formulario' || $this->session->css_js == 'entrar' || $this->session->css_js == 'timeline'){ ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/allcp/forms/css/forms.css'); ?>">
 <?php } ?>
@@ -30,6 +29,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/arqcentral.css'); ?>">
 </head>
 <?php if($this->session->css_js == 'tabela'){ ?>
 <body class="tables-sortable sb-l-m">

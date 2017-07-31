@@ -15,7 +15,6 @@ class temporario {
    # @var     flag          -      Variável utilizada para verificação das edições
    # @return  @caminho      -      Retorna o caminho no qual foi salvo o arquivo
    public function salvar($midia, $usuario, $tipo, $operacao, $flag, $totalArquivos){
-
      # Percorre arquivos recebidos por ajax do $usuario e constrói array
      # de Strings na base64.
      # Arquivos -> Array
@@ -31,13 +30,27 @@ class temporario {
      # Trata e decodifica string base64 para arquivo temporário e
      # define os paths que serão utilizados na manipulação.
      # Array -> Arquivo Edição
-     $resultado = explode(',',implode('',$resultado));
-     $resultado = base64_decode($resultado[1]);
-     file_put_contents("edicao_tmp_recorte_".$usuario.".jpg", $resultado);
+     if (isset($resultado)):
+       $resultado = explode(',',implode('',$resultado));
+       $resultado = base64_decode($resultado[1]);
+       file_put_contents("edicao_tmp_recorte_".$usuario.".jpg", $resultado);
+     endif;
+
+     # Caso a execução do script seja realizada pela instancia
+     # do arquivo temporario os caminhos serão:
      $caminhoTemporarioOriginal = 'edicao_tmp_'.$usuario.'.jpg';
      $caminhoTemporarioEdicao   = 'edicao_tmp_recorte_'.$usuario.'.jpg';
      $caminhoDefinitivoOriginal = dirname(__DIR__).'/img/pousada_originais/'.$tipo.'_'.$midia.'.jpg';
      $caminhoDefinitivoEdicao   = dirname(__DIR__).'/img/pousada_'.$tipo.'/'.$tipo.'_'.$midia.'.jpg';
+
+     # Mas se a exeução for realizada através do controller
+     # os caminhos serão:
+     if ($flag == 'false') {
+       $caminhoTemporarioOriginal = 'assets/tmp/edicao_tmp_'.$usuario.'.jpg';
+       $caminhoTemporarioEdicao   = 'assets/tmp/edicao_tmp_recorte_'.$usuario.'.jpg';
+       $caminhoDefinitivoOriginal = 'assets/img/pousada_originais/'.$tipo.'_'.$midia.'.jpg';
+       $caminhoDefinitivoEdicao   = 'assets/img/pousada_'.$tipo.'/'.$tipo.'_'.$midia.'.jpg';
+     }
 
      if ($flag == 'true' && file_exists($caminhoTemporarioOriginal)):
        # Edição -> Local Definitivo do Arquivo Final

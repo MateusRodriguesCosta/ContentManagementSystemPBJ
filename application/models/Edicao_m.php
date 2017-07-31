@@ -12,7 +12,7 @@ class Edicao_m extends CI_Model {
   # [return]                 boolean    Retorna boolean se a resolução é valida ou não
   public function validarResolucao($usuario){
 
-    $caminhoTemporarioOriginal = 'assets/tmp/edicao_tmp_'.$usuario.'.jpg';
+    $caminhoTemporarioOriginal = './assets/tmp/edicao_tmp_'.$usuario.'.jpg';
     if (file_exists($caminhoTemporarioOriginal)) {
       $resolucao = getimagesize($caminhoTemporarioOriginal);
 
@@ -34,6 +34,8 @@ class Edicao_m extends CI_Model {
       } else {
         return true;
       }
+    } elseif(file_exists("edicao_".$usuario.".txt")) {
+      return false;
     } else {
       return true;
     }

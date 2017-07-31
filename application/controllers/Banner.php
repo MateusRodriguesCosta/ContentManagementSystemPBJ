@@ -103,10 +103,16 @@ class Banner extends CI_Controller {
 
 			# Cria arquivo com as especificações da edição realizada
 			# Arquivo é utilizado por temporario.php para criar arquivo de edição
-			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-				or die("Não foi possível abrir o arquivo!");
-			fwrite($arquivo, $midiaID.",banner,".$verificacao.",inserir");
-			fclose($arquivo);
+			if ($verificacao != 'false'):
+				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+					or die("Não foi possível abrir o arquivo!");
+				fwrite($arquivo, $midiaID.",banner,".$verificacao.",inserir");
+				fclose($arquivo);
+			else:
+				require_once 'temporario.php';
+				$temporario = new temporario();
+				$temporario->salvar($midiaID, $user, 'banner', 'inserir', $verificacao, 0);
+			endif;
 
 			$caminho = 'banner_'.$midiaID.'.jpg';
 			$this->banner_m->setCaminho($caminho);
@@ -194,10 +200,16 @@ public function atualizar(){
 
 		# Cria arquivo com as especificações da edição realizada
 		# Arquivo é utilizado por temporario.php para criar arquivo de edição
-		$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-			or die("Não foi possível abrir o arquivo!");
-		fwrite($arquivo, $midiaID.",banner,".$verificacao.",atualizar");
-		fclose($arquivo);
+		if ($verificacao != 'false'):
+			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+				or die("Não foi possível abrir o arquivo!");
+			fwrite($arquivo, $midiaID.",banner,".$verificacao.",atualizar");
+			fclose($arquivo);
+		else:
+			require_once 'assets/tmp/temporario.php';
+			$temporario = new temporario();
+			$temporario->salvar($midiaID, $user, 'banner', 'atualizar', $verificacao, 0);
+		endif;
 
 		$caminho = 'banner_'.$midiaID.'.jpg';
 		$this->banner_m->setCaminho($caminho);
@@ -220,7 +232,7 @@ public function atualizar(){
 
 	$this->session->set_userdata('status', 'SUCESSO');
 
-	redirect('Banner/Listar');
+	//redirect('Banner/Listar');
 }
 }
 
