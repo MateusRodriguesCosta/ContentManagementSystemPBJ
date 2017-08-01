@@ -109,7 +109,7 @@ class Banner extends CI_Controller {
 				fwrite($arquivo, $midiaID.",banner,".$verificacao.",inserir");
 				fclose($arquivo);
 			else:
-				require_once 'temporario.php';
+				require_once 'assets/tmp/temporario.php';
 				$temporario = new temporario();
 				$temporario->salvar($midiaID, $user, 'banner', 'inserir', $verificacao, 0);
 			endif;
@@ -232,7 +232,7 @@ public function atualizar(){
 
 	$this->session->set_userdata('status', 'SUCESSO');
 
-	//redirect('Banner/Listar');
+	redirect('Banner/Listar');
 }
 }
 

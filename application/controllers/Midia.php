@@ -108,10 +108,16 @@ class Midia extends CI_Controller {
 
 			# Cria arquivo com as especificações da edição realizada
 			# Arquivo é utilizado por temporario.php para criar arquivo de edição
-			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-				or die("Não foi possível abrir o arquivo!");
-			fwrite($arquivo, $ID.",midia,".$verificacao.",inserir");
-			fclose($arquivo);
+			if ($verificacao != 'false'):
+				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+					or die("Não foi possível abrir o arquivo!");
+				fwrite($arquivo, $ID.",midia,".$verificacao.",inserir");
+				fclose($arquivo);
+			else:
+				require_once 'assets/tmp/temporario.php';
+				$temporario = new temporario();
+				$temporario->salvar($ID, $user, 'midia', 'inserir', $verificacao, 0);
+			endif;
 
 			$caminho = 'midia_'.$ID.'.jpg';
 			$this->midia_m->setCaminho($caminho);
@@ -200,10 +206,16 @@ class Midia extends CI_Controller {
 
 			# Cria arquivo com as especificações da edição realizada
 			# Arquivo é utilizado por temporario.php para criar arquivo de edição
-			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-				or die("Não foi possível abrir o arquivo!");
-			fwrite($arquivo, $midiaID.",midia,".$verificacao.",atualizar");
-			fclose($arquivo);
+			if ($verificacao != 'false'):
+				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+					or die("Não foi possível abrir o arquivo!");
+				fwrite($arquivo, $midiaID.",midia,".$verificacao.",atualizar");
+				fclose($arquivo);
+			else:
+				require_once 'assets/tmp/temporario.php';
+				$temporario = new temporario();
+				$temporario->salvar($midiaID, $user, 'midia', 'atualizar', $verificacao, 0);
+			endif;
 
 			$caminho = 'midia_'.$midiaID.'.jpg';
 			$this->midia_m->setCaminho($caminho);
