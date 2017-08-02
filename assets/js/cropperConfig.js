@@ -4,7 +4,6 @@
 * Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017
 */
 
-
 (function($) {
 
   $(document).ready(function() {
