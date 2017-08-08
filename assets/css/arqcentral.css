@@ -92,7 +92,7 @@ input[readonly=true]{cursor: default;}
 #preloader .loader:before {
     content: attr(data-loading-text);
     text-transform: uppercase;
-    color: #67D3E0;
+    color: #fb6600;
 }
 
 #preloader .loader:after {

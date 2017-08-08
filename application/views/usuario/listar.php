@@ -24,7 +24,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 			<div class="panel">
 				<div class="panel-heading"><span class="panel-title">Lista de usuários: <?php echo $this->usuario_m->total(); ?></span></div>
 				<div class="panel-menu">
-					<input type="text" placeholder="Digite aqui para filtrar..." id="fooFilter" class="form-control">
+					<input type="text" placeholder="Digite aqui para filtrar resultados..." id="fooFilter" class="form-control gui-input">
 				</div>
 				<div class="panel-body pn">
 					<div class="table-responsive">

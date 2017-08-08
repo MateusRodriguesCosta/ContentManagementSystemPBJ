@@ -3978,7 +3978,7 @@
   background-color: #f9d283;
 }
 .allcp-form .bg-warning.dark {
-  background-color: #f4af22;
+  background-color: #fb6600;
 }
 .allcp-form .bg-warning.darker {
   background-color: #d9950a;
@@ -4016,11 +4016,11 @@
 }
 .allcp-form .btn-warning:hover,
 .allcp-form .btn-warning:focus {
-  background-color: #EE7600;
-  border-color: #EE7600;
+  background-color: #fb6600;
+  border-color: #fb6600;
 }
 .allcp-form .btn-warning:active {
-  background-color: #f4af22;
+  background-color: #fb6600;
 }
 .allcp-form .btn-warning,
 .allcp-form .btn-warning:hover,
@@ -4135,6 +4135,6 @@
   background-color: #ff7022;
 }
 .allcp-form.theme-warning .wizard .steps li.current a {
-  background-color: #f4af22;
+  background-color: #fb6600;
 }
 /*# sourceMappingURL=../css/forms.map */
