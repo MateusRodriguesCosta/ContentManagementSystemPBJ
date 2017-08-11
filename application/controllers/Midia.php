@@ -37,7 +37,18 @@ class Midia extends CI_Controller {
 	* apresentação , utilizando como callback do form_validation.
 	*/
 	public function validarImagem(){
-		return $this->edicao_m->validarResolucao($this->input->post('user'));
+		$usuario = $this->input->post('user');
+		$caminhoTemporarioOriginal = 'assets/tmp/edicao_tmp_'.$usuario.'.jpg';
+		$verificacao = $this->input->post('verificacao');		
+		if (file_exists($caminhoTemporarioOriginal)) {
+			$resolucao = getimagesize($caminhoTemporarioOriginal);
+			$tamanho   = filesize($caminhoTemporarioOriginal);
+			return ($resolucao[0]<=2000 && $resolucao[1]<=1200) ? (($tamanho < 1048576) ? true : false ): false;
+		} elseif($verificacao == 'true') {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*Função na qual irá realizar a inclusão de
