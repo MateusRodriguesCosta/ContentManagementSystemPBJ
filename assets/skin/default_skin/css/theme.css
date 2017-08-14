@@ -10007,7 +10007,7 @@ select[multiple] .input-lg {
 .has-primary .input-group-addon {
   color: #26abbb;
   border-color: #ff7022;
-  background-color: #e6f8fa;
+  background-color: #ffebdd;
 }
 .has-primary .form-control-feedback {
   color: #ff7022;
@@ -22226,7 +22226,7 @@ fieldset[disabled] .btn-dark.active {
 .list-group-item-primary {
   color: #26abbb;
   border-color: #b3e9f0;
-  background-color: #e6f8fa;
+  background-color: #ffebdd;
 }
 a.list-group-item-primary {
   color: #26abbb;
@@ -23681,7 +23681,7 @@ blockquote.blockquote-dark {
 }
 .alert-primary.pastel {
   color: #fb6600;
-  background-color: #e6f8fa;
+  background-color: #ffebdd;
   border-color: rgba(0, 0, 0, 0.1);
 }
 .alert-primary.pastel .alert-link {

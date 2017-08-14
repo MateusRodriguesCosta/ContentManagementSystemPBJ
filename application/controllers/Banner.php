@@ -11,6 +11,8 @@ class Banner extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 
+		$this->login_m->permitir();
+
 		$this->session->set_userdata('titulo_pagina', 'Banner');
 		$this->session->unset_userdata('css_js');
 

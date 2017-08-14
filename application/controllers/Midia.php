@@ -11,6 +11,8 @@ class Midia extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 
+		$this->login_m->permitir();
+
 		$this->session->set_userdata('titulo_pagina', 'Midia');
 		$this->session->unset_userdata('css_js');
 
@@ -39,7 +41,7 @@ class Midia extends CI_Controller {
 	public function validarImagem(){
 		$usuario = $this->input->post('user');
 		$caminhoTemporarioOriginal = 'assets/tmp/edicao_tmp_'.$usuario.'.jpg';
-		$verificacao = $this->input->post('verificacao');		
+		$verificacao = $this->input->post('verificacao');
 		if (file_exists($caminhoTemporarioOriginal)) {
 			$resolucao = getimagesize($caminhoTemporarioOriginal);
 			$tamanho   = filesize($caminhoTemporarioOriginal);

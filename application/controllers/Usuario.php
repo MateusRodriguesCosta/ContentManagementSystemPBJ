@@ -11,7 +11,9 @@ class Usuario extends CI_Controller {
 	public function __construct(){
         parent::__construct();
 
-        $this->session->set_userdata('titulo_pagina', 'Usuário');
+				$this->login_m->permitir();
+
+				$this->session->set_userdata('titulo_pagina', 'Usuário');
         $this->session->unset_userdata('css_js');
 
         $this->load->model('usuario_m');

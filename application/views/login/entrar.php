@@ -31,11 +31,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							</div>
 
 							<div class="section">
-								<label class="switch block mt15">
-									<input type="checkbox" name="lembrar" id="lembrar" value="lembrar">
-									<label for="lembrar" data-on="SIM" data-off="NÃO"></label>
-									<span>Lembre-me</span>
-								</label>
 								<button type="submit" class="btn btn-bordered btn-warning pull-right">Entrar</button>
 							</div>
 						</div>
