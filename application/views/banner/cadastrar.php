@@ -42,7 +42,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
                   <div class="section">
                     <span class="help-block">Link</span>
                     <label class="field prepend-icon">
-                      <input name="link" value="" placeholder="Link" maxlength="90" id="link" class="gui-input" autocomplete="off">
+                      <input name="link" value="" placeholder="Link" maxlength="150" id="link" class="gui-input" autocomplete="off">
                       <label for="link" class="field-icon"><i class="fa fa-link"></i></label>
                     </label>
                   </div>
