@@ -55,7 +55,7 @@ class Banner extends CI_Controller {
 	/*Função na qual realiza a validação das imagens de
 	* apresentação , utilizando como callback do form_validation.
 	*/
-	public function validarImagem(){
+	public function validarImagem($imagem, $tipo){
 		$usuario = $this->input->post('user');
 		$caminhoTemporarioOriginal = 'assets/tmp/edicao_tmp_'.$usuario.'.jpg';
 		$verificacao = $this->input->post('verificacao');
@@ -63,7 +63,7 @@ class Banner extends CI_Controller {
 			$resolucao = getimagesize($caminhoTemporarioOriginal);
 			$tamanho   = filesize($caminhoTemporarioOriginal);
 			return ($resolucao[0]<=2000 && $resolucao[1]<=1200) ? (($tamanho < 1048576) ? true : false ): false;
-		} elseif($verificacao == 'true') {
+		} elseif($verificacao == 'true' || $tipo == 'atualizar') {
 			return true;
 		} else {
 			return false;
@@ -85,7 +85,7 @@ class Banner extends CI_Controller {
 		$this->form_validation->set_rules('dataExpiracao', 'Data de Expiração', 'trim|required');
 		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 		$this->form_validation->set_rules('dataExpiracao', 'Expiracao', 'trim|required|regex_match[#^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$#]|callback_validarAlcance');
-		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem');
+		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[inserir]');
 
 		if($this->form_validation->run() == FALSE){
 			$this->session->set_userdata('css_js', 'formulario');
@@ -174,7 +174,7 @@ public function atualizar(){
 	$this->form_validation->set_rules('dataExpiracao', 'Data de Expiração', 'trim|required');
 	$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 	$this->form_validation->set_rules('dataExpiracao', 'Expiracao', 'trim|required|regex_match[#^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$#]|callback_validarAlcance');
-	$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem');
+	$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
 
 	if($this->form_validation->run() == FALSE){
 		$this->banner_m->editar($this->input->post('id'));
