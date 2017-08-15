@@ -113,7 +113,6 @@ class Imagem_m extends CI_Model {
 
 	public function atualizar(){
 		$data = array(
-			'img_dataInclusao' => $this->getDataInclusao(),
 			'img_dataAlteracao' => $this->getDataAlteracao(),
 			'img_ativo' => $this->getAtivo()
 		);

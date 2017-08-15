@@ -125,7 +125,6 @@ class Banner_m extends CI_Model {
 	public function atualizar(){
 
 		$data = array(
-			'ban_dataInclusao' => $this->getDataInclusao(),
 			'ban_dataAlteracao' => $this->getDataAlteracao(),
 			'ban_dataExpiracao' => $this->getDataExpiracao(),
 			'ban_ativo' => $this->getAtivo()

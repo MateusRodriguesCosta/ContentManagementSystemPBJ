@@ -137,12 +137,6 @@ class Midia_m extends CI_Model {
 	public function listar(){
 		$this->db->query('SET lc_time_names = "pt_BR"');
 		$query = $this->db->query("SELECT mid_id, mid_tipo, mid_titulo, mid_ativo, date_format(mid_dataInclusao, '%W %d de %M de %Y') as mid_dataInclusao, date_format(mid_dataAlteracao, '%W %d de %M de %Y') as mid_dataAlteracao, mid_local FROM `pousada_midia` as `M` WHERE `mid_tipo` LIKE 'midia' ORDER BY `mid_id` DESC;");
-			/**
-			 * Query reutilizável
-			 * SELECT `mid_id`, `mid_tipo`, `mid_titulo`, `mid_ativo`, `mid_dataInclusao`, `ban_caminho` FROM `pousada_midia` as `M` INNER JOIN `pousada_banner`as `B` ON `B`.`ban_mid_id` = `M`.`mid_id`
-	 		 * UNION SELECT `mid_id`, `mid_tipo`, `mid_titulo`, `mid_ativo`, `mid_dataInclusao`, `img_caminho` FROM `pousada_midia` as `M` INNER JOIN `pousada_imagem`as `I` ON `I`.`img_mid_id` = `M`.`mid_id`
-	 		 * UNION SELECT `mid_id`, `mid_tipo`, `mid_titulo`, `mid_ativo`, `mid_dataInclusao`, `ban_caminho` FROM `pousada_midia` as `M` LEFT JOIN `pousada_banner`as `B` ON `B`.`ban_mid_id` = `M`.`mid_id` WHERE `mid_tipo` LIKE 'midia';
-			 */
 		return $query->result();
 	}
 
@@ -282,7 +276,6 @@ class Midia_m extends CI_Model {
 				'mid_titulo' => $this->getTitulo(),
 				'mid_link' => $this->getLink(),
 				'mid_descricao' => $this->getDescricao(),
-				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
 				break;
@@ -296,7 +289,6 @@ class Midia_m extends CI_Model {
 				'mid_tipo' => $this->getTipo(),
 				'mid_titulo' => $this->getTitulo(),
 				'mid_descricao' => $this->getDescricao(),
-				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
 				break;
@@ -309,7 +301,6 @@ class Midia_m extends CI_Model {
 				'mid_tipo' => $this->getTipo(),
 				'mid_titulo' => $this->getTitulo(),
 				'mid_descricao' => $this->getDescricao(),
-				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
 				break;
@@ -323,7 +314,6 @@ class Midia_m extends CI_Model {
 				'mid_titulo' => $this->getTitulo(),
 				'mid_capacidade' => $this->getCapacidade(),
 				'mid_equipamentos' => $this->getEquipamentos(),
-				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
 				break;
@@ -336,7 +326,6 @@ class Midia_m extends CI_Model {
 				'mid_tipo' => $this->getTipo(),
 				'mid_titulo' => $this->getTitulo(),
 				'mid_descricao' => $this->getDescricao(),
-				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
 				break;
@@ -350,7 +339,6 @@ class Midia_m extends CI_Model {
 				'mid_titulo' => $this->getTitulo(),
 				'mid_link' => $this->getLink(),
 				'mid_descricao' => $this->getDescricao(),
-				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
 			# Banner ou Imagem

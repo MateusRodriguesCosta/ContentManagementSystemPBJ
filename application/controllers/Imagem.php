@@ -166,17 +166,14 @@ class Imagem extends CI_Controller {
 			$this->load->view('template/footer');
 		}else{
 			# Conversão de datas
-			$data_inclusao = $this->texto_m->conversaoData($this->input->post('dataInclusao'));
 			$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
 
 			# Atribuindo novos valores aos objetos de imagens e midias
 			$this->imagem_m->editar($this->input->post('id'));
-			$this->imagem_m->setDataInclusao($data_inclusao);
 			$this->imagem_m->setDataAlteracao($data_alteracao);
 			$this->imagem_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
 
 			$this->midia_m->setTitulo($this->input->post('titulo'));
-			$this->midia_m->setDataInclusao($data_inclusao);
 			$this->midia_m->setDataAlteracao($data_alteracao);
 			$this->midia_m->setTipo('imagem');
 			$this->midia_m->setLink($this->input->post('link'));

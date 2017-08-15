@@ -186,19 +186,16 @@ public function atualizar(){
 		$this->load->view('template/footer');
 	}else{
 		# Conversão de datas
-		$data_inclusao = $this->texto_m->conversaoData($this->input->post('dataInclusao'));
 		$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
 		$data_expiracao = $this->texto_m->conversaoData($this->input->post('dataExpiracao'));
 
 		# Atribuindo novos valores aos objetos de banners e midias
 		$this->banner_m->editar($this->input->post('id'));
-		$this->banner_m->setDataInclusao($data_inclusao);
 		$this->banner_m->setDataAlteracao($data_alteracao);
 		$this->banner_m->setDataExpiracao($data_expiracao);
 		$this->banner_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
 
 		$this->midia_m->setTitulo($this->input->post('titulo'));
-		$this->midia_m->setDataInclusao($data_inclusao);
 		$this->midia_m->setDataAlteracao($data_alteracao);
 		$this->midia_m->setLocal('Página Principal');
 		$this->midia_m->setTipo('banner');
