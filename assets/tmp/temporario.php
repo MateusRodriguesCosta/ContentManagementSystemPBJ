@@ -42,7 +42,7 @@ class temporario {
      $caminhoTemporarioEdicao   = 'edicao_tmp_recorte_'.$usuario.'.jpg';
      $caminhoDefinitivoOriginal = dirname(__DIR__).'/img/pousada_originais/'.$tipo.'_'.$midia.'.jpg';
      $caminhoDefinitivoEdicao   = dirname(__DIR__).'/img/pousada_'.$tipo.'/'.$tipo.'_'.$midia.'.jpg';
-
+     $validacao                 = "validacao_".$usuario.".txt";
      # Mas se a exeução for realizada através do controller
      # os caminhos serão:
      if ($flag == 'false') {
@@ -50,6 +50,7 @@ class temporario {
        $caminhoTemporarioEdicao   = 'assets/tmp/edicao_tmp_recorte_'.$usuario.'.jpg';
        $caminhoDefinitivoOriginal = 'assets/img/pousada_originais/'.$tipo.'_'.$midia.'.jpg';
        $caminhoDefinitivoEdicao   = 'assets/img/pousada_'.$tipo.'/'.$tipo.'_'.$midia.'.jpg';
+       $validacao                 = "assets/tmp/validacao_".$usuario.".txt";
      }
 
      if ($flag == 'true' && file_exists($caminhoTemporarioOriginal)):
@@ -90,9 +91,16 @@ class temporario {
      if(file_exists($caminhoTemporarioEdicao)):
        unlink($caminhoTemporarioEdicao);
      endif;
-
+     if(file_exists($validacao)):
+       unlink($validacao);
+     endif;
    }
 }
+
+if(isset($_POST['upload'])):
+  $usuario  = $_POST['user'];
+  file_put_contents("validacao_".$usuario.".txt", 'validação para form validation das imagens');
+endif;
 
 if(isset($_POST['original'])):
 

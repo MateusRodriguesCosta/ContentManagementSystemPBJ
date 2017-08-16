@@ -15,7 +15,7 @@ function readURL(input,user) {
       jsondata = JSON.stringify(reader.result);
       $.ajax(origin + '/assets/tmp/temporario.php', {
         method: "POST",
-        data: {'original' : jsondata, 'user' : user},
+        data: {'original' : jsondata, 'user' : user, 'upload' : 'envio'},
         cache: false,
         success: function(output) {
           console.log('Upload success (default)');
@@ -41,7 +41,7 @@ function enviarImagem(imagem, usuario){
           data: {'numeroArquivos' : numeroArquivos, 'ordemAJAX' : variable, 'user' : usuario, 'recorte' : JSON.stringify(arrayString[variable])},
           cache: false,
           success: function(output) {
-            console.log('Upload success (cropped)');            
+            console.log('Upload success (cropped)');
           },
           error: function (jqXHR, exception) {
             var msg = '';

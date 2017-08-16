@@ -29,10 +29,11 @@ class Banner extends CI_Controller {
 	*/
 	public function adicionar(){
 		$this->session->set_userdata('css_js', 'formulario');
-
 		$this->load->view('template/header');
 		$this->load->view('banner/cadastrar');
 		$this->load->view('template/footer');
+		$arquivotemporario = 'assets/tmp/validacao_'.$this->session->user_nome.'.txt';
+		if(file_exists($arquivotemporario)): unlink($arquivotemporario); endif;
 	}
 
 	/*Função na qual realiza a validação das datas de
@@ -58,14 +59,16 @@ class Banner extends CI_Controller {
 	public function validarImagem($imagem, $tipo){
 		$usuario = $this->input->post('user');
 		$caminhoTemporarioOriginal = 'assets/tmp/edicao_tmp_'.$usuario.'.jpg';
+		$validacao = 'assets/tmp/validacao_'.$usuario.'.txt';
 		$verificacao = $this->input->post('verificacao');
 		if (file_exists($caminhoTemporarioOriginal)) {
 			$resolucao = getimagesize($caminhoTemporarioOriginal);
 			$tamanho   = filesize($caminhoTemporarioOriginal);
 			return ($resolucao[0]<=2000 && $resolucao[1]<=1200) ? (($tamanho < 1048576) ? true : false ): false;
-		} elseif($verificacao == 'true' || $tipo == 'atualizar') {
+		} elseif($verificacao == 'true' || (!file_exists($validacao) && $tipo == 'atualizar')) {
 			return true;
 		} else {
+			unlink($validacao);
 			return false;
 		}
 	}
@@ -161,6 +164,8 @@ public function editar($id){
 	$this->load->view('template/header');
 	$this->load->view('banner/editar');
 	$this->load->view('template/footer');
+	$arquivotemporario = 'assets/tmp/validacao_'.$this->session->user_nome.'.txt';
+	if(file_exists($arquivotemporario)): unlink($arquivotemporario); endif;
 }
 
 /*Função na qual irá atualizar as informações
