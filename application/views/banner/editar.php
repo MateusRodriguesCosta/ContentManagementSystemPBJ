@@ -89,9 +89,9 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							</div>
 
 							<div class="row">
-								<div class="col-xs-12 col-sm-10 center-block">
+								<div class="col-xs-12 col-sm-12 center-block">
 									<span title="Obrigatório" class="help-block">Edição do Banner</span>
-									<div class="img-container pv10" style="background: #ffffff;">
+									<div class="img-container pv10" style="background: #ffffff;min-height:650px !important">
 										<img id="imagemContainer" name="imageContainer" src="<?php
 										if($this->banner_m->getCaminho() != "" || $this->banner_m->getCaminho() != null){
 											echo base_url('assets/img/pousada_banner/'.$this->banner_m->getCaminho().'?dummy='.date("d/m/YH:m:s"));

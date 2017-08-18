@@ -14,18 +14,19 @@ function readURL(input,user) {
       var user = $('#usuario').text();
       jsondata = JSON.stringify(reader.result);
       $.ajax(origin + '/assets/tmp/temporario.php', {
-        method: "POST",
-        data: {'original' : jsondata, 'user' : user, 'upload' : 'envio'},
-        cache: false,
-        success: function(output) {
-          console.log('Upload success (default)');
-        },
-        error: function () {
-          console.log('Upload error (default)');
-        }
-      });
+          method: "POST",
+          data: {'original' : jsondata, 'user' : user, 'upload' : 'envio'},
+          cache: false,
+          success: function(output) {
+            console.log('Upload success (default)');
+          },
+          error: function () {
+            console.log('Upload error (default)');
+          }
+        });
     }
   }
+
 }
 
 function enviarImagem(imagem, usuario){
@@ -33,8 +34,7 @@ function enviarImagem(imagem, usuario){
     var origin = getUrl.protocol + "//" + getUrl.host;
     var arrayString = dividirString(imagem, 800000);
     var numeroArquivos = Math.ceil(imagem.length / 800000);
-
-    for (var variable in arrayString) {
+      for (var variable in arrayString) {
       if (arrayString.hasOwnProperty(variable)) {
         $.ajax(origin + '/assets/tmp/temporario.php', {
           method: "POST",

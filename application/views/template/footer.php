@@ -112,7 +112,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
         jQuery(document).ready(function(){
           $(window).on('load', function() {
             $('#preloader').addClass('zoomOut');
-          });
+          });                    
         });
         </script>
 

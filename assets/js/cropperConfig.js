@@ -44,7 +44,7 @@
       $dataRotate = $('#dataRotate'),
       options = {
         //  aspectRatio: 16 / 9, (optional)
-        preview: '.img-preview',
+        preview: '.img-preview',        
         crop: function(data) {
           $dataX.val(Math.round(data.x));
           $dataY.val(Math.round(data.y));
