@@ -100,6 +100,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 										}
 										 ?>">
 									</div>
+									<p class="text-center" style="font-size:14px;color:#bdbdbd;">Imagens que excederem 2MB ou com dimensões maiores que FULL HD não serão salvas</p>
 								</div>
 							</div>
 

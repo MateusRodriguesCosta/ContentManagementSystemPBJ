@@ -113,7 +113,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 								<div class="col-xs-12 col-sm-10 col-md-10 center-block" id="divImagem">
 									<span title="Obrigatório" class="help-block">Edição de Imagem da Mídia</span>
 									<div class="img-container pv10" style="background: #ffffff;">
-										<img src="<?php
+										<img id="imagemContainer" name="imageContainer" src="<?php
 										if($this->midia_m->getCaminho() != "" || $this->midia_m->getCaminho() != null){
 											echo base_url('assets/img/pousada_midia/'.$this->midia_m->getCaminho().'?dummy='.date("d/m/YH:m:s"));
 										}else{
@@ -121,7 +121,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 										}
 											 ?>">
 									</div>
-
+									<p class="text-center" style="font-size:14px;color:#bdbdbd;">Imagens que excederem 2MB ou com dimensões maiores que FULL HD não serão salvas</p>
 								</div>
 								<div class="panel-footer text-center">
 									<div class="docs-buttons">

@@ -52,29 +52,7 @@
         }
       };
 
-      $image.on({
-        'build.cropper': function(e) {
-          console.log(e.type);
-        },
-        'built.cropper': function(e) {
-          console.log(e.type);
-        },
-        'dragstart.cropper': function(e) {
-          console.log(e.type, e.dragType);
-        },
-        'dragmove.cropper': function(e) {
-          console.log(e.type, e.dragType);
-        },
-        'dragend.cropper': function(e) {
-          console.log(e.type, e.dragType);
-        },
-        'zoomin.cropper': function(e) {
-          console.log(e.type);
-        },
-        'zoomout.cropper': function(e) {
-          console.log(e.type);
-        }
-      }).cropper(options);
+      $image.cropper(options);
 
       $(document.body).on('click', '[data-method]', function() {
         var data = $(this).data(),
@@ -132,30 +110,7 @@
           }
 
         }
-      })/*.on('keydown', function(e) {
-        switch (e.which) {
-        case 37:
-        e.preventDefault();
-        $image.cropper('move', -1, 0);
-        break;
-
-        case 38:
-        e.preventDefault();
-        $image.cropper('move', 0, -1);
-        break;
-
-        case 39:
-        e.preventDefault();
-        $image.cropper('move', 1, 0);
-        break;
-
-        case 40:
-        e.preventDefault();
-        $image.cropper('move', 0, 1);
-        break;
-      }
-
-    });*/
+      });
 
     // Importar imagem
     var $inputImage = $('#inputImage'),
