@@ -51,7 +51,6 @@ class Ip_m extends CI_Model {
 		);
 
 		$this->db->insert('pousada_ips', $data);
-
 		$this->setId($this->db->insert_id());
 
 		$this->log_m->setTabela('pousada_ips');

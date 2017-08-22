@@ -16,8 +16,8 @@ class Banner_m extends CI_Model {
 	private $ativo;
 
 	/**
-	 * Métodos de acesso (Getters/Setters)
-	 */
+	* Métodos de acesso (Getters/Setters)
+	*/
 
 	private function setId($id){
 		$this->id = $id;
@@ -68,8 +68,8 @@ class Banner_m extends CI_Model {
 	}
 
 	/**
-	 * Métodos principais - Listar, Totalizar, Buscar, Inserir, Editar e Atualizar.
-	 */
+	* Métodos principais - Listar, Totalizar, Buscar, Inserir, Editar e Atualizar.
+	*/
 
 	public function listar(){
 		$this->db->query('SET lc_time_names = "pt_BR"');
@@ -91,7 +91,6 @@ class Banner_m extends CI_Model {
 	}
 
 	public function inserir($ban_mid_id){
-		# Inserir novos atributos POST das Globals
 		$data = array(
 			'ban_caminho' => $this->getCaminho(),
 			'ban_dataInclusao' => $this->getDataInclusao(),

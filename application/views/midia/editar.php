@@ -10,16 +10,14 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 				<li class="breadcrumb-icon"><?php echo anchor('', '<span class="fa fa-home"></span>', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-active"><?php echo anchor('', 'Menu Principal', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('Midia', 'Midia', 'title="Clique para ir"'); ?></li>
-                <li class="breadcrumb-current-item">Editar</li>
+				<li class="breadcrumb-current-item">Editar</li>
 			</ol>
 		</div>
 		<div class="topbar-right"></div>
 	</header>
-
 	<section id="content" class="table-layout animated fadeIn">
 		<div class="chute chute-center">
 			<div class="mw1500 center-block">
-
 				<div class="allcp-form">
 					<div class="panel">
 						<div class="panel-heading"><div class="panel-title">Editar Mídia</div></div>
@@ -99,7 +97,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									</label>
 								</div>
 							</div>
-
 							<div class="row" style="margin-top: 30px;" id="divDescricao">
 								<div class="col-md-12">
 									<div class="section">
@@ -108,7 +105,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<textarea id="textoEditor" placeholder="Entre com o texto da mídia" name="texto" class="gui-textarea"><?php echo $this->midia_m->getDescricao(); ?></textarea>
 								</div>
 							</div>
-
 							<div class="row" style="margin-top: 35px;">
 								<div class="col-xs-12 col-sm-10 col-md-10 center-block" id="divImagem">
 									<span title="Obrigatório" class="help-block">Edição de Imagem da Mídia</span>
@@ -119,7 +115,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 										}else{
 											echo base_url('assets/img/patterns/canvas/placeholder.png');
 										}
-											 ?>">
+										?>">
 									</div>
 									<p class="text-center" style="font-size:14px;color:#bdbdbd;">Imagens que excederem 2MB ou com dimensões maiores que FULL HD não serão salvas</p>
 								</div>
@@ -169,7 +165,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>

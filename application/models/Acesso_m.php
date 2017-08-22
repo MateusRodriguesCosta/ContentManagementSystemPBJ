@@ -60,7 +60,6 @@ class Acesso_m extends CI_Model {
 			'ace_ip' => $this->getIp(),
 			'ace_acesso' => $this->getAcesso()
 		);
-
 		$this->db->insert('pousada_acesso', $data);
 	}
 

@@ -68,7 +68,6 @@ class Midia extends CI_Controller {
 	*/
 	public function inserir(){
 		$this->texto_m->validacao();
-
 		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[inserir]');
 
@@ -102,9 +101,6 @@ class Midia extends CI_Controller {
 				case 'Restaurante':
 				$this->midia_m->setDescricao($this->input->post('texto'));
 				break;
-				default:
-				# codar...
-				break;
 			}
 			# Conversão de datas
 			$data_inclusao = $this->texto_m->conversaoData($this->input->post('dataInclusao'));
@@ -127,7 +123,7 @@ class Midia extends CI_Controller {
 			# Arquivo é utilizado por temporario.php para criar arquivo de edição
 			if ($verificacao != 'false'):
 				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-					or die("Não foi possível abrir o arquivo!");
+				or die("Não foi possível abrir o arquivo!");
 				fwrite($arquivo, $ID.",midia,".$verificacao.",inserir");
 				fclose($arquivo);
 			else:
@@ -146,136 +142,132 @@ class Midia extends CI_Controller {
 			$this->log_m->setLinha($midiaID);
 			$this->log_m->setOperacao('i');
 			$this->log_m->setDescricao(																								'Titulo: '.
-				$this->midia_m->getTitulo()																							.'!break!Link: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getLink())  					.'!break!Local: '.
-				$this->midia_m->getLocal()																							.'!break!Data de Inclusão: '.
-				$this->midia_m->getDataInclusao()   																		.'!break!Id do item: '.
-				$midiaID               						  																		.'!break!Equipamentos: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
-				$verificacao
-			);
-			$this->log_m->inserir();
-			$this->session->set_userdata('status', 'SUCESSO');
-			redirect('Midia/Listar');
-
-		}
+			$this->midia_m->getTitulo()																							.'!break!Link: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getLink())  					.'!break!Local: '.
+			$this->midia_m->getLocal()																							.'!break!Data de Inclusão: '.
+			$this->midia_m->getDataInclusao()   																		.'!break!Id do item: '.
+			$midiaID               						  																		.'!break!Equipamentos: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
+			$verificacao
+		);
+		$this->log_m->inserir();
+		$this->session->set_userdata('status', 'SUCESSO');
+		redirect('Midia/Listar');
 	}
+}
 
-	/*Função na qual irá realizar o redirecionamento
-	* para o banner que possui o $id passado por parâmetro.
-	*/
-	public function editar($id){
-		$this->midia_m->editar($id);
+/*Função na qual irá realizar o redirecionamento
+* para o banner que possui o $id passado por parâmetro.
+*/
+public function editar($id){
+	$this->midia_m->editar($id);
+	$this->session->set_userdata('css_js', 'formulario');
+
+	$this->load->view('template/header');
+	$this->load->view('midia/editar');
+	$this->load->view('template/footer');
+	$arquivotemporario = 'assets/tmp/validacao_'.$this->session->user_nome.'.txt';
+	if(file_exists($arquivotemporario)): unlink($arquivotemporario); endif;
+}
+
+/*Função na qual irá atualizar as informações
+* sobre o banner que são o Titulo e o status
+* de Ativo que é um trigger para exibição do
+* banner no carrosel.
+*/
+public function atualizar(){
+	$this->texto_m->validacao();
+
+	$this->form_validation->set_rules('id', 'ID', 'trim|required');
+	$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
+	$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required');
+	$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
+
+	if($this->form_validation->run() == FALSE){
+		$this->midia_m->editar($this->input->post('id'));
 		$this->session->set_userdata('css_js', 'formulario');
 
 		$this->load->view('template/header');
 		$this->load->view('midia/editar');
 		$this->load->view('template/footer');
-		$arquivotemporario = 'assets/tmp/validacao_'.$this->session->user_nome.'.txt';
-		if(file_exists($arquivotemporario)): unlink($arquivotemporario); endif;
-	}
+	}else{
+		# Conversão de datas
+		$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
 
-	/*Função na qual irá atualizar as informações
-	* sobre o banner que são o Titulo e o status
-	* de Ativo que é um trigger para exibição do
-	* banner no carrosel.
-	*/
-	public function atualizar(){
-		$this->texto_m->validacao();
+		$this->midia_m->editar($this->input->post('id'));
+		$this->midia_m->setTitulo($this->input->post('titulo'));
+		$this->midia_m->setDescricao($this->input->post('texto'));
+		$this->midia_m->setDataAlteracao($data_alteracao);
+		$this->midia_m->setTipo('midia');
+		$this->midia_m->setLink($this->input->post('link'));
+		$this->midia_m->setLocal($this->input->post('opcaoEditar'));
+		$this->midia_m->setPeriodo($this->input->post('periodo'));
+		$this->midia_m->setCapacidade($this->input->post('capacidade'));
+		$this->midia_m->setEquipamentos($this->input->post('equipamentos'));
+		$this->midia_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
 
-		$this->form_validation->set_rules('id', 'ID', 'trim|required');
-		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
-		$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required');
-		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
+		# Usuário que está logado e realizando a operação de edição e retorno
+		# da verificação de recorte.
+		$user = $this->input->post('user');
+		$verificacao = $this->input->post('verificacao');
+		$midiaID = $this->midia_m->getId();
 
-		if($this->form_validation->run() == FALSE){
-			$this->midia_m->editar($this->input->post('id'));
+		# Cria arquivo com as especificações da edição realizada
+		# Arquivo é utilizado por temporario.php para criar arquivo de edição
+		if ($verificacao != 'false'):
+			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+			or die("Não foi possível abrir o arquivo!");
+			fwrite($arquivo, $midiaID.",midia,".$verificacao.",atualizar");
+			fclose($arquivo);
+		else:
+			require_once 'assets/tmp/temporario.php';
+			$temporario = new temporario();
+			$temporario->salvar($midiaID, $user, 'midia', 'atualizar', $verificacao, 0);
+		endif;
 
-			$this->session->set_userdata('css_js', 'formulario');
+		$caminho = 'midia_'.$midiaID.'.jpg';
+		$this->midia_m->setCaminho($caminho);
+		$this->midia_m->atualizar();
 
-			$this->load->view('template/header');
-			$this->load->view('midia/editar');
-			$this->load->view('template/footer');
-		}else{
-			# Conversão de datas
-			$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
+		$this->log_m->setTabela('pousada_midia');
+		$this->log_m->setLinha($this->input->post('id'));
+		$this->log_m->setOperacao('u');
+		$this->log_m->setDescricao(																								'Titulo: '.
+		$this->midia_m->getTitulo()																							.'!break!Link: '.
+		$this->texto_m->verificarConteudo($this->midia_m->getLink())  					.'!break!Local: '.
+		$this->midia_m->getLocal()																							.'!break!Data de Alteração: '.
+		$this->midia_m->getDataAlteracao()																			.'!break!Id do item: '.
+		$this->input->post('id')               						  										.'!break!Equipamentos: '.
+		$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
+		$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
+		$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
+		$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
+		$verificacao
+	);
+	$this->log_m->inserir();
 
-			$this->midia_m->editar($this->input->post('id'));
-			$this->midia_m->setTitulo($this->input->post('titulo'));
-			$this->midia_m->setDescricao($this->input->post('texto'));
-			$this->midia_m->setDataAlteracao($data_alteracao);
-			$this->midia_m->setTipo('midia');
-			$this->midia_m->setLink($this->input->post('link'));
-			$this->midia_m->setLocal($this->input->post('opcaoEditar'));
-			$this->midia_m->setPeriodo($this->input->post('periodo'));
-			$this->midia_m->setCapacidade($this->input->post('capacidade'));
-			$this->midia_m->setEquipamentos($this->input->post('equipamentos'));
-			$this->midia_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
+	$this->session->set_userdata('status', 'SUCESSO');
+	redirect('Midia/Listar');
+}
+}
 
-			# Usuário que está logado e realizando a operação de edição e retorno
-			# da verificação de recorte.
-			$user = $this->input->post('user');
-			$verificacao = $this->input->post('verificacao');
-			$midiaID = $this->midia_m->getId();
+/*Função na qual irá listar todos as midias
+* que estão no banco de dados através da função
+* 'todos' da classe 'midia_m'.
+*/
+public function listar(){
+	$result = $this->midia_m->listar();
+	$data['result'] = $result;
 
-			# Cria arquivo com as especificações da edição realizada
-			# Arquivo é utilizado por temporario.php para criar arquivo de edição
-			if ($verificacao != 'false'):
-				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-					or die("Não foi possível abrir o arquivo!");
-				fwrite($arquivo, $midiaID.",midia,".$verificacao.",atualizar");
-				fclose($arquivo);
-			else:
-				require_once 'assets/tmp/temporario.php';
-				$temporario = new temporario();
-				$temporario->salvar($midiaID, $user, 'midia', 'atualizar', $verificacao, 0);
-			endif;
+	$this->session->set_userdata('css_js', 'tabela');
 
-			$caminho = 'midia_'.$midiaID.'.jpg';
-			$this->midia_m->setCaminho($caminho);
+	$this->load->view('template/header');
+	$this->load->view('midia/listar', $data);
+	$this->load->view('template/footer');
 
-			$this->midia_m->atualizar();
-
-			$this->log_m->setTabela('pousada_midia');
-			$this->log_m->setLinha($this->input->post('id'));
-			$this->log_m->setOperacao('u');
-			$this->log_m->setDescricao(																								'Titulo: '.
-				$this->midia_m->getTitulo()																							.'!break!Link: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getLink())  					.'!break!Local: '.
-				$this->midia_m->getLocal()																							.'!break!Data de Alteração: '.
-				$this->midia_m->getDataAlteracao()																			.'!break!Id do item: '.
-				$this->input->post('id')               						  										.'!break!Equipamentos: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
-				$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
-				$verificacao
-			);
-			$this->log_m->inserir();
-
-			$this->session->set_userdata('status', 'SUCESSO');
-
-			redirect('Midia/Listar');
-		}
-	}
-
-	/*Função na qual irá listar todos as midias
-	* que estão no banco de dados através da função
-	* 'todos' da classe 'midia_m'.
-	*/
-	public function listar(){
-		$result = $this->midia_m->listar();
-		$data['result'] = $result;
-
-		$this->session->set_userdata('css_js', 'tabela');
-
-		$this->load->view('template/header');
-		$this->load->view('midia/listar', $data);
-		$this->load->view('template/footer');
-
-		$this->session->unset_userdata('status');
-	}
+	$this->session->unset_userdata('status');
+}
 }

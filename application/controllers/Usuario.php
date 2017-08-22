@@ -56,18 +56,13 @@ class Usuario extends CI_Controller {
 			$this->load->view('usuario/cadastrar');
 			$this->load->view('template/footer');
 		}else{
-			//echo $this->input->post('nome').'<br>';
 			$this->usuario_m->setNome($this->input->post('nome'));
-			//echo $this->input->post('email').'<br>';
 			$this->usuario_m->setEmail($this->input->post('email'));
-			//echo $this->input->post('login').'<br>';
 			$this->usuario_m->setLogin($this->input->post('login'));
-			//echo $this->input->post('senha').'<br>';
 			$this->usuario_m->setSenha($this->input->post('senha'));
 			$this->usuario_m->inserir();
 
 			$this->session->set_userdata('status', 'SUCESSO');
-
 			redirect('Usuario/Listar');
 		}
 	}
@@ -114,18 +109,13 @@ class Usuario extends CI_Controller {
 			$this->load->view('usuario/editar');
 			$this->load->view('template/footer');
 		}else{
-			//echo $this->input->post('nome').'<br>';
 			$this->usuario_m->setNome($this->input->post('nome'));
-			//echo $this->input->post('email').'<br>';
 			$this->usuario_m->setEmail($this->input->post('email'));
-			//echo $this->input->post('login').'<br>';
 			$this->usuario_m->setLogin($this->input->post('login'));
-			//echo $this->input->post('ativo').'<br>';
 			$this->usuario_m->setAtivo($this->input->post('ativo'));
 			$this->usuario_m->update();
 
 			$this->session->set_userdata('status', 'SUCESSO');
-
 			redirect('Usuario/Listar');
 		}
 	}
@@ -165,12 +155,10 @@ class Usuario extends CI_Controller {
 			$this->load->view('usuario/editar_senha');
 			$this->load->view('template/footer');
 		}else{
-			//echo $this->input->post('senha').'<br>';
 			$this->usuario_m->setSenha($this->input->post('senha'));
 			$this->usuario_m->update_senha();
 
 			$this->session->set_userdata('status', 'SUCESSO');
-
 			redirect('Usuario/Listar');
 		}
 	}

@@ -65,7 +65,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
   </script>
 
   <script type="text/javascript">
-
   jQuery(document).ready(function(){
     "use strict";
     Core.init();
@@ -96,7 +95,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
   });
   </script>
 <?php } else { ?>
-
   <script src="<?php echo base_url('assets/js/utility/utility.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/arqcentral.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
@@ -143,7 +141,6 @@ jQuery(document).ready(function(){
                     $dataRotate.val(Math.round(data.rotate));
                   }
                 };
-
                 $image.cropper('destroy');
                 $("#imagemContainer").hide('fade', function(){
                   document.getElementById("imagemContainer").src = imagemURL;

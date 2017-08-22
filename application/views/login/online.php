@@ -12,17 +12,14 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 				<li class="breadcrumb-link"><?php echo anchor('', 'ArqCentral', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('', 'Configura&ccedil;&otilde;es', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('Login', 'Login', 'title="Clique para ir"'); ?></li>
-                <li class="breadcrumb-current-item">Online</li>
+        <li class="breadcrumb-current-item">Online</li>
 			</ol>
 		</div>
 		<div class="topbar-right"></div>
 	</header>
-
 	<section id="content" class="table-layout animated fadeIn">
 		<div class="chute chute-center">
-
 			<?php echo $this->texto_m->alerta($this->session->status); ?>
-
 			<div class="panel">
 				<div class="panel-heading"><span class="panel-title">Lista de onlines: <?php echo $this->online_m->total(); ?></span></div>
 				<div class="panel-menu">
@@ -33,10 +30,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 						<table class="table footable" data-filter="#fooFilter">
 							<thead>
 								<tr>
-									<!--<th class="hidden-xs"># ID</th>-->
-									<!--<th class="hidden-xs">Colaborador</th>-->
 									<th>Login</th>
-									<!--<th class="hidden-xs">Permissão</th>-->
 									<th>IP</th>
 									<th>HOST</th>
 									<th>OS</th>
@@ -48,10 +42,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							<tbody>
 								<?php foreach($result as $row){ ?>
 								<tr>
-									<!--<td class="hidden-xs"><?php //echo $row->onl_id; ?></td>-->
-									<!--<td class="hidden-xs"><?php //echo $row->col_colaborador; ?></td>-->
 									<td><?php echo $row->log_login; ?></td>
-									<!--<td class="hidden-xs"><?php //echo $row->log_permissao; ?></td>-->
 									<td><?php echo $row->onl_ip; ?></td>
 									<td><?php echo $row->onl_host; ?></td>
 									<td><?php echo $row->onl_os; ?></td>
@@ -68,8 +59,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</section>
-
 </section>

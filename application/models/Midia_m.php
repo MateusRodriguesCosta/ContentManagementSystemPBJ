@@ -23,8 +23,8 @@ class Midia_m extends CI_Model {
 	private $ativo;
 
 	/**
-	 * Métodos de acesso (Getters/Setters)
-	 */
+	* Métodos de acesso (Getters/Setters)
+	*/
 
 	private function setId($id){
 		$this->id = $id;
@@ -131,8 +131,8 @@ class Midia_m extends CI_Model {
 	}
 
 	/**
-	 * Métodos principais - Listar, Totalizar, Buscar, Inserir, Editar e Atualizar.
-	 */
+	* Métodos principais - Listar, Totalizar, Buscar, Inserir, Editar e Atualizar.
+	*/
 
 	public function listar(){
 		$this->db->query('SET lc_time_names = "pt_BR"');
@@ -170,7 +170,7 @@ class Midia_m extends CI_Model {
 				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => '0000/00/00 00:00:00'
 			);
-				break;
+			break;
 			case 'A Pousada - Visitas Ilustres':
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -183,7 +183,7 @@ class Midia_m extends CI_Model {
 				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => '0000/00/00 00:00:00'
 			);
-				break;
+			break;
 			case 'Fé e Lazer - Pousada':
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -195,7 +195,7 @@ class Midia_m extends CI_Model {
 				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => '0000/00/00 00:00:00'
 			);
-				break;
+			break;
 			case 'Eventos - Ambientes':
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -208,7 +208,7 @@ class Midia_m extends CI_Model {
 				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => '0000/00/00 00:00:00'
 			);
-				break;
+			break;
 			case 'Restaurante':
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -220,7 +220,8 @@ class Midia_m extends CI_Model {
 				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => '0000/00/00 00:00:00'
 			);
-				break;
+			break;
+			# Default -> Banner ou Imagem
 			default:
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -233,8 +234,7 @@ class Midia_m extends CI_Model {
 				'mid_dataInclusao' => $this->getDataInclusao(),
 				'mid_dataAlteracao' => '0000/00/00 00:00:00'
 			);
-			# Banner ou Imagem
-				break;
+			break;
 		}
 
 		$this->db->insert('pousada_midia', $data);
@@ -264,7 +264,6 @@ class Midia_m extends CI_Model {
 	}
 
 	public function atualizar(){
-
 		switch ($this->getLocal()) {
 			case 'Página Principal':
 			$data = array(
@@ -278,7 +277,7 @@ class Midia_m extends CI_Model {
 				'mid_descricao' => $this->getDescricao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
-				break;
+			break;
 			case 'A Pousada - Visitas Ilustres':
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -291,7 +290,7 @@ class Midia_m extends CI_Model {
 				'mid_descricao' => $this->getDescricao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
-				break;
+			break;
 			case 'Fé e Lazer - Pousada':
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -303,7 +302,7 @@ class Midia_m extends CI_Model {
 				'mid_descricao' => $this->getDescricao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
-				break;
+			break;
 			case 'Eventos - Ambientes':
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -316,7 +315,7 @@ class Midia_m extends CI_Model {
 				'mid_equipamentos' => $this->getEquipamentos(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
-				break;
+			break;
 			case 'Restaurante':
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -328,7 +327,8 @@ class Midia_m extends CI_Model {
 				'mid_descricao' => $this->getDescricao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
-				break;
+			break;
+			# Default -> Banner ou Imagem
 			default:
 			$data = array(
 				'mid_id' => $this->getId(),
@@ -341,13 +341,11 @@ class Midia_m extends CI_Model {
 				'mid_descricao' => $this->getDescricao(),
 				'mid_dataAlteracao' => $this->getDataAlteracao()
 			);
-			# Banner ou Imagem
-				break;
+			break;
 		}
 
 		$this->db->where('mid_id', $this->getId());
 		$this->db->update('pousada_midia', $data);
 		return $this->getId();
 	}
-
 }

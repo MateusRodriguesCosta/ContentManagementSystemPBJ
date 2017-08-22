@@ -12,14 +12,14 @@ class Texto_m extends CI_Model {
 		switch($ativo) {
 			case '1':
 			case 's':
-				$ativo_r = '<i title="Sim" class="fa fa-eye text-info"></i>';
+			$ativo_r = '<i title="Sim" class="fa fa-eye text-info"></i>';
 			break;
 			case '0':
 			case 'n':
-				$ativo_r = '<i title="Não" class="fa fa-eye-slash text-danger"></i>';
+			$ativo_r = '<i title="Não" class="fa fa-eye-slash text-danger"></i>';
 			break;
 			default:
-				$ativo_r = '<i title="Bug" class="fa fa-bug text-alert"></i>';
+			$ativo_r = '<i title="Bug" class="fa fa-bug text-alert"></i>';
 			break;
 		}
 		return $ativo_r;
@@ -29,14 +29,14 @@ class Texto_m extends CI_Model {
 		switch($ativo) {
 			case '1':
 			case 1:
-				$ativo_r = '<option value="1" selected>SIM</option><option value="0">NÃO</option>';
+			$ativo_r = '<option value="1" selected>SIM</option><option value="0">NÃO</option>';
 			break;
 			case '0':
 			case 0:
-				$ativo_r = '<option value="1">SIM</option><option value="0" selected>NÃO</option>';
+			$ativo_r = '<option value="1">SIM</option><option value="0" selected>NÃO</option>';
 			break;
 			default:
-				$ativo_r = '<option value="1">SIM</option><option value="0">NÃO</option>';
+			$ativo_r = '<option value="1">SIM</option><option value="0">NÃO</option>';
 			break;
 		}
 		return $ativo_r;
@@ -45,46 +45,46 @@ class Texto_m extends CI_Model {
 	public function midia_selecionar($opcao) {
 		switch($opcao) {
 			case 'Página Principal':
-				$opcao_r = '<option value="Página Principal" selected>Página Principal</option>
-				<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
-				<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
-				<option value="Eventos - Ambientes">Eventos - Ambientes</option>
-				<option value="Restaurante">Restaurante</option>';
+			$opcao_r = '<option value="Página Principal" selected>Página Principal</option>
+			<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
+			<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
+			<option value="Eventos - Ambientes">Eventos - Ambientes</option>
+			<option value="Restaurante">Restaurante</option>';
 			break;
 			case 'A Pousada - Visitas Ilustres':
-				$opcao_r = '<option value="Página Principal">Página Principal</option>
-				<option value="A Pousada - Visitas Ilustres" selected>A Pousada - Visitas Ilustres</option>
-				<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
-				<option value="Eventos - Ambientes">Eventos - Ambientes</option>
-				<option value="Restaurante">Restaurante</option>';
+			$opcao_r = '<option value="Página Principal">Página Principal</option>
+			<option value="A Pousada - Visitas Ilustres" selected>A Pousada - Visitas Ilustres</option>
+			<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
+			<option value="Eventos - Ambientes">Eventos - Ambientes</option>
+			<option value="Restaurante">Restaurante</option>';
 			break;
 			case 'Fé e Lazer - Pousada':
-				$opcao_r = '<option value="Página Principal">Página Principal</option>
-				<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
-				<option value="Fé e Lazer - Pousada" selected>Fé e Lazer - Pousada</option>
-				<option value="Eventos - Ambientes">Eventos - Ambientes</option>
-				<option value="Restaurante">Restaurante</option>';
+			$opcao_r = '<option value="Página Principal">Página Principal</option>
+			<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
+			<option value="Fé e Lazer - Pousada" selected>Fé e Lazer - Pousada</option>
+			<option value="Eventos - Ambientes">Eventos - Ambientes</option>
+			<option value="Restaurante">Restaurante</option>';
 			break;
 			case 'Eventos - Ambientes':
-				$opcao_r = '<option value="Página Principal">Página Principal</option>
-				<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
-				<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
-				<option value="Eventos - Ambientes" selected>Eventos - Ambientes</option>
-				<option value="Restaurante">Restaurante</option>';
+			$opcao_r = '<option value="Página Principal">Página Principal</option>
+			<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
+			<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
+			<option value="Eventos - Ambientes" selected>Eventos - Ambientes</option>
+			<option value="Restaurante">Restaurante</option>';
 			break;
 			case 'Restaurante':
-				$opcao_r = '<option value="Página Principal">Página Principal</option>
-				<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
-				<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
-				<option value="Eventos - Ambientes">Eventos - Ambientes</option>
-				<option value="Restaurante" selected>Restaurante</option>';
+			$opcao_r = '<option value="Página Principal">Página Principal</option>
+			<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
+			<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
+			<option value="Eventos - Ambientes">Eventos - Ambientes</option>
+			<option value="Restaurante" selected>Restaurante</option>';
 			break;
 			default:
-				$opcao_r = '<option value="Página Principal" selected>Página Principal</option>
-				<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
-				<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
-				<option value="Eventos - Ambientes">Eventos - Ambientes</option>
-				<option value="Restaurante">Restaurante</option>';
+			$opcao_r = '<option value="Página Principal" selected>Página Principal</option>
+			<option value="A Pousada - Visitas Ilustres">A Pousada - Visitas Ilustres</option>
+			<option value="Fé e Lazer - Pousada">Fé e Lazer - Pousada</option>
+			<option value="Eventos - Ambientes">Eventos - Ambientes</option>
+			<option value="Restaurante">Restaurante</option>';
 			break;
 		}
 		return $opcao_r;
@@ -100,7 +100,7 @@ class Texto_m extends CI_Model {
 
 	public function tratarQueryLog($query, $tabela){
 		$query = str_replace('!break!', '
-', $query);
+		', $query);
 		$query = str_replace('false', 'NÃO FORAM REALIZADAS EDIÇÕES NA IMAGEM', $query);
 		$query = str_replace('true', 'FORAM REALIZADAS EDIÇÕES NA IMAGEM', $query);
 
@@ -118,14 +118,14 @@ class Texto_m extends CI_Model {
 		switch($ativo){
 			case '1':
 			case 1:
-				$ativo_r = 'SIM';
+			$ativo_r = 'SIM';
 			break;
 			case '0':
 			case 0:
-				$ativo_r = 'NÃO';
+			$ativo_r = 'NÃO';
 			break;
 			default:
-				$ativo_r = 'BUG';
+			$ativo_r = 'BUG';
 			break;
 		}
 		return $ativo_r;
@@ -134,13 +134,13 @@ class Texto_m extends CI_Model {
 	public function ativo_codigo($ativo) {
 		switch($ativo){
 			case '1':
-				$ativo_r = '1';
+			$ativo_r = '1';
 			break;
 			case '0':
-				$ativo_r = '0';
+			$ativo_r = '0';
 			break;
 			default:
-				$ativo_r = 'BUG';
+			$ativo_r = 'BUG';
 			break;
 		}
 		return $ativo_r;
@@ -150,43 +150,43 @@ class Texto_m extends CI_Model {
 	public function alerta($status) {
 		switch($status) {
 			case 'FORM_ERROR':
-				$status_r = '<div class="alert alert-alert pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>';
+			$status_r = '<div class="alert alert-alert pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>';
 			break;
 			case 'SUCESSO':
-				$status_r = '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-check pr10"></i><strong>Opera&ccedil;&atilde;o realizada com SUCESSO.</strong></div>';
+			$status_r = '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-check pr10"></i><strong>Opera&ccedil;&atilde;o realizada com SUCESSO.</strong></div>';
 			break;
 			case 'LOGIN_INVALIDO':
-				$status_r = '<div class="alert alert-alert pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Você digitou login ou senha errado.</strong></div>';
+			$status_r = '<div class="alert alert-alert pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Você digitou login ou senha errado.</strong></div>';
 			break;
 			case 'LOGIN_DESATIVADO':
-				$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Seu login está desativado, por favor entre em contato com o T.I.</strong></div>';
+			$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Seu login está desativado, por favor entre em contato com o T.I.</strong></div>';
 			break;
 			case 'LOGIN_IP_INVALIDO':
-				$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Você não tem permissão de acesso de seu local atual, por favor entre em contato com o T.I.</strong></div>';
+			$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Você não tem permissão de acesso de seu local atual, por favor entre em contato com o T.I.</strong></div>';
 			break;
 			case 'LOGIN_IP_MUDOU':
-				$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Durante a sessão você mudou de local não cadastrado, por favor entre em contato com o T.I.</strong></div>';
+			$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Durante a sessão você mudou de local não cadastrado, por favor entre em contato com o T.I.</strong></div>';
 			break;
 			case 'LOGIN_SUCESSO':
-				$status_r = '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-check pr10"></i><strong>Seu login foi realizado com SUCESSO.</strong></div>';
+			$status_r = '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-check pr10"></i><strong>Seu login foi realizado com SUCESSO.</strong></div>';
 			break;
 			case 'LOGIN_SAIR':
-				$status_r = '<div class="alert alert-primary pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-sign-out pr10"></i><strong>Você deslogou do sistema.</strong></div>';
+			$status_r = '<div class="alert alert-primary pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-sign-out pr10"></i><strong>Você deslogou do sistema.</strong></div>';
 			break;
 			case 'LOGIN_FORA':
-				$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Você não está logado no sistema para ter acesso efetue o login.</strong></div>';
+			$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-info pr10"></i><strong>Você não está logado no sistema para ter acesso efetue o login.</strong></div>';
 			break;
 			case 'LOGIN_EXPULSAR':
-				$status_r = '<div class="alert alert-primary pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-sign-out pr10"></i><strong>Você expulsou do sistema o usuário com SUCESSO.</strong></div>';
+			$status_r = '<div class="alert alert-primary pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-sign-out pr10"></i><strong>Você expulsou do sistema o usuário com SUCESSO.</strong></div>';
 			break;
 			case 'LOGIN_OFF':
-				$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-sign-out pr10"></i><strong>Você não está mais logado no sistema.</strong></div>';
+			$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-sign-out pr10"></i><strong>Você não está mais logado no sistema.</strong></div>';
 			break;
 			case 'IP_NOVO_LOCAL':
-				$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-sign-out pr10"></i><strong>Você acabou de cadastrar um novo local.</strong></div>';
+			$status_r = '<div class="alert alert-danger pastel alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="fa fa-sign-out pr10"></i><strong>Você acabou de cadastrar um novo local.</strong></div>';
 			break;
 			default:
-				$status_r = null;
+			$status_r = null;
 			break;
 		}
 		return $status_r;
@@ -218,7 +218,7 @@ class Texto_m extends CI_Model {
 
 	public function sistema_operacional() {
 		$this->load->library('user_agent');
-		return $this->agent->platform(); // Platform info (Windows, Linux, Mac, etc.)
+		return $this->agent->platform();
 	}
 
 	public function navegador() {
@@ -240,18 +240,18 @@ class Texto_m extends CI_Model {
 		switch($operacao) {
 			case 'i':
 			case 'c':
-				$operacao_r = 'success';
+			$operacao_r = 'success';
 			break;
 			case 'u':
 			case 'a':
-				$operacao_r = 'primary';
+			$operacao_r = 'primary';
 			break;
 			case 'd':
 			case 'e':
-				$operacao_r = 'danger';
+			$operacao_r = 'danger';
 			break;
 			default:
-				$operacao_r = 'alert';
+			$operacao_r = 'alert';
 			break;
 		}
 		return $operacao_r;
@@ -261,18 +261,18 @@ class Texto_m extends CI_Model {
 		switch($operacao) {
 			case 'i':
 			case 'c':
-				$operacao_r = 'Inserido / Cadastrado';
+			$operacao_r = 'Inserido / Cadastrado';
 			break;
 			case 'u':
 			case 'a':
-				$operacao_r = 'Alteração / Edição';
+			$operacao_r = 'Alteração / Edição';
 			break;
 			case 'd':
 			case 'e':
-				$operacao_r = 'Deletado / Excluído';
+			$operacao_r = 'Deletado / Excluído';
 			break;
 			default:
-				$operacao_r = 'Bug';
+			$operacao_r = 'Bug';
 			break;
 		}
 		return $operacao_r;
@@ -281,22 +281,22 @@ class Texto_m extends CI_Model {
 	public function nivel_texto($nivel) {
 		switch($nivel) {
 			case 1:
-				$nivel_r = '<span class="label label-danger">Prioridade Total</span>';
+			$nivel_r = '<span class="label label-danger">Prioridade Total</span>';
 			break;
 			case 2:
-				$nivel_r = '<span class="label label-warning">Alta</span>';
+			$nivel_r = '<span class="label label-warning">Alta</span>';
 			break;
 			case 3:
-				$nivel_r = '<span class="label label-alert">Normal</span>';
+			$nivel_r = '<span class="label label-alert">Normal</span>';
 			break;
 			case 4:
-				$nivel_r = '<span class="label label-success">Baixo</span>';
+			$nivel_r = '<span class="label label-success">Baixo</span>';
 			break;
 			case 5:
-				$nivel_r = '<span class="label label-default">Desnecessario</span>';
+			$nivel_r = '<span class="label label-default">Desnecessario</span>';
 			break;
 			default:
-				$nivel_r = '<span class="label label-dark">Indefinido</span>';
+			$nivel_r = '<span class="label label-dark">Indefinido</span>';
 			break;
 		}
 		return $nivel_r;
@@ -305,22 +305,22 @@ class Texto_m extends CI_Model {
 	public function status_icone($status) {
 		switch($status) {
 			case 1:
-				$status_r = '<span class="fa fa-clock-o text-muted"></span>';
+			$status_r = '<span class="fa fa-clock-o text-muted"></span>';
 			break;
 			case 2:
-				$status_r = '<span class="fa fa-spinner fa-spin text-system"></span>';
+			$status_r = '<span class="fa fa-spinner fa-spin text-system"></span>';
 			break;
 			case 3:
-				$status_r = '<span class="fa fa-check text-info"></span>';
+			$status_r = '<span class="fa fa-check text-info"></span>';
 			break;
 			case 4:
-				$status_r = '<span class="fa fa-folder-open-o text-success"></span>';
+			$status_r = '<span class="fa fa-folder-open-o text-success"></span>';
 			break;
 			case 5:
-				$status_r = '<span class="fa fa-pencil-square-o text-warning"></span>';
+			$status_r = '<span class="fa fa-pencil-square-o text-warning"></span>';
 			break;
 			default:
-				$status_r = '<span class="fa fa-bug text-dark"></span>';
+			$status_r = '<span class="fa fa-bug text-dark"></span>';
 			break;
 		}
 		return $status_r;
@@ -329,22 +329,22 @@ class Texto_m extends CI_Model {
 	public function status_blockquote($status) {
 		switch($status) {
 			case 1:
-				$status_r = 'blockquote-muted';
+			$status_r = 'blockquote-muted';
 			break;
 			case 2:
-				$status_r = 'blockquote-system';
+			$status_r = 'blockquote-system';
 			break;
 			case 3:
-				$status_r = 'blockquote-info';
+			$status_r = 'blockquote-info';
 			break;
 			case 4:
-				$status_r = 'blockquote-success';
+			$status_r = 'blockquote-success';
 			break;
 			case 5:
-				$status_r = 'blockquote-warning';
+			$status_r = 'blockquote-warning';
 			break;
 			default:
-				$status_r = 'blockquote-dark';
+			$status_r = 'blockquote-dark';
 			break;
 		}
 		return $status_r;
@@ -358,34 +358,34 @@ class Texto_m extends CI_Model {
 	public function acesso_texto($acesso) {
 		switch($acesso) {
 			case 1:
-				$acesso_r = '<span class="label label-danger"><i class="fa fa-times"></i> Login Inválidos!</span>';
+			$acesso_r = '<span class="label label-danger"><i class="fa fa-times"></i> Login Inválidos!</span>';
 			break;
 			case 2:
-				$acesso_r = '<span class="label label-danger"><i class="fa fa-times"></i> Senha Inválidos!</span>';
+			$acesso_r = '<span class="label label-danger"><i class="fa fa-times"></i> Senha Inválidos!</span>';
 			break;
 			case 3:
-				$acesso_r = '<span class="label label-danger"><i class="fa fa-times"></i> Login Desativado!</span>';
+			$acesso_r = '<span class="label label-danger"><i class="fa fa-times"></i> Login Desativado!</span>';
 			break;
 			case 4:
-				$acesso_r = '<span class="label label-warning"><i class="fa fa-times"></i> IP Desconhecido!</span>';
+			$acesso_r = '<span class="label label-warning"><i class="fa fa-times"></i> IP Desconhecido!</span>';
 			break;
 			case 5:
-				$acesso_r = '<span class="label label-success"><i class="fa fa-sign-in"></i> Acesso Concedido!</span>';
+			$acesso_r = '<span class="label label-success"><i class="fa fa-sign-in"></i> Acesso Concedido!</span>';
 			break;
 			case 6:
-				$acesso_r = '<span class="label label-info"><i class="fa fa-sign-in"></i> Reconectou!</span>';
+			$acesso_r = '<span class="label label-info"><i class="fa fa-sign-in"></i> Reconectou!</span>';
 			break;
 			case 7:
-				$acesso_r = '<span class="label label-default"><i class="fa fa-sign-out"></i> Efetuou Logout!</span>';
+			$acesso_r = '<span class="label label-default"><i class="fa fa-sign-out"></i> Efetuou Logout!</span>';
 			break;
 			case 8:
-				$acesso_r = '<span class="label label-warning"><i class="fa fa-exclamation-triangle"></i> Estava Logado e Teve Login Desativado!</span>';
+			$acesso_r = '<span class="label label-warning"><i class="fa fa-exclamation-triangle"></i> Estava Logado e Teve Login Desativado!</span>';
 			break;
 			case 9:
-				$acesso_r = '<span class="label label-alert"><i class="fa fa-exclamation-triangle"></i> Durante a sessão trocou de local!</span>';
+			$acesso_r = '<span class="label label-alert"><i class="fa fa-exclamation-triangle"></i> Durante a sessão trocou de local!</span>';
 			break;
 			default:
-				$acesso_r = '<span class="label label-dark"><i class="fa fa-bug"></i> Indefinido</span>';
+			$acesso_r = '<span class="label label-dark"><i class="fa fa-bug"></i> Indefinido</span>';
 			break;
 		}
 		return $acesso_r;
@@ -393,38 +393,6 @@ class Texto_m extends CI_Model {
 
 	public function limpeza_sql($texto) {
 		return str_replace('\"', '"', $texto);
-	}
-
-	/*public function caminho_salvar($local = '') {
-		if($_SERVER['SERVER_NAME'] == '172.16.101.133' && $local == '') {
-			$caminho = '../AdministracaoSitePousadaBomJesus';
-		} else if($_SERVER['SERVER_NAME'] == '172.16.101.133' && $local != '') {
-			$caminho = '.';
-		} else {
-			$caminho = '../httpdocs';
-		}
-		return $caminho;
-	}*/
-
-	public function caminho_salvar($local = '') {
-		if($_SERVER['SERVER_NAME'] == '172.16.101.133' && $local == '') {
-			$caminho = '../SitePousadaBomJesus';
-		} else if($_SERVER['SERVER_NAME'] == '172.16.101.133' && $local != '') {
-			$caminho = '.';
-		} else {
-			$caminho = '../httpdocs';
-		}
-		return $caminho;
-	}
-
-	public function url_arquivo($arquivo) {
-		if($_SERVER['SERVER_NAME'] == '172.16.101.133') {
-			//$caminho = base_url($arquivo);
-			$caminho = 'http://pousadadobomjesus.com'.$arquivo;
-		} else {
-			$caminho = 'http://pousadadobomjesus.com'.$arquivo;
-		}
-		return $caminho;
 	}
 
 	public function limpa_url($texto) {
@@ -447,12 +415,9 @@ class Texto_m extends CI_Model {
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		$data = curl_exec($curl);
 		curl_close($curl);
-
 		if($data) {
-			//echo $data;
 			return $data;
 		} else {
-			//echo 'Erro';
 			return null;
 		}
 	}

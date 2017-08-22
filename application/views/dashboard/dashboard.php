@@ -13,10 +13,8 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 		</div>
 		<div class="topbar-right"></div>
 	</header>
-
 	<section id="content" class="animated fadeIn">
 		<?php echo $this->texto_m->alerta($this->session->status); ?>
-
 		<div class="row mb10">
 			<div class="col-sm-6 col-md-6">
 				<div class="bs-component">
@@ -29,7 +27,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 					</div>
 				</div>
 			</div>
-
 			<div class="col-sm-6 col-md-6">
 				<div class="bs-component">
 					<div class="panel panel-tile br-b bw5 br-default-light">
@@ -48,7 +45,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 					<div class="panel panel-tile br-b bw5 br-default-light">
 						<div class="panel-body pl20 p5">
 							<a href="Banner/Listar" title="Clique para ir"  class="text-pbj"><i class="imoon imoon-paint-format icon-bg"></i></a>
-							<?php //echo anchor('Banner/Listar', '<i class="fa fa-flag icon-bg"></i>', 'title="Clique para ir"'); ?>
 							<?php echo anchor('Banner/Listar', '<b>Lista de Banners</b>', 'title="Clique para ir" class="mt15 lh15 text-pbj"'); ?>
 							<h5 class="text-muted">Banner</h5>
 						</div>
@@ -60,7 +56,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 					<div class="panel panel-tile br-b bw5 br-default-light">
 						<div class="panel-body pl20 p5">
 							<a href="Imagem/Listar" title="Clique para ir"  class="text-pbj"><i class="imoon imoon-images icon-bg"></i></a>
-							<?php //echo anchor('Imagem/Listar', '<i class="fa fa-tag icon-bg"></i>', 'title="Clique para ir"'); ?>
 							<?php echo anchor('Imagem/Listar', '<b>Lista de Imagens</b>', 'title="Clique para ir" class="mt15 lh15 text-pbj"'); ?>
 							<h5 class="text-muted">Imagem</h5>
 						</div>
@@ -68,14 +63,12 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 				</div>
 			</div>
 		</div>
-
 		<div class="row mb10">
 			<div class="col-sm-6 col-md-6">
 				<div class="bs-component">
 					<div class="panel panel-tile br-b bw5 br-default-light">
 						<div class="panel-body pl20 p5">
 							<a href="Midia/Listar" title="Clique para ir"  class="text-pbj"><i class="imoon imoon-newspaper icon-bg"></i></a>
-							<?php //echo anchor('Midia/Listar', '<i class="fa fa-group icon-bg"></i>', 'title="Clique para ir"'); ?>
 							<?php echo anchor('Midia/Listar', '<b>Lista de Mídias</b>', 'title="Clique para ir" class="mt15 lh15 text-pbj"'); ?>
 							<h5 class="text-muted">Mídia</h5>
 						</div>
@@ -87,7 +80,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 					<div class="panel panel-tile br-b bw5 br-default-light">
 						<div class="panel-body pl20 p5">
 							<a href="Usuario/Listar" title="Clique para ir"  class="text-pbj"><i class="imoon imoon-user icon-bg"></i></a>
-							<?php //echo anchor('Usuario/Listar', '<i class="fa fa-group icon-bg"></i>', 'title="Clique para ir"'); ?>
 							<?php echo anchor('Usuario/Listar', '<b>Lista de Usuários</b>', 'title="Clique para ir" class="mt15 lh15 text-pbj"'); ?>
 							<h5 class="text-muted">Usuário</h5>
 						</div>
@@ -95,6 +87,5 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 				</div>
 			</div>
 		</div>
-
 	</section>
 </section>

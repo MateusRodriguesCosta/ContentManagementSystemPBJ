@@ -9,16 +9,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Imagem extends CI_Controller {
 
 	public function __construct(){
-        parent::__construct();
+		parent::__construct();
 
-				$this->login_m->permitir();
+		$this->login_m->permitir();
 
-        $this->session->set_userdata('titulo_pagina', 'Imagem');
-        $this->session->unset_userdata('css_js');
+		$this->session->set_userdata('titulo_pagina', 'Imagem');
+		$this->session->unset_userdata('css_js');
 
-        $this->load->model('imagem_m');
-				$this->load->model('midia_m');
-    }
+		$this->load->model('imagem_m');
+		$this->load->model('midia_m');
+	}
 
 	public function index() {
 		redirect('Imagem/Listar');
@@ -102,7 +102,7 @@ class Imagem extends CI_Controller {
 			# Arquivo é utilizado por temporario.php para criar arquivo de edição
 			if ($verificacao != 'false'):
 				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-					or die("Não foi possível abrir o arquivo!");
+				or die("Não foi possível abrir o arquivo!");
 				fwrite($arquivo, $midiaID.",imagem,".$verificacao.",inserir");
 				fclose($arquivo);
 			else:
@@ -121,129 +121,128 @@ class Imagem extends CI_Controller {
 			$this->log_m->setLinha($imagemID);
 			$this->log_m->setOperacao('i');
 			$this->log_m->setDescricao(						'Titulo: '.
-				$this->midia_m->getTitulo()					.'!break!Link: '.
-				$this->midia_m->getLink()  					.'!break!Data de Inclusão: '.
-				$this->midia_m->getDataInclusao()   .'!break!Local: '.
-				$this->midia_m->getLocal() 					.'!break!Id do item: '.
-				$imagemID               						.'!break!!break!'.
-				$verificacao
-			);
-			$this->log_m->inserir();
+			$this->midia_m->getTitulo()					.'!break!Link: '.
+			$this->midia_m->getLink()  					.'!break!Data de Inclusão: '.
+			$this->midia_m->getDataInclusao()   .'!break!Local: '.
+			$this->midia_m->getLocal() 					.'!break!Id do item: '.
+			$imagemID               						.'!break!!break!'.
+			$verificacao
+		);
+		$this->log_m->inserir();
 
-			$this->session->set_userdata('status', 'SUCESSO');
-			redirect('Imagem/Listar');
-		}
+		$this->session->set_userdata('status', 'SUCESSO');
+		redirect('Imagem/Listar');
 	}
+}
 
-	/*Função na qual irá realizar o redirecionamento
-	* para o imagem que possui o $id passado por parâmetro.
-	*/
-	public function editar($id){
-		$this->imagem_m->editar($id);
+/*Função na qual irá realizar o redirecionamento
+* para o imagem que possui o $id passado por parâmetro.
+*/
+public function editar($id){
+	$this->imagem_m->editar($id);
+	$this->session->set_userdata('css_js', 'formulario');
+
+	$this->load->view('template/header');
+	$this->load->view('imagem/editar');
+	$this->load->view('template/footer');
+	$arquivotemporario = 'assets/tmp/validacao_'.$this->session->user_nome.'.txt';
+	if(file_exists($arquivotemporario)): unlink($arquivotemporario); endif;
+}
+
+/*Função na qual irá atualizar as informações
+* sobre o imagem que são o Titulo e o status
+* de Ativo que é um trigger para exibição do
+* imagem no carrosel.
+*/
+public function atualizar(){
+	$this->texto_m->validacao();
+
+	$this->form_validation->set_rules('id', 'ID', 'trim|required');
+	$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
+	$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required');
+	$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
+
+	if($this->form_validation->run() == FALSE){
+		$this->imagem_m->editar($this->input->post('id'));
+
 		$this->session->set_userdata('css_js', 'formulario');
 
 		$this->load->view('template/header');
 		$this->load->view('imagem/editar');
 		$this->load->view('template/footer');
-		$arquivotemporario = 'assets/tmp/validacao_'.$this->session->user_nome.'.txt';
-		if(file_exists($arquivotemporario)): unlink($arquivotemporario); endif;
-	}
+	}else{
+		# Conversão de datas
+		$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
 
-	/*Função na qual irá atualizar as informações
-	* sobre o imagem que são o Titulo e o status
-	* de Ativo que é um trigger para exibição do
-	* imagem no carrosel.
-	*/
-	public function atualizar(){
-		$this->texto_m->validacao();
+		# Atribuindo novos valores aos objetos de imagens e midias
+		$this->imagem_m->editar($this->input->post('id'));
+		$this->imagem_m->setDataAlteracao($data_alteracao);
+		$this->imagem_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
 
-		$this->form_validation->set_rules('id', 'ID', 'trim|required');
-		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
-		$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required');
-		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
+		$this->midia_m->setTitulo($this->input->post('titulo'));
+		$this->midia_m->setDataAlteracao($data_alteracao);
+		$this->midia_m->setTipo('imagem');
+		$this->midia_m->setLink($this->input->post('link'));
+		$this->midia_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
 
-		if($this->form_validation->run() == FALSE){
-			$this->imagem_m->editar($this->input->post('id'));
+		# Usuário que está logado e realizando a operação de edição e retorno
+		# da verificação de recorte da imagem.
+		$user = $this->input->post('user');
+		$verificacao = $this->input->post('verificacao');
+		$midiaID = $this->midia_m->getId();
 
-			$this->session->set_userdata('css_js', 'formulario');
+		# Cria arquivo com as especificações da edição realizada
+		# Arquivo é utilizado por temporario.php para criar arquivo de edição
+		if ($verificacao != 'false'):
+			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
+			or die("Não foi possível abrir o arquivo!");
+			fwrite($arquivo, $midiaID.",imagem,".$verificacao.",atualizar");
+			fclose($arquivo);
+		else:
+			require_once 'assets/tmp/temporario.php';
+			$temporario = new temporario();
+			$temporario->salvar($midiaID, $user, 'imagem', 'atualizar', $verificacao, 0);
+		endif;
 
-			$this->load->view('template/header');
-			$this->load->view('imagem/editar');
-			$this->load->view('template/footer');
-		}else{
-			# Conversão de datas
-			$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
+		$caminho = 'imagem_'.$midiaID.'.jpg';
+		$this->imagem_m->setCaminho($caminho);
 
-			# Atribuindo novos valores aos objetos de imagens e midias
-			$this->imagem_m->editar($this->input->post('id'));
-			$this->imagem_m->setDataAlteracao($data_alteracao);
-			$this->imagem_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
+		$this->midia_m->atualizar();
+		$this->imagem_m->atualizar();
 
-			$this->midia_m->setTitulo($this->input->post('titulo'));
-			$this->midia_m->setDataAlteracao($data_alteracao);
-			$this->midia_m->setTipo('imagem');
-			$this->midia_m->setLink($this->input->post('link'));
-			$this->midia_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
+		$this->log_m->setTabela('pousada_imagem');
+		$this->log_m->setLinha($this->input->post('id'));
+		$this->log_m->setOperacao('u');
+		$this->log_m->setDescricao(						'Titulo: '.
+		$this->midia_m->getTitulo()					.'!break!Link: '.
+		$this->midia_m->getLink()  					.'!break!Data de Alteração: '.
+		$this->midia_m->getDataAlteracao()  .'!break!Local: '.
+		$this->midia_m->getLocal() 					.'!break!Id do item: '.
+		$this->input->post('id') 						.'!break!!break!'.
+		$verificacao
+	);
+	$this->log_m->inserir();
 
-			# Usuário que está logado e realizando a operação de edição e retorno
-			# da verificação de recorte da imagem.
-			$user = $this->input->post('user');
-			$verificacao = $this->input->post('verificacao');
-			$midiaID = $this->midia_m->getId();
-
-			# Cria arquivo com as especificações da edição realizada
-			# Arquivo é utilizado por temporario.php para criar arquivo de edição
-			if ($verificacao != 'false'):
-				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-					or die("Não foi possível abrir o arquivo!");
-				fwrite($arquivo, $midiaID.",imagem,".$verificacao.",atualizar");
-				fclose($arquivo);
-			else:
-				require_once 'assets/tmp/temporario.php';
-				$temporario = new temporario();
-				$temporario->salvar($midiaID, $user, 'imagem', 'atualizar', $verificacao, 0);
-			endif;
-
-			$caminho = 'imagem_'.$midiaID.'.jpg';
-			$this->imagem_m->setCaminho($caminho);
-
-			$this->midia_m->atualizar();
-			$this->imagem_m->atualizar();
-
-			$this->log_m->setTabela('pousada_imagem');
-			$this->log_m->setLinha($this->input->post('id'));
-			$this->log_m->setOperacao('u');
-			$this->log_m->setDescricao(						'Titulo: '.
-				$this->midia_m->getTitulo()					.'!break!Link: '.
-				$this->midia_m->getLink()  					.'!break!Data de Alteração: '.
-				$this->midia_m->getDataAlteracao()  .'!break!Local: '.
-				$this->midia_m->getLocal() 					.'!break!Id do item: '.
-				$this->input->post('id') 						.'!break!!break!'.
-				$verificacao
-			);
-			$this->log_m->inserir();
-
-			$this->session->set_userdata('status', 'SUCESSO');
-
-			redirect('Imagem/Listar');
-		}
-	}
+	$this->session->set_userdata('status', 'SUCESSO');
+	redirect('Imagem/Listar');
+}
+}
 
 
-	/*Função na qual irá listar todos os imagens
-	* que estão no banco de dados através da função
-	* 'todos' da classe 'imagem_m'.
-	*/
-	public function listar(){
-		$result = $this->imagem_m->listar();
-		$data['result'] = $result;
+/*Função na qual irá listar todos os imagens
+* que estão no banco de dados através da função
+* 'todos' da classe 'imagem_m'.
+*/
+public function listar(){
+	$result = $this->imagem_m->listar();
+	$data['result'] = $result;
 
-		$this->session->set_userdata('css_js', 'tabela');
+	$this->session->set_userdata('css_js', 'tabela');
 
-		$this->load->view('template/header');
-		$this->load->view('imagem/listar', $data);
-		$this->load->view('template/footer');
+	$this->load->view('template/header');
+	$this->load->view('imagem/listar', $data);
+	$this->load->view('template/footer');
 
-		$this->session->unset_userdata('status');
-	}
+	$this->session->unset_userdata('status');
+}
 }

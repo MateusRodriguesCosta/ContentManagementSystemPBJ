@@ -108,44 +108,43 @@
               console.log(e.message);
             }
           }
-
         }
       });
 
-    // Importar imagem
-    var $inputImage = $('#inputImage'),
-    URL = window.URL || window.webkitURL,
-    blobURL;
+      // Importar imagem
+      var $inputImage = $('#inputImage'),
+      URL = window.URL || window.webkitURL,
+      blobURL;
 
-    if (URL) {
-      $inputImage.change(function() {
-        var files = this.files,
-        file;
+      if (URL) {
+        $inputImage.change(function() {
+          var files = this.files,
+          file;
 
-        if (files && files.length) {
-          file = files[0];
+          if (files && files.length) {
+            file = files[0];
 
-          if (/^image\/\w+$/.test(file.type)) {
-            blobURL = URL.createObjectURL(file);
-            $image.one('built.cropper', function() {
-              URL.revokeObjectURL(blobURL);
-            }).cropper('reset', true).cropper('replace', blobURL);
-            $inputImage.val('');
-          } else {
-            showMessage('Please choose an image file.');
+            if (/^image\/\w+$/.test(file.type)) {
+              blobURL = URL.createObjectURL(file);
+              $image.one('built.cropper', function() {
+                URL.revokeObjectURL(blobURL);
+              }).cropper('reset', true).cropper('replace', blobURL);
+              $inputImage.val('');
+            } else {
+              showMessage('Please choose an image file.');
+            }
           }
-        }
-      });
-    } else {
-      $inputImage.parent().remove();
-    }
+        });
+      } else {
+        $inputImage.parent().remove();
+      }
 
-    // Opções
-    $('.docs-options :checkbox').on('change', function() {
-      var $this = $(this);
-      options[$this.val()] = $this.prop('checked');
-      $image.cropper('destroy').cropper(options);
-    });
-  }());
-});
+      // Opções
+      $('.docs-options :checkbox').on('change', function() {
+        var $this = $(this);
+        options[$this.val()] = $this.prop('checked');
+        $image.cropper('destroy').cropper(options);
+      });
+    }());
+  });
 })(jQuery);

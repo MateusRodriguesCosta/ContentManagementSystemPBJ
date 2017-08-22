@@ -15,8 +15,8 @@ class Imagem_m extends CI_Model {
 	private $ativo;
 
 	/**
-	 * Métodos de acesso (Getters/Setters)
-	 */
+	* Métodos de acesso (Getters/Setters)
+	*/
 
 	private function setId($id){
 		$this->id = $id;
@@ -59,8 +59,8 @@ class Imagem_m extends CI_Model {
 	}
 
 	/**
-	 * Métodos principais - Listar, Totalizar, Buscar, Inserir, Editar e Atualizar.
-	 */
+	* Métodos principais - Listar, Totalizar, Buscar, Inserir, Editar e Atualizar.
+	*/
 
 	public function listar(){
 		$this->db->query('SET lc_time_names = "pt_BR"');
@@ -90,7 +90,6 @@ class Imagem_m extends CI_Model {
 		);
 
 		$this->db->insert('pousada_imagem', $data);
-
 		$this->setId($this->db->insert_id());
 		return $this->getId();
 	}

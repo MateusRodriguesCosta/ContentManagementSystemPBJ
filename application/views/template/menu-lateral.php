@@ -5,7 +5,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 
 <aside id="sidebar_left" class="nano nano-light sidebar-light">
 	<div class="sidebar-left-content nano-content">
-
 		<ul class="nav sidebar-menu">
 			<li class="sidebar-label pt30">Menu</li>
 			<li><?php echo anchor('', '<span class="imoon imoon-home3 "></span><span class="sidebar-title">Menu Principal</span>', 'title="Clique para ir"'); ?></li>
@@ -57,8 +56,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 				</ul>
 			</li>
 		</ul>
-
 		<div class="sidebar-toggler"><a href="javascript:void(0);"><span class="fa fa-arrow-circle-o-left"></span></a></div>
-
 	</div>
 </aside>

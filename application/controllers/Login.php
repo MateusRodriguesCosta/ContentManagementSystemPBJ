@@ -9,11 +9,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
 	public function __construct(){
-        parent::__construct();
+		parent::__construct();
 
-        $this->session->set_userdata('titulo_pagina', 'Login');
-        $this->session->unset_userdata('css_js');
-    }
+		$this->session->set_userdata('titulo_pagina', 'Login');
+		$this->session->unset_userdata('css_js');
+	}
 
 	public function index(){
 		redirect('Login/Entrar');
@@ -47,12 +47,10 @@ class Login extends CI_Controller {
 		$this->acesso_m->permitir('ALL');
 
 		if($this->login_m->total_colaborador($colaborador)>0){
-			//echo $this->login_m->total_colaborador($colaborador);
 			redirect('Login/Editar/'.$colaborador);
 		}
 
 		$this->colaborador_m->listar_id_nome($colaborador);
-
 		$this->session->set_userdata('css_js', 'formulario');
 
 		$this->load->view('template/header');
@@ -69,7 +67,6 @@ class Login extends CI_Controller {
 		$this->acesso_m->permitir('ALL');
 
 		$this->texto_m->validacao();
-
 		$this->form_validation->set_rules('colaborador', 'Colaborador', 'required|max_length[5]');
 		$this->form_validation->set_rules('login', 'Login', 'trim|required|max_length[30]|is_unique[usu_login.log_login]|addslashes|htmlspecialchars');
 		$this->form_validation->set_rules('permissao', 'Permissão', 'trim|required|exact_length[3]');
@@ -79,33 +76,24 @@ class Login extends CI_Controller {
 
 		if($this->form_validation->run() == FALSE){
 			if($this->login_m->total_colaborador($this->input->post('colaborador'))>0){
-				//echo $this->login_m->total_colaborador($this->input->post('colaborador'));
 				redirect('Login/Editar/'.$this->input->post('colaborador'));
 			}
 
 			$this->colaborador_m->listar_id_nome($this->input->post('colaborador'));
-
 			$this->session->set_userdata('css_js', 'formulario');
 
 			$this->load->view('template/header');
 			$this->load->view('login/cadastrar');
 			$this->load->view('template/footer');
 		}else{
-			//echo $this->input->post('colaborador').'<br>';
 			$this->login_m->setColaborador($this->input->post('colaborador'));
-			//echo $this->input->post('login').'<br>';
 			$this->login_m->setLogin($this->input->post('login'));
-			//echo $this->input->post('senha').'<br>';
 			$this->login_m->setSenha($this->input->post('senha'));
-			//echo $this->input->post('senha_n').'<br>';
-			//echo $this->input->post('permissao').'<br>';
 			$this->login_m->setPermissao($this->input->post('permissao'));
-			//echo $this->input->post('obs').'<br>';
 			$this->login_m->setObs($this->input->post('obs'));
 			$this->login_m->inserir();
 
 			$this->session->set_userdata('status', 'SUCESSO');
-
 			redirect('Login/Listar');
 		}
 	}
@@ -159,20 +147,14 @@ class Login extends CI_Controller {
 			$this->load->view('login/editar');
 			$this->load->view('template/footer');
 		}else{
-			//echo $this->input->post('id').'<br>';
 			$this->login_m->editar($this->input->post('id'));
-			//echo $this->input->post('login').'<br>';
 			$this->login_m->setLogin($this->input->post('login'));
-			//echo $this->input->post('permissao').'<br>';
 			$this->login_m->setPermissao($this->input->post('permissao'));
-			//echo $this->input->post('obs').'<br>';
 			$this->login_m->setObs($this->input->post('obs'));
-			//echo $this->input->post('ativo').'<br>';
 			$this->login_m->setAtivo($this->input->post('ativo'));
 			$this->login_m->update();
 
 			$this->session->set_userdata('status', 'SUCESSO');
-
 			redirect('Login/Listar');
 		}
 	}
@@ -180,9 +162,9 @@ class Login extends CI_Controller {
 	/*Função não utilizada
 	*/
 	public function senha($id){
-		$this->acesso_m->permitir_user($id);
+		$this->login_m->permitir();
 
-		$this->login_m->editar($id);
+		$this->usuario_m->editar($id);
 
 		$this->colaborador_m->listar_id_nome($this->login_m->getColaborador());
 
@@ -220,15 +202,11 @@ class Login extends CI_Controller {
 			$this->load->view('login/senha');
 			$this->load->view('template/footer');
 		}else{
-			//echo $this->input->post('id').'<br>';
 			$this->login_m->editar($this->input->post('id'));
-			//echo $this->input->post('senha').'<br>';
 			$this->login_m->setSenha($this->input->post('senha'));
-			//echo $this->input->post('senha_n').'<br>';
 			$this->login_m->update_senha();
 
 			$this->session->set_userdata('status', 'SUCESSO');
-
 			redirect('Login/Senha/'.$this->input->post('id'));
 		}
 	}
@@ -246,8 +224,6 @@ class Login extends CI_Controller {
 		$this->session->unset_userdata('status');
 	}
 
-	/*
-	*/
 	public function validar(){
 		$this->texto_m->validacao();
 
@@ -264,9 +240,6 @@ class Login extends CI_Controller {
 		}else{
 			$login = $this->texto_m->sqlinjection($this->input->post('login'));
 			$senha = $this->texto_m->sqlinjection($this->input->post('senha'));
-			//echo $this->input->post('login').'<br>';
-			//echo $this->input->post('senha').'<br>';
-			//echo $this->input->post('lembrar').'<br>';
 
 			if($this->login_m->login_total($login)<1){
 				$this->session->set_userdata('status', 'LOGIN_INVALIDO');
@@ -298,11 +271,6 @@ class Login extends CI_Controller {
 				$this->session->unset_userdata('status');
 			} else {
 				$this->login_m->login($login, $senha);
-
-				//echo $this->login_m->getId().'<br>';
-				//echo $this->login_m->getNome().'<br>';
-				//echo $this->login_m->getLogin().'<br>';
-				//echo $this->login_m->getAtivo().'<br>';
 
 				if($this->login_m->getAtivo()<>'s'){
 					$this->acesso_m->setUsuario($this->login_m->getId());
@@ -379,7 +347,6 @@ class Login extends CI_Controller {
 	}
 
 	public function sair(){
-
 		$this->online_m->apagar($this->session->user_id);
 
 		$this->acesso_m->setUsuario($this->session->user_id);
@@ -400,7 +367,6 @@ class Login extends CI_Controller {
 		delete_cookie('id');
 		delete_cookie('login');
 		delete_cookie('ip');
-
 		redirect('Login/Entrar');
 	}
 
@@ -435,7 +401,6 @@ class Login extends CI_Controller {
 
 		delete_cookie('colaborador');
 		delete_cookie('login');
-
 		redirect('Login/Online');
 	}
 
@@ -453,7 +418,6 @@ class Login extends CI_Controller {
 
 		delete_cookie('colaborador');
 		delete_cookie('login');
-
 		redirect();
 	}
 }

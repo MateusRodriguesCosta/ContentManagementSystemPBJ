@@ -15,11 +15,9 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 		</div>
 		<div class="topbar-right"></div>
 	</header>
-
 	<section id="content" class="table-layout animated fadeIn">
 		<div class="chute chute-center">
 			<div class="mw1500 center-block">
-
 				<div class="allcp-form">
 					<div class="panel">
 						<div class="panel-heading"><div class="panel-title">Nova Mídia</div></div>
@@ -87,7 +85,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									</label>
 								</div>
 							</div>
-
 							<div class="row" style="margin-top: 30px;" id="divDescricao">
 								<div class="col-md-12">
 									<div class="section">
@@ -96,7 +93,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<textarea id="textoEditor" placeholder="Entre com o texto da mídia" name="texto" class="gui-textarea"></textarea>
 								</div>
 							</div>
-
 							<div class="row" style="margin-top: 35px;">
 								<div class="col-xs-12 col-sm-10 col-md-10 center-block" id="divImagem">
 									<span title="Obrigatório" class="help-block">Edição da Imagem</span>
@@ -141,8 +137,8 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 								<div class="col-md-offset-10 col-md-2">
 									<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right"><span class="fa fa-plus"></span> Inserir Novo</button>
 									<!-- Informações para diversas classes-->
-	                <input type="hidden" class="gui-input" name="verificacao" id="verificacao" value=""></input>
-	                <input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_nome.'"';?>></input>
+									<input type="hidden" class="gui-input" name="verificacao" id="verificacao" value=""></input>
+									<input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_nome.'"';?>></input>
 									<input type="hidden" id="limparImagem" value="false"></input>
 									<label id="usuario" style="display:none;"><?php echo $this->session->user_nome; ?></label>
 								</div>
@@ -151,7 +147,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>

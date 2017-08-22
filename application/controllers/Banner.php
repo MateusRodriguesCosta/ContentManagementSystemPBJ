@@ -121,7 +121,7 @@ class Banner extends CI_Controller {
 			# Arquivo é utilizado por temporario.php para criar arquivo de edição
 			if ($verificacao != 'false'):
 				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-					or die("Não foi possível abrir o arquivo!");
+				or die("Não foi possível abrir o arquivo!");
 				fwrite($arquivo, $midiaID.",banner,".$verificacao.",inserir");
 				fclose($arquivo);
 			else:
@@ -217,7 +217,7 @@ public function atualizar(){
 		# Arquivo é utilizado por temporario.php para criar arquivo de edição
 		if ($verificacao != 'false'):
 			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-				or die("Não foi possível abrir o arquivo!");
+			or die("Não foi possível abrir o arquivo!");
 			fwrite($arquivo, $midiaID.",banner,".$verificacao.",atualizar");
 			fclose($arquivo);
 		else:

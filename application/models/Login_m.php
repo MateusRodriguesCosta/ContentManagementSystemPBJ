@@ -94,7 +94,6 @@ class Login_m extends CI_Model {
 		$this->db->where('usu_login', $login);
 		$result = $this->db->get('pousada_usuario');
 		$result = $result->row();
-
 		return $result->usu_id;
 	}
 
@@ -111,7 +110,6 @@ class Login_m extends CI_Model {
 		$this->db->where('usu_id', $id);
 		$result = $this->db->get('pousada_usuario');
 		$result = $result->row();
-
 		return $result->usu_login;
 	}
 
@@ -133,7 +131,6 @@ class Login_m extends CI_Model {
 	public function permitir(){
 		if($this->session->user_id == null || $this->session->user_login == null || $this->session->user_ip == null){
 			$this->session->set_userdata('status', 'LOGIN_FORA');
-
 			redirect('Login/Entrar');
 		}
 
@@ -158,7 +155,6 @@ class Login_m extends CI_Model {
 			delete_cookie('id');
 			delete_cookie('login');
 			delete_cookie('ip');
-
 			redirect('Login/Entrar');
 		}
 

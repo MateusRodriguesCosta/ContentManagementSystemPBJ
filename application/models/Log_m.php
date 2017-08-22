@@ -114,7 +114,6 @@ class Log_m extends CI_Model {
 			'log_linha' => $this->getLinha(),
 			'log_operacao' => $this->getOperacao(),
 			'log_descricao' => $this->getDescricao(),
-			//'log_login' => $this->session->user_id,
 			'log_login' => 'caec3',
 			'log_ip' => $this->texto_m->ip(),
 			'log_host' => $this->texto_m->host(),

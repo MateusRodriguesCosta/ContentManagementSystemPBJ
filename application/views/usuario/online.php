@@ -10,17 +10,14 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 				<li class="breadcrumb-icon"><?php echo anchor('', '<span class="fa fa-home"></span>', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-active"><?php echo anchor('', 'Menu Principal', 'title="Clique para ir"'); ?></li>
 				<li class="breadcrumb-link"><?php echo anchor('Usuario', 'Usuário', 'title="Clique para ir"'); ?></li>
-                <li class="breadcrumb-current-item">Online</li>
+				<li class="breadcrumb-current-item">Online</li>
 			</ol>
 		</div>
 		<div class="topbar-right"></div>
 	</header>
-
 	<section id="content" class="table-layout animated fadeIn">
 		<div class="chute chute-center">
-
 			<?php echo $this->texto_m->alerta($this->session->status); ?>
-
 			<div class="panel">
 				<div class="panel-heading"><span class="panel-title">Lista de usuários: <?php echo $this->online_m->total(); ?></span></div>
 				<div class="panel-menu">
@@ -41,22 +38,20 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							</thead>
 							<tbody>
 								<?php foreach($result as $row){ ?>
-								<tr>
-									<td><?php echo $row->usu_login; ?></td>
-									<td><?php echo $row->onl_ip; ?></td>
-									<td><?php echo $row->onl_host; ?></td>
-									<td><?php echo $row->onl_os; ?></td>
-									<td><?php echo $row->onl_navegador; ?></td>
-									<td><?php echo $row->onl_datahora; ?></td>
-								</tr>
+									<tr>
+										<td><?php echo $row->usu_login; ?></td>
+										<td><?php echo $row->onl_ip; ?></td>
+										<td><?php echo $row->onl_host; ?></td>
+										<td><?php echo $row->onl_os; ?></td>
+										<td><?php echo $row->onl_navegador; ?></td>
+										<td><?php echo $row->onl_datahora; ?></td>
+									</tr>
 								<?php } ?>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</section>
-
 </section>

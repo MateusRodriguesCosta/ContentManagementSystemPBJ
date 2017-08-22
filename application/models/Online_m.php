@@ -81,17 +81,13 @@ class Online_m extends CI_Model {
 			'onl_os' => $this->getOs(),
 			'onl_navegador' => $this->getNavegador()
 		);
-
 		$this->db->insert('pousada_online', $data);
 	}
 
 	public function todos(){
-		//$this->db->select('onl_id, col_colaborador, log_login, log_permissao, onl_ip, onl_host, onl_os, onl_navegador, onl_datahora');
 		$this->db->select('usu_login, onl_ip, onl_host, onl_os, onl_navegador, onl_datahora');
 		$this->db->from('pousada_online');
 		$this->db->join('pousada_usuario', 'pousada_usuario.usu_id = pousada_online.onl_login');
-		//$this->db->join('usu_colaborador', 'usu_colaborador.col_id = usu_login.log_colaborador');
-		//$this->db->order_by('col_colaborador', 'ASC');
 		$this->db->order_by('onl_datahora', 'DESC');
 		$query = $this->db->get();
 		return $query->result();

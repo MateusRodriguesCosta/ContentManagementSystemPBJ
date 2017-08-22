@@ -6,11 +6,9 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 <div id="main" class="animated fadeIn">
 	<section id="content_wrapper">
 		<div id="canvas-wrapper"><canvas id="demo-canvas"></canvas></div>
-
 		<section id="content">
 			<div class="allcp-form theme-primary mw320" id="login">
 				<div class="text-center mb20"><img src="<?php echo base_url('assets/img/patterns/login/placa.png'); ?>" class="img-responsive" alt="Logo"/></div>
-
 				<div class="allcp-form">
 					<div class="panel mw320">
 						<?php echo $this->texto_m->alerta($this->session->status); ?>
@@ -29,7 +27,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									<label for="senha" class="field-icon"><i class="fa fa-lock"></i></label>
 								</label>
 							</div>
-
 							<div class="section">
 								<button type="submit" class="btn btn-bordered btn-warning pull-right">Entrar</button>
 							</div>
@@ -37,7 +34,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 						<?php echo form_close(); ?>
 					</div>
 				</div>
-
 			</div>
 		</section>
 	</section>
