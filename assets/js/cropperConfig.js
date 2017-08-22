@@ -28,7 +28,6 @@
       }
 
       $alert.fadeIn();
-
       setTimeout(function() {
         $alert.fadeOut();
       }, 3000);
@@ -36,15 +35,14 @@
 
     // Cropper configuração
     (function() {
-      var $image = $('.img-container > img'),
-      $dataX = $('#dataX'),
-      $dataY = $('#dataY'),
+      var $image  = $('.img-container > img'),
+      $dataX      = $('#dataX'),
+      $dataY      = $('#dataY'),
       $dataHeight = $('#dataHeight'),
-      $dataWidth = $('#dataWidth'),
+      $dataWidth  = $('#dataWidth'),
       $dataRotate = $('#dataRotate'),
       options = {
-        //  aspectRatio: 16 / 9, (optional)
-        preview: '.img-preview',        
+        preview: '.img-preview',
         crop: function(data) {
           $dataX.val(Math.round(data.x));
           $dataY.val(Math.round(data.y));
@@ -178,7 +176,6 @@
               URL.revokeObjectURL(blobURL);
             }).cropper('reset', true).cropper('replace', blobURL);
             $inputImage.val('');
-
           } else {
             showMessage('Please choose an image file.');
           }
@@ -191,15 +188,9 @@
     // Opções
     $('.docs-options :checkbox').on('change', function() {
       var $this = $(this);
-
       options[$this.val()] = $this.prop('checked');
       $image.cropper('destroy').cropper(options);
     });
-
-    // Tooltips
-    $('[data-toggle="tooltip"]').tooltip();
-
   }());
 });
-
 })(jQuery);
