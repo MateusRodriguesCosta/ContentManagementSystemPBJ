@@ -62,13 +62,10 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 										</a>
 										<ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
 											<li class="list-group-item">
-												<?php echo anchor('Colaborador/Editar/'.$this->session->user_id, '<span class="fa fa-male"></span> '.$this->session->user_nome, 'title="Clique para ir" class="animated animated-short fadeInUp"'); ?>
+												<?php echo anchor('Usuario/Editar/'.$this->session->user_id, '<span class="fa fa-user"></span> '.$this->session->user_login, 'title="Clique para ir" class="animated animated-short fadeInUp"'); ?>
 											</li>
 											<li class="list-group-item">
-												<?php echo anchor('Login/Editar/'.$this->session->user_id, '<span class="fa fa-user"></span> '.$this->session->user_login, 'title="Clique para ir" class="animated animated-short fadeInUp"'); ?>
-											</li>
-											<li class="list-group-item">
-												<?php echo anchor('Login/Senha/'.$this->session->user_id, '<span class="fa fa-unlock"></span> Alterar Senha', 'title="Clique para ir" class="animated animated-short fadeInUp"'); ?>
+												<?php echo anchor('Usuario/Senha/'.$this->session->user_id, '<span class="fa fa-unlock"></span> Alterar Senha', 'title="Clique para ir" class="animated animated-short fadeInUp"'); ?>
 											</li>
 											<li class="dropdown-footer text-center">
 												<?php echo anchor('Login/Sair', '<span class="fa fa-power-off pr5"></span> Logout', 'title="Clique para ir" class="btn btn-primary btn-sm btn-bordered"'); ?>

@@ -162,9 +162,9 @@ class Login extends CI_Controller {
 	/*Função não utilizada
 	*/
 	public function senha($id){
-		$this->login_m->permitir();
+		$this->acesso_m->permitir_user($id);
 
-		$this->usuario_m->editar($id);
+		$this->login_m->editar($id);
 
 		$this->colaborador_m->listar_id_nome($this->login_m->getColaborador());
 

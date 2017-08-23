@@ -25,8 +25,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
   <script src="<?php echo base_url('assets/js/plugins/holder/holder.min.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/utility/utility.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/arqcentral.js'); ?>"></script>
-  <script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
-  <script src="<?php echo base_url('assets/js/plugins/nicedit/nicEdit.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/main.js'); ?>"></script>  
   <script src="<?php echo base_url('assets/js/plugins/tinymce/jquery.tinymce.min.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/plugins/tinymce/tinymce.min.js'); ?>"></script>
   <script>tinymce.init({ selector:'textarea#textoEditor',branding: false,language:'pt_BR',plugins: [
