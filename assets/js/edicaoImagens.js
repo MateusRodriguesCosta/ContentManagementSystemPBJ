@@ -28,8 +28,8 @@ function readURL(input,user) {
 function enviarImagem(imagem, usuario){
   var getUrl = window.location;
   var origin = getUrl.protocol + "//" + getUrl.host;
-  var arrayString = dividirString(imagem, 750000);
-  var numeroArquivos = Math.ceil(imagem.length / 750000);
+  var arrayString = dividirString(imagem, 600000);
+  var numeroArquivos = Math.ceil(imagem.length / 600000);
   for (var variable in arrayString) {
     if (arrayString.hasOwnProperty(variable)) {
       $.ajax(origin + '/assets/tmp/temporario.php', {

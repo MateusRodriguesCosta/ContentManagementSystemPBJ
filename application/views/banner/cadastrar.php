@@ -71,7 +71,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
               <div class="col-xs-12 col-sm-12 center-block">
                 <span title="Obrigatório" class="help-block">Edição do Banner</span>
                 <div class="img-container pv10" style="background: #ffffff;min-height:650px !important">
-                  <img src="<?php echo base_url('assets/img/patterns/canvas/placeholder.png');?>">
+                  <img src="<?php echo base_url('assets/img/patterns/canvas/placeholder1920x675.png');?>">
                 </div>
                 <p class="text-center" style="font-size:14px;color:#bdbdbd;">Imagens que excederem 2MB ou com dimensões maiores que FULL HD não serão salvas</p>
               </div>

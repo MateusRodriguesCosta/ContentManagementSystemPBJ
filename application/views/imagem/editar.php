@@ -69,12 +69,12 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							<div class="row">
 								<div class="col-xs-12 col-sm-10 center-block">
 									<span title="Obrigatório" class="help-block">Edição da Imagem</span>
-									<div class="img-container pv10" style="background: #ffffff;">
+									<div class="img-container pv10" style="background: #ffffff;min-height:580px !important">
 										<img id="imagemContainer" name="imageContainer" src="<?php
 										if($this->imagem_m->getCaminho() != "" || $this->imagem_m->getCaminho() != null){
 											echo base_url('assets/img/pousada_imagem/'.$this->imagem_m->getCaminho().'?dummy='.date("d/m/YH:m:s"));
 										}else{
-											echo base_url('assets/img/patterns/canvas/placeholder.png');
+											echo base_url('assets/img/patterns/canvas/placeholder876x584.png');
 										}
 										?>">
 									</div>

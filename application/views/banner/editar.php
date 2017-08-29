@@ -92,7 +92,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 										if($this->banner_m->getCaminho() != "" || $this->banner_m->getCaminho() != null){
 											echo base_url('assets/img/pousada_banner/'.$this->banner_m->getCaminho().'?dummy='.date("d/m/YH:m:s"));
 										}else{
-											echo base_url('assets/img/patterns/canvas/placeholder.png');
+											echo base_url('assets/img/patterns/canvas/placeholder1920x675.png');
 										}
 										 ?>">
 									</div>

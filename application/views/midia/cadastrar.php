@@ -94,10 +94,10 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 								</div>
 							</div>
 							<div class="row" style="margin-top: 35px;">
-								<div class="col-xs-12 col-sm-10 col-md-10 center-block" id="divImagem">
+								<div class="col-xs-12 col-sm-9 col-md-9 center-block" id="divImagem">
 									<span title="Obrigatório" class="help-block">Edição da Imagem</span>
-									<div class="img-container pv10" style="background: #ffffff;">
-										<img src="<?php echo base_url('assets/img/patterns/canvas/placeholder.png'); ?>">
+									<div class="img-container pv10" style="background: #ffffff;min-height:480px !important">
+										<img src="<?php echo base_url('assets/img/patterns/canvas/placeholder455x305.png'); ?>">
 									</div>
 									<p class="text-center" style="font-size:14px;color:#bdbdbd;">Imagens que excederem 2MB ou com dimensões maiores que FULL HD não serão salvas</p>
 								</div>
