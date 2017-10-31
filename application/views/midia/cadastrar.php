@@ -135,7 +135,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							</div>
 							<div class="row">
 								<div class="col-md-offset-10 col-md-2">
-									<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right"><span class="fa fa-plus"></span> Inserir Novo</button>
+									<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right" onclick="this.disabled = true"><span class="fa fa-plus"></span> Inserir Novo</button>
 									<!-- Informações para diversas classes-->
 									<input type="hidden" class="gui-input" name="verificacao" id="verificacao" value=""></input>
 									<input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_nome.'"';?>></input>

@@ -28,7 +28,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 								</label>
 							</div>
 							<div class="section">
-								<button type="submit" class="btn btn-bordered btn-warning pull-right">Entrar</button>
+								<button type="submit" class="btn btn-bordered btn-warning pull-right" onclick="this.disabled = true">Entrar</button>
 							</div>
 						</div>
 						<?php echo form_close(); ?>

@@ -85,7 +85,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 
 								<div class="row">
 									<div class="col-md-offset-10 col-md-2">
-										<button type="submit" class="btn btn-bordered btn-primary mb5"><span class="fa fa-plus"></span> Inserir Novo</button>
+										<button type="submit" class="btn btn-bordered btn-primary mb5" onclick="this.disabled = true"><span class="fa fa-plus"></span> Inserir Novo</button>
 									</div>
 								</div>
 							<?php echo form_close(); ?>

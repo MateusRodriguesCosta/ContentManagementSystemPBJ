@@ -111,7 +111,7 @@ class Banner extends CI_Controller {
 			$midiaID = $this->midia_m->inserir();
 			$this->banner_m->setDataInclusao($data_inclusao);
 			$this->banner_m->setDataExpiracao($data_expiracao);
-
+			
 			# Usuário que está logado e realizando a operação de inclusão e retorno
 			# da verificação de recorte do banner.
 			$user = $this->input->post('user');
