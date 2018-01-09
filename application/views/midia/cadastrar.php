@@ -101,32 +101,12 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 									</div>
 									<p class="text-center" style="font-size:14px;color:#bdbdbd;">Imagens que excederem 2MB ou com dimensões maiores que FULL HD não serão salvas</p>
 								</div>
-								<div class="panel-footer text-center">
-									<div class="docs-buttons">
+
+								<div class="panel-footer" style="position: absolute;right:16%;bottom:12%;">
+									<div class="docs-buttons text-center">
 										<div class="btn-group">
-											<button class="btn btn-warning btn-sm" data-method="setDragMode" data-option="crop" type="button" title="Recortar">RECORTAR
-												<p><span class="fa fa-crop"></span></p>
-											</button>
-											<button class="btn btn-warning btn-sm" data-method="clear" type="button" title="Limpar recorte">Limpar
-												<p><span class="fa fa-remove"></span></p>
-											</button>
-											<button class="btn btn-warning btn-sm" data-method="zoom" data-option="0.1" type="button" title="Mais zoom">Ampliar
-												<p><span class="fa fa-search-plus"></span></p>
-											</button>
-											<button class="btn btn-warning btn-sm" data-method="zoom" data-option="-0.1" type="button" title="Menos zoom">Reduzir
-												<p><span class="fa fa-search-minus"></span></p>
-											</button>
-											<button class="btn btn-warning btn-sm" data-method="rotate" data-option="-45" type="button" title="Girar para esquerda">Esquerda
-												<p><span class="fa fa-rotate-left"></span></p>
-											</button>
-											<button class="btn btn-warning btn-sm" data-method="rotate" data-option="45" type="button" title="Girar para direita">Direita
-												<p><span class="fa fa-rotate-right"></span></p>
-											</button>
-											<button class="btn btn-warning btn-sm" data-method="reset" type="button" title="Resetar edição">Resetar
-												<p><span class="fa fa-refresh"></span></p>
-											</button>
-											<label class="btn btn-warning btn-sm btn-upload" for="inputImage" title="Upload de imagem">
-												<input class="sr-only js-fileinput img-upload" onchange=<?php echo "readURL(this,'".$this->session->user_nome."');"; ?> id="inputImage" name="file" type="file" accept="image/*">Upload
+											<label class="btn btn-warning btn-sm btn-upload" for="inputImage" title="Upload de imagem" style="width: 300px;-webkit-box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);-moz-box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);">
+												<input class="sr-only" id="inputImage" name="file" type="file" accept="image/*">Upload de Imagem
 												<p><span class="fa fa-upload"></span></p>
 											</label>
 										</div>
@@ -135,10 +115,8 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 							</div>
 							<div class="row">
 								<div class="col-md-offset-10 col-md-2">
-									<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right" onclick="this.disabled = true"><span class="fa fa-plus"></span> Inserir Novo</button>
+									<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right"><span class="fa fa-plus"></span> Inserir Novo</button>
 									<!-- Informações para diversas classes-->
-									<input type="hidden" class="gui-input" name="verificacao" id="verificacao" value=""></input>
-									<input type="hidden" class="gui-input" name="user" id="user" value=<?php echo '"'.$this->session->user_nome.'"';?>></input>
 									<input type="hidden" id="limparImagem" value="false"></input>
 									<label id="usuario" style="display:none;"><?php echo $this->session->user_nome; ?></label>
 								</div>

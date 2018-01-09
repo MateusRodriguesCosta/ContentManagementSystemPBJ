@@ -88,7 +88,7 @@ class Banner extends CI_Controller {
 		$this->form_validation->set_rules('dataExpiracao', 'Data de Expiração', 'trim|required');
 		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 		$this->form_validation->set_rules('dataExpiracao', 'Expiracao', 'trim|required|regex_match[#^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$#]|callback_validarAlcance');
-		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[inserir]');
+		//$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[inserir]');
 
 		if($this->form_validation->run() == FALSE){
 			$this->session->set_userdata('css_js', 'formulario');
@@ -111,26 +111,17 @@ class Banner extends CI_Controller {
 			$midiaID = $this->midia_m->inserir();
 			$this->banner_m->setDataInclusao($data_inclusao);
 			$this->banner_m->setDataExpiracao($data_expiracao);
-			
-			# Usuário que está logado e realizando a operação de inclusão e retorno
-			# da verificação de recorte do banner.
-			$user = $this->input->post('user');
-			$verificacao = $this->input->post('verificacao');
-
-			# Cria arquivo com as especificações da edição realizada
-			# Arquivo é utilizado por temporario.php para criar arquivo de edição
-			if ($verificacao != 'false'):
-				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-				or die("Não foi possível abrir o arquivo!");
-				fwrite($arquivo, $midiaID.",banner,".$verificacao.",inserir");
-				fclose($arquivo);
-			else:
-				require_once 'assets/tmp/temporario.php';
-				$temporario = new temporario();
-				$temporario->salvar($midiaID, $user, 'banner', 'inserir', $verificacao, 0);
-			endif;
-
 			$caminho = 'banner_'.$midiaID.'.jpg';
+
+			$config['upload_path']   = './assets/img/pousada_banner/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			//$config['max_width'] = 650; $config['max_height'] = 420;
+			//$config['min_width'] = 610; $config['min_height'] = 390;
+			$config['overwrite'] = true;
+			$config['file_name'] = $caminho;
+			$this->load->library('upload', $config);
+			($this->upload->do_upload('file'))? true : false;
+
 			$this->banner_m->setCaminho($caminho);
 
 			# Inclusão do banner, mensagem de sucesso e retorno a lista de banners.
@@ -144,8 +135,7 @@ class Banner extends CI_Controller {
 			$this->midia_m->getLink()  					.'!break!Data de Inclusão: '.
 			$this->midia_m->getDataInclusao()   .'!break!Data de Expiração: '.
 			$this->banner_m->getDataExpiracao() .'!break!Id do item: '.
-			$bannerID               						.'!break!!break!'.
-			$verificacao
+			$bannerID               						
 		);
 		$this->log_m->inserir();
 
@@ -179,7 +169,7 @@ public function atualizar(){
 	$this->form_validation->set_rules('dataExpiracao', 'Data de Expiração', 'trim|required');
 	$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 	$this->form_validation->set_rules('dataExpiracao', 'Expiracao', 'trim|required|regex_match[#^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$#]|callback_validarAlcance');
-	$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
+	//$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
 
 	if($this->form_validation->run() == FALSE){
 		$this->banner_m->editar($this->input->post('id'));
@@ -209,24 +199,18 @@ public function atualizar(){
 
 		# Usuário que está logado e realizando a operação de edição e retorno
 		# da verificação de recorte do banner.
-		$user = $this->input->post('user');
-		$verificacao = $this->input->post('verificacao');
 		$midiaID = $this->midia_m->getId();
-
-		# Cria arquivo com as especificações da edição realizada
-		# Arquivo é utilizado por temporario.php para criar arquivo de edição
-		if ($verificacao != 'false'):
-			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-			or die("Não foi possível abrir o arquivo!");
-			fwrite($arquivo, $midiaID.",banner,".$verificacao.",atualizar");
-			fclose($arquivo);
-		else:
-			require_once 'assets/tmp/temporario.php';
-			$temporario = new temporario();
-			$temporario->salvar($midiaID, $user, 'banner', 'atualizar', $verificacao, 0);
-		endif;
-
 		$caminho = 'banner_'.$midiaID.'.jpg';
+
+		$config['upload_path']   = './assets/img/pousada_banner/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		//$config['max_width'] = 650; $config['max_height'] = 420;
+		//$config['min_width'] = 610; $config['min_height'] = 390;
+		$config['overwrite'] = true;
+		$config['file_name'] = $caminho;
+		$this->load->library('upload', $config);
+		($this->upload->do_upload('file'))? true : false;
+
 		$this->banner_m->setCaminho($caminho);
 
 		$this->midia_m->atualizar();
@@ -240,11 +224,9 @@ public function atualizar(){
 		$this->midia_m->getLink()  					.'!break!Data de Alteração: '.
 		$this->midia_m->getDataAlteracao()  .'!break!Data de Expiração: '.
 		$this->banner_m->getDataExpiracao() .'!break!Id do item: '.
-		$this->input->post('id')						.'!break!!break!'.
-		$verificacao
+		$this->input->post('id')
 	);
 	$this->log_m->inserir();
-
 	$this->session->set_userdata('status', 'SUCESSO');
 
 	redirect('Banner/Listar');

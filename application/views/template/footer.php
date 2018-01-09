@@ -30,6 +30,7 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
   <script src="<?php echo base_url('assets/js/cropperConfig.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/jquery/jquery_ui/jquery-ui.min_date.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/jquery/jquery_ui/init.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/pacoteOperacoes.js'); ?>"></script>
   <script type="text/javascript">
   jQuery(document).ready(function(){
     "use strict";

@@ -69,7 +69,7 @@ class Midia extends CI_Controller {
 	public function inserir(){
 		$this->texto_m->validacao();
 		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
-		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[inserir]');
+		//$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[inserir]');
 
 		if($this->form_validation->run() == FALSE){
 			$this->session->set_userdata('css_js', 'formulario');
@@ -106,11 +106,6 @@ class Midia extends CI_Controller {
 			$data_inclusao = $this->texto_m->conversaoData($this->input->post('dataInclusao'));
 			$this->midia_m->setDataInclusao($data_inclusao);
 
-			# Usuário que está logado e realizando a operação de inclusão e retorno
-			# da verificação de edições.
-			$user = $this->input->post('user');
-			$verificacao = $this->input->post('verificacao');
-
 			$ID = '1';
 			# Verifica o ID da nova midia que será inserida.
 			foreach($this->midia_m->retornarId() as $row){
@@ -118,21 +113,17 @@ class Midia extends CI_Controller {
 					$ID = $row->mid_id + 1;
 				}
 			}
-
-			# Cria arquivo com as especificações da edição realizada
-			# Arquivo é utilizado por temporario.php para criar arquivo de edição
-			if ($verificacao != 'false'):
-				$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-				or die("Não foi possível abrir o arquivo!");
-				fwrite($arquivo, $ID.",midia,".$verificacao.",inserir");
-				fclose($arquivo);
-			else:
-				require_once 'assets/tmp/temporario.php';
-				$temporario = new temporario();
-				$temporario->salvar($ID, $user, 'midia', 'inserir', $verificacao, 0);
-			endif;
-
 			$caminho = 'midia_'.$ID.'.jpg';
+
+			$config['upload_path']   = './assets/img/pousada_midia/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			//$config['max_width'] = 650; $config['max_height'] = 420;
+			//$config['min_width'] = 610; $config['min_height'] = 390;
+			$config['overwrite'] = true;
+			$config['file_name'] = $caminho;
+			$this->load->library('upload', $config);
+			($this->upload->do_upload('file'))? true : false;
+
 			$this->midia_m->setCaminho($caminho);
 
 			# Inclusão da midia.
@@ -150,8 +141,7 @@ class Midia extends CI_Controller {
 			$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
 			$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
 			$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
-			$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
-			$verificacao
+			$this->texto_m->verificarConteudo($this->midia_m->getDescricao())
 		);
 		$this->log_m->inserir();
 		$this->session->set_userdata('status', 'SUCESSO');
@@ -184,7 +174,7 @@ public function atualizar(){
 	$this->form_validation->set_rules('id', 'ID', 'trim|required');
 	$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
 	$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required');
-	$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
+	//$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
 
 	if($this->form_validation->run() == FALSE){
 		$this->midia_m->editar($this->input->post('id'));
@@ -211,24 +201,18 @@ public function atualizar(){
 
 		# Usuário que está logado e realizando a operação de edição e retorno
 		# da verificação de recorte.
-		$user = $this->input->post('user');
-		$verificacao = $this->input->post('verificacao');
 		$midiaID = $this->midia_m->getId();
-
-		# Cria arquivo com as especificações da edição realizada
-		# Arquivo é utilizado por temporario.php para criar arquivo de edição
-		if ($verificacao != 'false'):
-			$arquivo = fopen("assets/tmp/edicao_".$user.".txt", "w")
-			or die("Não foi possível abrir o arquivo!");
-			fwrite($arquivo, $midiaID.",midia,".$verificacao.",atualizar");
-			fclose($arquivo);
-		else:
-			require_once 'assets/tmp/temporario.php';
-			$temporario = new temporario();
-			$temporario->salvar($midiaID, $user, 'midia', 'atualizar', $verificacao, 0);
-		endif;
-
 		$caminho = 'midia_'.$midiaID.'.jpg';
+
+		$config['upload_path']   = './assets/img/pousada_midia/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		//$config['max_width'] = 650; $config['max_height'] = 420;
+		//$config['min_width'] = 610; $config['min_height'] = 390;
+		$config['overwrite'] = true;
+		$config['file_name'] = $caminho;
+		$this->load->library('upload', $config);
+		($this->upload->do_upload('file'))? true : false;
+
 		$this->midia_m->setCaminho($caminho);
 		$this->midia_m->atualizar();
 

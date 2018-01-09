@@ -114,6 +114,35 @@ class Texto_m extends CI_Model {
 		}
 	}
 
+	public function montarRegulamento(){
+		$regulamento = $this->input->post('regulamento0');
+		$contador    = 1;
+		$regra       = 'regulamento';
+		$teste       = $regra.$contador;
+		while ($this->input->post($teste)) {
+			$regulamento = $regulamento . '@#' . $this->input->post($teste);
+			$teste = $regra.(++$contador);
+		}
+		return $regulamento;
+	}
+
+	public function desmontarRegulamento($regulamento){
+		$regulamento = explode('@#',$regulamento);
+		foreach ($regulamento as $numero => $regra) {
+			if($regra!=''){
+				echo '<label id="label'.$numero.'" class="field prepend-icon label-regra" style="margin-bottom: 10px;">
+				<input name="regulamento'.$numero.'" value="'.$regra.'" placeholder="Regra do Regulamento" maxlength="512" required id="regulamento'.$numero.'" class="gui-input" autocomplete="off">
+				<label for="regulamento'.$numero.'" class="field-icon"><i class="fa fa-font"></i></label>
+				</label>';
+			} else {
+				echo '<label id="label0" class="field prepend-icon label-regra" style="margin-bottom: 10px;">
+				<input name="regulamento0" value="" placeholder="Regra do Regulamento" maxlength="512" required id="regulamento0" class="gui-input" autocomplete="off">
+				<label for="regulamento0" class="field-icon"><i class="fa fa-font"></i></label>
+				</label>';
+			}
+		}
+	}
+
 	public function ativo_texto($ativo) {
 		switch($ativo){
 			case '1':

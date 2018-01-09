@@ -79,6 +79,19 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 				<div class="bs-component">
 					<div class="panel panel-tile br-b bw5 br-default-light">
 						<div class="panel-body pl20 p5">
+							<a href="Pacote/Listar" title="Clique para ir"  class="text-pbj"><i class="fa fa-tags icon-bg"></i></a>
+							<?php echo anchor('Pacote/Listar', '<b>Lista de Pacotes</b>', 'title="Clique para ir" class="mt15 lh15 text-pbj"'); ?>
+							<h5 class="text-muted">Pacotes</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb10">
+			<div class="col-sm-6 col-md-6">
+				<div class="bs-component">
+					<div class="panel panel-tile br-b bw5 br-default-light">
+						<div class="panel-body pl20 p5">
 							<a href="Usuario/Listar" title="Clique para ir"  class="text-pbj"><i class="imoon imoon-user icon-bg"></i></a>
 							<?php echo anchor('Usuario/Listar', '<b>Lista de Usuários</b>', 'title="Clique para ir" class="mt15 lh15 text-pbj"'); ?>
 							<h5 class="text-muted">Usuário</h5>
@@ -86,6 +99,6 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 					</div>
 				</div>
 			</div>
-		</div>
+			<div>
 	</section>
 </section>

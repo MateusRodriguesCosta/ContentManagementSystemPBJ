@@ -45,6 +45,17 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 			</li>
 			<li>
 				<a class="accordion-toggle" href="javascript:void(0);">
+					<span class="fa fa-tags"></span>
+					<span class="sidebar-title" style="cursor:default;">Pacotes</span>
+					<span class="caret"></span>
+				</a>
+				<ul class="nav sub-nav">
+					<li><?php echo anchor('Pacote/Listar', 'Listar', 'title="Listar todas às informações cadastradas"'); ?></li>
+					<li><?php echo anchor('Pacote/Adicionar', 'Adicionar', 'title="Inserir um novo item"'); ?></li>
+				</ul>
+			</li>
+			<li>
+				<a class="accordion-toggle" href="javascript:void(0);">
 					<span class="imoon imoon-user"></span>
 					<span class="sidebar-title" style="cursor:default;">Usuário</span>
 					<span class="caret"></span>
