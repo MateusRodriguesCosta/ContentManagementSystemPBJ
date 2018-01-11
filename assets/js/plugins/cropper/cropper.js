@@ -1765,19 +1765,19 @@
         responsive: true, // Rebuild when resize the window
         checkImageOrigin: true, // Check if the target image is cross origin
 
-        modal: true, // Show the black modal
-        guides: true, // Show the dashed lines for guiding
-        highlight: true, // Show the white modal to highlight the crop box
-        background: true, // Show the grid background
+        modal: false, // Show the black modal
+        guides: false, // Show the dashed lines for guiding
+        highlight: false, // Show the white modal to highlight the crop box
+        background: false, // Show the grid background
 
-        autoCrop: true, // Enable to crop the image automatically when initialize
-        dragCrop: true, // Enable to create new crop box by dragging over the image
-        movable: true, // Enable to move the crop box
-        resizable: true, // Enable to resize the crop box
-        rotatable: true, // Enable to rotate the image
-        zoomable: true, // Enable to zoom the image
-        touchDragZoom: true, // Enable to zoom the image by wheeling mouse
-        mouseWheelZoom: true, // Enable to zoom the image by dragging touch
+        autoCrop: false, // Enable to crop the image automatically when initialize
+        dragCrop: false, // Enable to create new crop box by dragging over the image
+        movable: false, // Enable to move the crop box
+        resizable: false, // Enable to resize the crop box
+        rotatable: false, // Enable to rotate the image
+        zoomable: false, // Enable to zoom the image
+        touchDragZoom: false, // Enable to zoom the image by wheeling mouse
+        mouseWheelZoom: false, // Enable to zoom the image by dragging touch
 
         // Dimensions
         minCropBoxWidth: 0,

@@ -41,6 +41,19 @@
       $dataHeight = $('#dataHeight'),
       $dataWidth  = $('#dataWidth'),
       $dataRotate = $('#dataRotate'),
+      autoCrop = false,
+      movable = false,
+      rotatable = false,
+      scalable = false,
+      zoomable = false,
+      zoomOnTouch = false,
+      cropBoxMovable = false,
+      cropBoxResizable = false,
+      toggleDragModeOnDblclick = false,
+      guides = false,
+      center = false,
+      highlight = false,
+      background = false,
       options = {
         preview: '.img-preview',
         crop: function(data) {
@@ -76,31 +89,6 @@
 
           result = $image.cropper(data.method, data.option);
 
-          // Método getCroppedCanvas alterado para se adaptar
-          // às necessidades do site da Pousada. Alterações
-          // realizadas em 01/06/2017 por:
-          // Mateus Costa mateusespindola25@hotmail.com
-
-          if (data.method === 'getCroppedCanvas') {
-            var verificaRecorte = 'true';
-            if(result.length == '1'){
-              verificaRecorte = 'false';
-            }
-            $('#verificacao').val(verificaRecorte);
-            if(verificaRecorte == 'true'){result.toBlob(function(blob){
-              var reader = new FileReader();
-              reader.readAsDataURL(blob);
-              var user = $('#usuario').text();
-              var recorte;
-
-              reader.onloadend = function() {
-                recorte = reader.result;
-                enviarImagem(recorte, user);
-              }
-
-            });}
-          }
-
           if ($.isPlainObject(result) && $target) {
             try {
               $target.val(JSON.stringify(result));
@@ -120,7 +108,7 @@
         $inputImage.change(function() {
           var files = this.files,
           file;
-
+          console.log(files);
           if (files && files.length) {
             file = files[0];
 
@@ -129,7 +117,6 @@
               $image.one('built.cropper', function() {
                 URL.revokeObjectURL(blobURL);
               }).cropper('reset', true).cropper('replace', blobURL);
-              $inputImage.val('');
             } else {
               showMessage('Please choose an image file.');
             }
@@ -139,12 +126,6 @@
         $inputImage.parent().remove();
       }
 
-      // Opções
-      $('.docs-options :checkbox').on('change', function() {
-        var $this = $(this);
-        options[$this.val()] = $this.prop('checked');
-        $image.cropper('destroy').cropper(options);
-      });
     }());
   });
 })(jQuery);
