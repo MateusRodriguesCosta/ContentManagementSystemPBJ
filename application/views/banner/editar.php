@@ -95,20 +95,21 @@ Escrito por Mateus Costa <mateusespindola25@hotmail.com>, junho de 2017 -->
 											echo base_url('assets/img/patterns/canvas/placeholder1920x675.png');
 										}
 										 ?>">
+										 <div class="panel-footer" style="position: absolute;right:3%;bottom:8%;z-index: 500">
+	                     <div class="docs-buttons text-center">
+	                       <div class="btn-group">
+	                         <label class="btn btn-warning btn-sm btn-upload" for="inputImage" title="Upload de imagem" style="width: 300px;-webkit-box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);-moz-box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);">
+	                           <input class="sr-only" id="inputImage" name="file" type="file" accept="image/*">Upload de Imagem
+	                           <p><span class="fa fa-upload"></span></p>
+	                         </label>
+	                       </div>
+	                     </div>
+	                   </div>
 									</div>
 									<p class="text-center" style="font-size:14px;color:#bdbdbd;">Imagens que excederem 2MB ou com dimensões maiores que FULL HD não serão salvas</p>
 								</div>
 							</div>
-							<div class="panel-footer" style="position: absolute;right:5%;bottom:15%;">
-								<div class="docs-buttons text-center">
-									<div class="btn-group">
-										<label class="btn btn-warning btn-sm btn-upload" for="inputImage" title="Upload de imagem" style="width: 300px;-webkit-box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);-moz-box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);box-shadow: 2px 2px 24px 6px rgba(50, 50, 50, 1);">
-											<input class="sr-only" id="inputImage" name="file" type="file" accept="image/*">Upload de Imagem
-											<p><span class="fa fa-upload"></span></p>
-										</label>
-									</div>
-								</div>
-							</div>
+
 								<div class="row">
 									<div class="col-md-offset-10 col-md-2">
 										<button id="enviar" type="submit" data-method="getCroppedCanvas" class="btn btn-bordered btn-warning mb5 pull-right"><span class="fa fa-check"></span> Salvar Edição</button>

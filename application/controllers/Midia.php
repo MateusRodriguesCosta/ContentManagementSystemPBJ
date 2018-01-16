@@ -33,27 +33,34 @@ class Midia extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('midia/cadastrar');
 		$this->load->view('template/footer');
-		$arquivotemporario = 'assets/tmp/validacao_'.$this->session->user_nome.'.txt';
-		if(file_exists($arquivotemporario)): unlink($arquivotemporario); endif;
 	}
 
 	/*Função na qual realiza a validação das imagens de
 	* apresentação , utilizando como callback do form_validation.
 	*/
-	public function validarImagem($imagem, $tipo){
-		$usuario = $this->input->post('user');
-		$caminhoTemporarioOriginal = 'assets/tmp/edicao_tmp_'.$usuario.'.jpg';
-		$validacao = 'assets/tmp/validacao_'.$usuario.'.txt';
-		$verificacao = $this->input->post('verificacao');
-		if (file_exists($caminhoTemporarioOriginal)) {
-			$resolucao = getimagesize($caminhoTemporarioOriginal);
-			$tamanho   = filesize($caminhoTemporarioOriginal);
-			return ($resolucao[0]<=2000 && $resolucao[1]<=1200) ? (($tamanho < 1048576) ? true : false ): false;
-		} elseif($verificacao == 'true' || (!file_exists($validacao) && $tipo == 'atualizar')) {
-			return true;
+	public function validarImagem($img,$type){
+		if ($type == 'inserir') {
+			$config['upload_path']   = "assets/img/pousada_midia";
+			$config['allowed_types'] = 'jpg|png';
+			$config['max_width'] = 2049; $config['max_height'] = 1556;
+			$config['min_width'] = 300; $config['min_height'] = 300;
+			$config['overwrite'] = true;
+			$config['file_name'] = 'midia_'.($this->db->count_all('pousada_midia') + 1).'.jpg';
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			return $this->upload->do_upload('file');
+		} elseif($img) {
+			$config['upload_path']   = "assets/img/pousada_midia";
+			$config['allowed_types'] = 'jpg|png';
+			$config['max_width'] = 2049; $config['max_height'] = 1556;
+			$config['min_width'] = 300; $config['min_height'] = 300;
+			$config['overwrite'] = true;
+			$config['file_name'] = 'midia_'.$this->input->post('id').'.jpg';
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			return $this->upload->do_upload('file');
 		} else {
-			unlink($validacao);
-			return false;
+			return true;
 		}
 	}
 
@@ -69,7 +76,7 @@ class Midia extends CI_Controller {
 	public function inserir(){
 		$this->texto_m->validacao();
 		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
-		//$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[inserir]');
+		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[inserir]');
 
 		if($this->form_validation->run() == FALSE){
 			$this->session->set_userdata('css_js', 'formulario');
@@ -106,24 +113,8 @@ class Midia extends CI_Controller {
 			$data_inclusao = $this->texto_m->conversaoData($this->input->post('dataInclusao'));
 			$this->midia_m->setDataInclusao($data_inclusao);
 
-			$ID = '1';
-			# Verifica o ID da nova midia que será inserida.
-			foreach($this->midia_m->retornarId() as $row){
-				if ($row->mid_id!='' && $row->mid_id!=null && $row->mid_id!=0) {
-					$ID = $row->mid_id + 1;
-				}
-			}
+			$ID = ($this->db->count_all('pousada_midia') + 1);
 			$caminho = 'midia_'.$ID.'.jpg';
-
-			$config['upload_path']   = './assets/img/pousada_midia/';
-			$config['allowed_types'] = 'gif|jpg|png';
-			//$config['max_width'] = 650; $config['max_height'] = 420;
-			//$config['min_width'] = 610; $config['min_height'] = 390;
-			$config['overwrite'] = true;
-			$config['file_name'] = $caminho;
-			$this->load->library('upload', $config);
-			($this->upload->do_upload('file'))? true : false;
-
 			$this->midia_m->setCaminho($caminho);
 
 			# Inclusão da midia.
@@ -141,117 +132,102 @@ class Midia extends CI_Controller {
 			$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
 			$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
 			$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
-			$this->texto_m->verificarConteudo($this->midia_m->getDescricao())
-		);
-		$this->log_m->inserir();
-		$this->session->set_userdata('status', 'SUCESSO');
-		redirect('Midia/Listar');
+			$this->texto_m->verificarConteudo($this->midia_m->getDescricao()));
+			$this->log_m->inserir();
+
+			# Mensagem de sucesso e retorno a lista de imagens.
+			$this->session->set_userdata('status', 'SUCESSO');
+			redirect('Midia/Listar');
+		}
 	}
-}
 
-/*Função na qual irá realizar o redirecionamento
-* para o banner que possui o $id passado por parâmetro.
-*/
-public function editar($id){
-	$this->midia_m->editar($id);
-	$this->session->set_userdata('css_js', 'formulario');
-
-	$this->load->view('template/header');
-	$this->load->view('midia/editar');
-	$this->load->view('template/footer');
-	$arquivotemporario = 'assets/tmp/validacao_'.$this->session->user_nome.'.txt';
-	if(file_exists($arquivotemporario)): unlink($arquivotemporario); endif;
-}
-
-/*Função na qual irá atualizar as informações
-* sobre o banner que são o Titulo e o status
-* de Ativo que é um trigger para exibição do
-* banner no carrosel.
-*/
-public function atualizar(){
-	$this->texto_m->validacao();
-
-	$this->form_validation->set_rules('id', 'ID', 'trim|required');
-	$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
-	$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required');
-	//$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
-
-	if($this->form_validation->run() == FALSE){
-		$this->midia_m->editar($this->input->post('id'));
+	/*Função na qual irá realizar o redirecionamento
+	* para o banner que possui o $id passado por parâmetro.
+	*/
+	public function editar($id){
+		$this->midia_m->editar($id);
 		$this->session->set_userdata('css_js', 'formulario');
 
 		$this->load->view('template/header');
 		$this->load->view('midia/editar');
 		$this->load->view('template/footer');
-	}else{
-		# Conversão de datas
-		$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
+	}
 
-		$this->midia_m->editar($this->input->post('id'));
-		$this->midia_m->setTitulo($this->input->post('titulo'));
-		$this->midia_m->setDescricao($this->input->post('texto'));
-		$this->midia_m->setDataAlteracao($data_alteracao);
-		$this->midia_m->setTipo('midia');
-		$this->midia_m->setLink($this->input->post('link'));
-		$this->midia_m->setLocal($this->input->post('opcaoEditar'));
-		$this->midia_m->setPeriodo($this->input->post('periodo'));
-		$this->midia_m->setCapacidade($this->input->post('capacidade'));
-		$this->midia_m->setEquipamentos($this->input->post('equipamentos'));
-		$this->midia_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
+	/*Função na qual irá atualizar as informações
+	* sobre o banner que são o Titulo e o status
+	* de Ativo que é um trigger para exibição do
+	* banner no carrosel.
+	*/
+	public function atualizar(){
+		$this->texto_m->validacao();
 
-		# Usuário que está logado e realizando a operação de edição e retorno
-		# da verificação de recorte.
-		$midiaID = $this->midia_m->getId();
-		$caminho = 'midia_'.$midiaID.'.jpg';
+		$this->form_validation->set_rules('id', 'ID', 'trim|required');
+		$this->form_validation->set_rules('titulo', 'Título', 'trim|required|max_length[65]');
+		$this->form_validation->set_rules('ativo', 'Ativo', 'trim|required');
+		$this->form_validation->set_rules('file', 'Arquivo', 'callback_validarImagem[atualizar]');
 
-		$config['upload_path']   = './assets/img/pousada_midia/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		//$config['max_width'] = 650; $config['max_height'] = 420;
-		//$config['min_width'] = 610; $config['min_height'] = 390;
-		$config['overwrite'] = true;
-		$config['file_name'] = $caminho;
-		$this->load->library('upload', $config);
-		($this->upload->do_upload('file'))? true : false;
+		if($this->form_validation->run() == FALSE){
+			$this->midia_m->editar($this->input->post('id'));
 
-		$this->midia_m->setCaminho($caminho);
-		$this->midia_m->atualizar();
+			$this->session->set_userdata('css_js', 'formulario');
 
-		$this->log_m->setTabela('pousada_midia');
-		$this->log_m->setLinha($this->input->post('id'));
-		$this->log_m->setOperacao('u');
-		$this->log_m->setDescricao(																								'Titulo: '.
-		$this->midia_m->getTitulo()																							.'!break!Link: '.
-		$this->texto_m->verificarConteudo($this->midia_m->getLink())  					.'!break!Local: '.
-		$this->midia_m->getLocal()																							.'!break!Data de Alteração: '.
-		$this->midia_m->getDataAlteracao()																			.'!break!Id do item: '.
-		$this->input->post('id')               						  										.'!break!Equipamentos: '.
-		$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
-		$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
-		$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
-		$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
-		$verificacao
-	);
-	$this->log_m->inserir();
+			$this->load->view('template/header');
+			$this->load->view('midia/editar');
+			$this->load->view('template/footer');
+		} else {
+			# Conversão de datas
+			$data_alteracao = $this->texto_m->conversaoData($this->input->post('dataAlteracao'));
 
-	$this->session->set_userdata('status', 'SUCESSO');
-	redirect('Midia/Listar');
-}
-}
+			$this->midia_m->editar($this->input->post('id'));
+			$this->midia_m->setTitulo($this->input->post('titulo'));
+			$this->midia_m->setDescricao($this->input->post('texto'));
+			$this->midia_m->setDataAlteracao($data_alteracao);
+			$this->midia_m->setTipo('midia');
+			$this->midia_m->setLink($this->input->post('link'));
+			$this->midia_m->setLocal($this->input->post('opcaoEditar'));
+			$this->midia_m->setPeriodo($this->input->post('periodo'));
+			$this->midia_m->setCapacidade($this->input->post('capacidade'));
+			$this->midia_m->setEquipamentos($this->input->post('equipamentos'));
+			$this->midia_m->setAtivo($this->texto_m->ativo_codigo($this->input->post('ativo')));
 
-/*Função na qual irá listar todos as midias
-* que estão no banco de dados através da função
-* 'todos' da classe 'midia_m'.
-*/
-public function listar(){
-	$result = $this->midia_m->listar();
-	$data['result'] = $result;
+			$midiaID = $this->midia_m->getId();
+			$this->midia_m->atualizar();
 
-	$this->session->set_userdata('css_js', 'tabela');
+			$this->log_m->setTabela('pousada_midia');
+			$this->log_m->setLinha($this->input->post('id'));
+			$this->log_m->setOperacao('u');
+			$this->log_m->setDescricao(																								'Titulo: '.
+			$this->midia_m->getTitulo()																							.'!break!Link: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getLink())  					.'!break!Local: '.
+			$this->midia_m->getLocal()																							.'!break!Data de Alteração: '.
+			$this->midia_m->getDataAlteracao()																			.'!break!Id do item: '.
+			$this->input->post('id')               						  										.'!break!Equipamentos: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getEquipamentos())  	.'!break!Capacidade: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getCapacidade())			.'!break!Período: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getPeriodo())					.'!break!Descrição: '.
+			$this->texto_m->verificarConteudo($this->midia_m->getDescricao())				.'!break!!break!'.
+			$verificacao);
+			$this->log_m->inserir();
+			$this->session->set_userdata('status', 'SUCESSO');
 
-	$this->load->view('template/header');
-	$this->load->view('midia/listar', $data);
-	$this->load->view('template/footer');
+			redirect('Midia/Listar');
+		}
+	}
 
-	$this->session->unset_userdata('status');
-}
+	/*Função na qual irá listar todos as midias
+	* que estão no banco de dados através da função
+	* 'todos' da classe 'midia_m'.
+	*/
+	public function listar(){
+		$result = $this->midia_m->listar();
+		$data['result'] = $result;
+
+		$this->session->set_userdata('css_js', 'tabela');
+
+		$this->load->view('template/header');
+		$this->load->view('midia/listar', $data);
+		$this->load->view('template/footer');
+
+		$this->session->unset_userdata('status');
+	}
 }
